@@ -45,10 +45,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    CGFloat y = 0.0f;
-    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
-        y += 20.0f;
-    }
+    CGFloat y = 20.0f;
     
     BOOL isFourInchScreen = (fabs(CGRectGetHeight([[UIScreen mainScreen] bounds]) - 568.0f) < DBL_EPSILON);
     

@@ -54,7 +54,7 @@
     self.promptLabel.textAlignment = NSTextAlignmentCenter;
     self.promptLabel.textColor = self.promptColor;
     self.promptLabel.text = self.promptTitle;
-    self.promptLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
+    self.promptLabel.font = [UIFont systemFontOfSize:18.0f];
     [self.view addSubview:self.promptLabel];
     
     y += (isFourInchScreen) ? 38.0f : 31.0f;

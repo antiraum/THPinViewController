@@ -34,7 +34,7 @@
         self.numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, (letters) ? 16.0f : 21.0f, CGRectGetWidth(frame), 30.0f)];
         self.numberLabel.text = [NSString stringWithFormat:@"%d", number];
         self.numberLabel.textAlignment = NSTextAlignmentCenter;
-        self.numberLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:36.0f];
+        self.numberLabel.font = [UIFont systemFontOfSize:36.0f];
         [self addSubview:self.numberLabel];
         
         if (letters && [letters length] > 0)
@@ -42,7 +42,7 @@
             self.lettersLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 46.0f, CGRectGetWidth(frame), 15.0f)];
             self.lettersLabel.text = letters;
             self.lettersLabel.textAlignment = NSTextAlignmentCenter;
-            self.lettersLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:10.0f];
+            self.lettersLabel.font = [UIFont systemFontOfSize:10.0f];
             [self addSubview:self.lettersLabel];
         }
         

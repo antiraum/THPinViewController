@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E222D1FA1902EDD600DD1762 /* THPinViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = E222D1F81902EDD600DD1762 /* THPinViewController.strings */; };
+		E222D1FD1902F00900DD1762 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E222D1FB1902F00900DD1762 /* Main.storyboard */; };
 		E26048A219027D01006ACBC7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26048A119027D01006ACBC7 /* Foundation.framework */; };
 		E26048A419027D01006ACBC7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26048A319027D01006ACBC7 /* CoreGraphics.framework */; };
 		E26048A619027D01006ACBC7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26048A519027D01006ACBC7 /* UIKit.framework */; };
 		E26048AC19027D01006ACBC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E26048AA19027D01006ACBC7 /* InfoPlist.strings */; };
 		E26048AE19027D01006ACBC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048AD19027D01006ACBC7 /* main.m */; };
 		E26048B219027D01006ACBC7 /* THAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048B119027D01006ACBC7 /* THAppDelegate.m */; };
-		E26048B519027D01006ACBC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26048B319027D01006ACBC7 /* Main.storyboard */; };
 		E26048B819027D01006ACBC7 /* THViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048B719027D01006ACBC7 /* THViewController.m */; };
 		E26048BA19027D01006ACBC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26048B919027D01006ACBC7 /* Images.xcassets */; };
 		E26048C119027D01006ACBC7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26048C019027D01006ACBC7 /* XCTest.framework */; };
@@ -21,6 +22,9 @@
 		E26048C319027D01006ACBC7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26048A519027D01006ACBC7 /* UIKit.framework */; };
 		E26048CB19027D01006ACBC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E26048C919027D01006ACBC7 /* InfoPlist.strings */; };
 		E26048CD19027D01006ACBC7 /* THPinViewControllerExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048CC19027D01006ACBC7 /* THPinViewControllerExampleTests.m */; };
+		E26048DD19027DBC006ACBC7 /* THPinCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048D819027DBC006ACBC7 /* THPinCircleButton.m */; };
+		E26048DE19027DBC006ACBC7 /* THPinInputCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048DA19027DBC006ACBC7 /* THPinInputCircleView.m */; };
+		E26048DF19027DBC006ACBC7 /* THPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048DC19027DBC006ACBC7 /* THPinViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E222D1F91902EDD600DD1762 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = THPinViewController.strings; sourceTree = "<group>"; };
+		E222D1FC1902F00900DD1762 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E260489E19027D01006ACBC7 /* THPinViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THPinViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26048A119027D01006ACBC7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E26048A319027D01006ACBC7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -44,7 +50,6 @@
 		E26048AF19027D01006ACBC7 /* THPinViewControllerExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "THPinViewControllerExample-Prefix.pch"; sourceTree = "<group>"; };
 		E26048B019027D01006ACBC7 /* THAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THAppDelegate.h; sourceTree = "<group>"; };
 		E26048B119027D01006ACBC7 /* THAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THAppDelegate.m; sourceTree = "<group>"; };
-		E26048B419027D01006ACBC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E26048B619027D01006ACBC7 /* THViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THViewController.h; sourceTree = "<group>"; };
 		E26048B719027D01006ACBC7 /* THViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THViewController.m; sourceTree = "<group>"; };
 		E26048B919027D01006ACBC7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -53,6 +58,12 @@
 		E26048C819027D01006ACBC7 /* THPinViewControllerExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "THPinViewControllerExampleTests-Info.plist"; sourceTree = "<group>"; };
 		E26048CA19027D01006ACBC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E26048CC19027D01006ACBC7 /* THPinViewControllerExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THPinViewControllerExampleTests.m; sourceTree = "<group>"; };
+		E26048D719027DBC006ACBC7 /* THPinCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinCircleButton.h; sourceTree = "<group>"; };
+		E26048D819027DBC006ACBC7 /* THPinCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinCircleButton.m; sourceTree = "<group>"; };
+		E26048D919027DBC006ACBC7 /* THPinInputCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCircleView.h; sourceTree = "<group>"; };
+		E26048DA19027DBC006ACBC7 /* THPinInputCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCircleView.m; sourceTree = "<group>"; };
+		E26048DB19027DBC006ACBC7 /* THPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewController.h; sourceTree = "<group>"; };
+		E26048DC19027DBC006ACBC7 /* THPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +95,7 @@
 			children = (
 				E26048A719027D01006ACBC7 /* THPinViewControllerExample */,
 				E26048C619027D01006ACBC7 /* THPinViewControllerExampleTests */,
+				E26048D619027DBC006ACBC7 /* THPinViewController */,
 				E26048A019027D01006ACBC7 /* Frameworks */,
 				E260489F19027D01006ACBC7 /* Products */,
 			);
@@ -114,9 +126,9 @@
 			children = (
 				E26048B019027D01006ACBC7 /* THAppDelegate.h */,
 				E26048B119027D01006ACBC7 /* THAppDelegate.m */,
-				E26048B319027D01006ACBC7 /* Main.storyboard */,
 				E26048B619027D01006ACBC7 /* THViewController.h */,
 				E26048B719027D01006ACBC7 /* THViewController.m */,
+				E222D1FB1902F00900DD1762 /* Main.storyboard */,
 				E26048B919027D01006ACBC7 /* Images.xcassets */,
 				E26048A819027D01006ACBC7 /* Supporting Files */,
 			);
@@ -150,6 +162,20 @@
 				E26048C919027D01006ACBC7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E26048D619027DBC006ACBC7 /* THPinViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E26048D719027DBC006ACBC7 /* THPinCircleButton.h */,
+				E26048D819027DBC006ACBC7 /* THPinCircleButton.m */,
+				E26048D919027DBC006ACBC7 /* THPinInputCircleView.h */,
+				E26048DA19027DBC006ACBC7 /* THPinInputCircleView.m */,
+				E26048DB19027DBC006ACBC7 /* THPinViewController.h */,
+				E26048DC19027DBC006ACBC7 /* THPinViewController.m */,
+				E222D1F81902EDD600DD1762 /* THPinViewController.strings */,
+			);
+			path = THPinViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,7 +237,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
 			mainGroup = E260489519027D01006ACBC7;
 			productRefGroup = E260489F19027D01006ACBC7 /* Products */;
@@ -229,9 +254,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E222D1FA1902EDD600DD1762 /* THPinViewController.strings in Resources */,
+				E222D1FD1902F00900DD1762 /* Main.storyboard in Resources */,
 				E26048BA19027D01006ACBC7 /* Images.xcassets in Resources */,
 				E26048AC19027D01006ACBC7 /* InfoPlist.strings in Resources */,
-				E26048B519027D01006ACBC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +278,10 @@
 			files = (
 				E26048B819027D01006ACBC7 /* THViewController.m in Sources */,
 				E26048B219027D01006ACBC7 /* THAppDelegate.m in Sources */,
+				E26048DE19027DBC006ACBC7 /* THPinInputCircleView.m in Sources */,
 				E26048AE19027D01006ACBC7 /* main.m in Sources */,
+				E26048DF19027DBC006ACBC7 /* THPinViewController.m in Sources */,
+				E26048DD19027DBC006ACBC7 /* THPinCircleButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,20 +304,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E222D1F81902EDD600DD1762 /* THPinViewController.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E222D1F91902EDD600DD1762 /* en */,
+			);
+			name = THPinViewController.strings;
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		E222D1FB1902F00900DD1762 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E222D1FC1902F00900DD1762 /* en */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		E26048AA19027D01006ACBC7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E26048AB19027D01006ACBC7 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E26048B319027D01006ACBC7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E26048B419027D01006ACBC7 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		E26048C919027D01006ACBC7 /* InfoPlist.strings */ = {
@@ -334,7 +372,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -366,7 +404,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -457,6 +495,7 @@
 				E26048D219027D01006ACBC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E26048D319027D01006ACBC7 /* Build configuration list for PBXNativeTarget "THPinViewControllerExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +504,7 @@
 				E26048D519027D01006ACBC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

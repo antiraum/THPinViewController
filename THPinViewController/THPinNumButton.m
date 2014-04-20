@@ -136,7 +136,8 @@
                      }];
 }
 
-- (CGSize)intrinsicContentSize {
+- (CGSize)intrinsicContentSize
+{
     return CGSizeMake(75.0f, 75.0f);
 }
 

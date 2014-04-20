@@ -81,7 +81,8 @@
     return self;
 }
 
-- (CGSize)intrinsicContentSize {
+- (CGSize)intrinsicContentSize
+{
     return CGSizeMake(3.0f * [THPinNumButton diameter] + 2.0f * self.hPadding,
                       4.0f * [THPinNumButton diameter] + 3.0f * self.vPadding);
 }

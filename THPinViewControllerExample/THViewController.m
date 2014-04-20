@@ -97,7 +97,7 @@
 
 - (void)pinViewControllerWillDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController
 {
-    [self.contentButton setTitle:@"Secret Content / Logout" forState:UIControlStateNormal];
+    [self.contentButton setTitle:@"This is the secret content / Logout" forState:UIControlStateNormal];
     [self.contentButton removeTarget:self action:@selector(showPinView:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentButton addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
 }

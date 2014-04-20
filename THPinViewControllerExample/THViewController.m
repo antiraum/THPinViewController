@@ -34,10 +34,10 @@
     [self.contentButton addTarget:self action:@selector(showPinView:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.contentButton];
     
-    NSDictionary *views = @{ @"button" : self.contentButton };
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[button]|" options:0
+    NSDictionary *views = @{ @"contentButton" : self.contentButton };
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentButton]|" options:0
                                                                       metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[button]|" options:0
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentButton]|" options:0
                                                                       metrics:nil views:views]];
 }
 

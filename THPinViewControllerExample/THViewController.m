@@ -19,7 +19,7 @@
 
 @implementation THViewController
 
-#define NUMBER_OF_PIN_ENTRIES 4
+#define NUMBER_OF_PIN_ENTRIES 6
 
 - (void)viewDidLoad
 {

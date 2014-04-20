@@ -110,7 +110,7 @@
         NSString *letters = nil;
         switch (i) {
             case 1:
-                letters = @""; // empty string to trigger shifted number position
+                letters = @" "; // empty string to trigger shifted number position
                 break;
             case 2:
                 letters = @"ABC";

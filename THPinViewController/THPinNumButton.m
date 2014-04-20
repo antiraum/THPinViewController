@@ -1,14 +1,14 @@
 //
-//  THPinCircleButton.m
+//  THPinNumButton.m
 //  THPinViewController
 //
 //  Created by Thomas Heß on 14.4.14.
 //  Copyright (c) 2014 Thomas Heß. All rights reserved.
 //
 
-#import "THPinCircleButton.h"
+#import "THPinNumButton.h"
 
-@interface THPinCircleButton ()
+@interface THPinNumButton ()
 
 @property (nonatomic, readwrite, assign) NSUInteger number;
 @property (nonatomic, readwrite, copy) NSString *letters;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation THPinCircleButton
+@implementation THPinNumButton
 
 - (instancetype)initWithFrame:(CGRect)frame number:(NSUInteger)number letters:(NSString *)letters
 {

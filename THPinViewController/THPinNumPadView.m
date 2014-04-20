@@ -7,7 +7,7 @@
 //
 
 #import "THPinNumPadView.h"
-#import "THPinCircleButton.h"
+#import "THPinNumButton.h"
 
 @interface THPinNumPadView ()
 
@@ -31,7 +31,7 @@
         CGFloat x = 0.0f;
         CGFloat y = 0.0f;
         for (NSUInteger i = 1; i < 10; i++) {
-            CGRect frame = CGRectMake(x, y, [THPinCircleButton diameter], [THPinCircleButton diameter]);
+            CGRect frame = CGRectMake(x, y, [THPinNumButton diameter], [THPinNumButton diameter]);
             NSString *letters = nil;
             switch (i) {
                 case 1:
@@ -62,19 +62,19 @@
                     letters = @"WXYZ";
                     break;
             }
-            THPinCircleButton *btn = [[THPinCircleButton alloc] initWithFrame:frame number:i letters:letters];
+            THPinNumButton *btn = [[THPinNumButton alloc] initWithFrame:frame number:i letters:letters];
             [btn addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:btn];
             if (i % 3) {
-                x += [THPinCircleButton diameter] + self.hPadding;
+                x += [THPinNumButton diameter] + self.hPadding;
             } else {
                 x = 0.0f;
-                y += [THPinCircleButton diameter] + self.vPadding;
+                y += [THPinNumButton diameter] + self.vPadding;
             }
         }
-        CGRect frame = CGRectMake([THPinCircleButton diameter] + self.hPadding, y,
-                                  [THPinCircleButton diameter], [THPinCircleButton diameter]);
-        THPinCircleButton *btn = [[THPinCircleButton alloc] initWithFrame:frame number:0 letters:nil];
+        CGRect frame = CGRectMake([THPinNumButton diameter] + self.hPadding, y,
+                                  [THPinNumButton diameter], [THPinNumButton diameter]);
+        THPinNumButton *btn = [[THPinNumButton alloc] initWithFrame:frame number:0 letters:nil];
         [btn addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
     }
@@ -82,13 +82,13 @@
 }
 
 - (CGSize)intrinsicContentSize {
-    return CGSizeMake(3.0f * [THPinCircleButton diameter] + 2.0f * self.hPadding,
-                      4.0f * [THPinCircleButton diameter] + 3.0f * self.vPadding);
+    return CGSizeMake(3.0f * [THPinNumButton diameter] + 2.0f * self.hPadding,
+                      4.0f * [THPinNumButton diameter] + 3.0f * self.vPadding);
 }
 
 - (void)numberButtonTapped:(id)sender
 {
-    [self.delegate pinNumPadView:self numberTapped:[(THPinCircleButton *)sender number]];
+    [self.delegate pinNumPadView:self numberTapped:[(THPinNumButton *)sender number]];
 }
 
 @end

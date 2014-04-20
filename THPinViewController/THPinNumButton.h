@@ -1,5 +1,5 @@
 //
-//  THPinCircleButton.h
+//  THPinNumButton.h
 //  THPinViewController
 //
 //  Created by Thomas Heß on 14.4.14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface THPinCircleButton : UIButton
+@interface THPinNumButton : UIButton
 
 @property (nonatomic, readonly, assign) NSUInteger number;
 @property (nonatomic, readonly, copy) NSString *letters;

@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.layer.cornerRadius = [self.class diameter] / 2.0f;
+        self.layer.cornerRadius = self.intrinsicContentSize.width / 2.0f;
         self.layer.borderWidth = 1.0f;
         
         [self tintColorDidChange];
@@ -36,11 +36,6 @@
 - (CGSize)intrinsicContentSize
 {
     return CGSizeMake(12.0f, 12.0f);
-}
-
-+ (CGFloat)diameter
-{
-    return 12.0f;
 }
 
 @end

@@ -11,7 +11,8 @@
 
 @interface THPinInputCirclesView ()
 
-@property (nonatomic, strong) NSMutableArray *inputCircleViews;
+@property (nonatomic, strong) NSMutableArray *circleViews;
+@property (nonatomic, readonly, assign) CGFloat circlePadding;
 
 @property (nonatomic, assign) NSUInteger numShakes;
 @property (nonatomic, assign) NSInteger shakeDirection;
@@ -29,40 +30,55 @@
     {
         self.pinLength = pinLength;
         
-        self.inputCircleViews = [NSMutableArray array];
-        for (NSUInteger i = 0; i < 4; i++) {
-            CGRect frame = CGRectMake(i * 3.0f * [THPinInputCircleView diameter], 0.0f,
-                                      [THPinInputCircleView diameter], [THPinInputCircleView diameter]);
-            THPinInputCircleView* circleView = [[THPinInputCircleView alloc] initWithFrame:frame];
+        self.circleViews = [NSMutableArray array];
+        NSMutableString *format = [NSMutableString stringWithString:@"H:|"];
+        NSMutableDictionary *views = [NSMutableDictionary dictionary];
+        for (NSUInteger i = 0; i < self.pinLength; i++) {
+            THPinInputCircleView* circleView = [[THPinInputCircleView alloc] init];
+            circleView.translatesAutoresizingMaskIntoConstraints = NO;
             [self addSubview:circleView];
-            [self.inputCircleViews addObject:circleView];
+            [self.circleViews addObject:circleView];
+            NSString *name = [NSString stringWithFormat:@"circle%d", i];
+            if (i > 0) {
+                [format appendString:@"-(padding)-"];
+            }
+            [format appendFormat:@"[%@]", name];
+            views[name] = circleView;
         }
+        [format appendString:@"|"];
+        NSDictionary *metrics = @{ @"padding" : @(self.circlePadding) };
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:views]];
     }
     return self;
 }
 
 - (CGSize)intrinsicContentSize
 {
-    CGFloat width = [THPinInputCircleView diameter] * self.pinLength;
-    width += 2.0f * [THPinInputCircleView diameter] * (self.pinLength - 1); // double diameter padding between circles
-    return CGSizeMake(width, [THPinInputCircleView diameter]);
+    CGSize circleSize = [[self.circleViews firstObject] intrinsicContentSize];
+    return CGSizeMake(self.pinLength * circleSize.width + (self.pinLength - 1) * self.circlePadding,
+                      circleSize.height);
+}
+
+- (CGFloat)circlePadding
+{
+    return 2.0f * [[self.circleViews firstObject] intrinsicContentSize].width;
 }
 
 - (void)fillCircleAtPosition:(NSUInteger)position
 {
-    NSParameterAssert(position < [self.inputCircleViews count]);
-    [self.inputCircleViews[position] setFilled:YES];
+    NSParameterAssert(position < [self.circleViews count]);
+    [self.circleViews[position] setFilled:YES];
 }
 
 - (void)unfillCircleAtPosition:(NSUInteger)position
 {
-    NSParameterAssert(position < [self.inputCircleViews count]);
-    [self.inputCircleViews[position] setFilled:NO];
+    NSParameterAssert(position < [self.circleViews count]);
+    [self.circleViews[position] setFilled:NO];
 }
 
 - (void)unfillAllCircles
 {
-    for (THPinInputCircleView *view in self.inputCircleViews) {
+    for (THPinInputCircleView *view in self.circleViews) {
         view.filled = NO;
     }
 }

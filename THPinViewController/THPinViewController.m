@@ -15,7 +15,6 @@
 @property(nonatomic, strong) UILabel *promptLabel;
 @property(nonatomic, strong) THPinInputCirclesView *inputCirclesView;
 @property(nonatomic, strong) UIButton *bottomButton;
-@property(nonatomic, assign) CGFloat bottomButtonYPos;
 
 @property(nonatomic, strong) NSMutableString *inputPin;
 
@@ -40,36 +39,54 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    CGFloat y = 20.0f;
-    
-    BOOL isFourInchScreen = (fabs(CGRectGetHeight([[UIScreen mainScreen] bounds]) - 568.0f) < DBL_EPSILON);
-    
-    y += (isFourInchScreen) ? 55.0f : 25.0f;
-    self.promptLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, y, CGRectGetWidth(self.view.bounds), 22.0f)];
+    self.promptLabel = [[UILabel alloc] init];
+    self.promptLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.promptLabel.textAlignment = NSTextAlignmentCenter;
     self.promptLabel.textColor = self.promptColor;
     self.promptLabel.text = self.promptTitle;
     self.promptLabel.font = [UIFont systemFontOfSize:18.0f];
+    [self.promptLabel sizeToFit];
     [self.view addSubview:self.promptLabel];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[promptLabel]|" options:0 metrics:nil
+                                                                        views:@{ @"promptLabel" : self.promptLabel }]];
     
-    y += (isFourInchScreen) ? 38.0f : 31.0f;
     self.inputCirclesView = [[THPinInputCirclesView alloc] initWithPinLength:[self.delegate pinLengthForPinViewController:self]];
-    self.inputCirclesView.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - self.inputCirclesView.intrinsicContentSize.width) / 2.0f, y,
-                                             self.inputCirclesView.intrinsicContentSize.width, self.inputCirclesView.intrinsicContentSize.height);
+    self.inputCirclesView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.inputCirclesView];
-    
-    y += (isFourInchScreen) ? 45.0f : 33.0f;
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.inputCirclesView attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0f constant:0.0f]];
+
     THPinNumPadView *numPadView = [[THPinNumPadView alloc] initWithDelegate:self];
-    numPadView.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - numPadView.intrinsicContentSize.width) / 2.0f, y,
-                                  numPadView.intrinsicContentSize.width, numPadView.intrinsicContentSize.height);
+    numPadView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:numPadView];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:numPadView attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0f constant:0.0f]];
     
     self.bottomButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.view addSubview:self.bottomButton];
-    y += (isFourInchScreen) ? 357.0f : 331.0f;
-    self.bottomButtonYPos = y;
+    self.bottomButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self updateBottomButton];
+    [self.view addSubview:self.bottomButton];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeRight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view attribute:NSLayoutAttributeRight
+                                                         multiplier:1.0f constant:-15.0f]];
     
+    NSDictionary *views = @{ @"promptLabel" : self.promptLabel,
+                             @"inputCirclesView" : self.inputCirclesView,
+                             @"numPadView" : numPadView,
+                             @"bottomButton" : self.bottomButton };
+    BOOL isFourInchScreen = (fabs(CGRectGetHeight([[UIScreen mainScreen] bounds]) - 568.0f) < DBL_EPSILON);
+    if (isFourInchScreen) {
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-55-[promptLabel]-16-[inputCirclesView]-33-[numPadView]-19.5-[bottomButton]-|"
+                                                                          options:0 metrics:nil views:views]];
+    } else {
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[promptLabel]-9-[inputCirclesView]-21-[numPadView]-(-6.5)-[bottomButton]-|"
+                                                                          options:0 metrics:nil views:views]];
+    }
 }
 
 #pragma mark - Properties
@@ -190,11 +207,6 @@
         [self.bottomButton addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
     }
     [self.bottomButton sizeToFit];
-    self.bottomButton.frame = (CGRect) {
-        .origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(self.bottomButton.frame) - 15.0f,
-        .origin.y = self.bottomButtonYPos,
-        .size = self.bottomButton.frame.size
-    };
 }
 
 - (void)resetInput

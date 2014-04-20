@@ -7,22 +7,17 @@
 //
 
 #import "THPinViewController.h"
-#import "THPinInputCircleView.h"
+#import "THPinInputCirclesView.h"
 #import "THPinNumPadView.h"
 
 @interface THPinViewController () <THPinNumPadViewDelegate>
 
 @property(nonatomic, strong) UILabel *promptLabel;
-@property(nonatomic, strong) UIView *inputCirclesView;
-@property(nonatomic, strong) NSMutableArray *inputCirclesViews;
+@property(nonatomic, strong) THPinInputCirclesView *inputCirclesView;
 @property(nonatomic, strong) UIButton *bottomButton;
 @property(nonatomic, assign) CGFloat bottomButtonYPos;
 
 @property(nonatomic, strong) NSMutableString *inputPin;
-
-@property(nonatomic, assign) NSUInteger numShakes;
-@property(nonatomic, assign) NSInteger shakeDirection;
-@property(nonatomic, assign) CGFloat shakeAmplitude;
 
 @end
 
@@ -58,7 +53,10 @@
     [self.view addSubview:self.promptLabel];
     
     y += (isFourInchScreen) ? 38.0f : 31.0f;
-    [self drawInputCirclesAtYPos:y];
+    self.inputCirclesView = [[THPinInputCirclesView alloc] initWithPinLength:[self.delegate pinLengthForPinViewController:self]];
+    self.inputCirclesView.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - self.inputCirclesView.intrinsicContentSize.width) / 2.0f, y,
+                                             self.inputCirclesView.intrinsicContentSize.width, self.inputCirclesView.intrinsicContentSize.height);
+    [self.view addSubview:self.inputCirclesView];
     
     y += (isFourInchScreen) ? 45.0f : 33.0f;
     THPinNumPadView *numPadView = [[THPinNumPadView alloc] initWithDelegate:self];
@@ -71,80 +69,7 @@
     y += (isFourInchScreen) ? 357.0f : 331.0f;
     self.bottomButtonYPos = y;
     [self updateBottomButton];
-}
-
-#pragma mark - UI
-
-- (void)drawInputCirclesAtYPos:(CGFloat)yPos
-{
-    NSUInteger pinLength = [self.delegate pinLengthForPinViewController:self];
-    CGFloat inputCirclesViewWidth = [THPinInputCircleView diameter] * pinLength;
-    inputCirclesViewWidth += 2.0f * [THPinInputCircleView diameter] * (pinLength - 1); // double diameter padding between circles
-    CGRect inputCirclesFrame = CGRectMake((CGRectGetWidth(self.view.bounds) - inputCirclesViewWidth) / 2.0f, yPos,
-                                          inputCirclesViewWidth, [THPinInputCircleView diameter]);
-    self.inputCirclesView = [[UIView alloc] initWithFrame:inputCirclesFrame];
-    [self.view addSubview:self.inputCirclesView];
     
-    self.inputCirclesViews = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 4; i++) {
-        CGRect frame = CGRectMake(i * 3.0f * [THPinInputCircleView diameter], 0.0f,
-                                  [THPinInputCircleView diameter], [THPinInputCircleView diameter]);
-        THPinInputCircleView* circleView = [[THPinInputCircleView alloc] initWithFrame:frame];
-        [self.inputCirclesView addSubview:circleView];
-        [self.inputCirclesViews addObject:circleView];
-    }
-}
-
-- (void)updateBottomButton
-{
-    if ([self.inputPin length] == 0) {
-        [self.bottomButton setTitle:NSLocalizedStringFromTable(@"cancel_button_title", @"THPinViewController", nil)
-                           forState:UIControlStateNormal];
-        [self.bottomButton removeTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bottomButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-    } else {
-        [self.bottomButton setTitle:NSLocalizedStringFromTable(@"delete_button_title", @"THPinViewController", nil)
-                           forState:UIControlStateNormal];
-        [self.bottomButton removeTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bottomButton addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    [self.bottomButton sizeToFit];
-    self.bottomButton.frame = (CGRect) {
-        .origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(self.bottomButton.frame) - 15.0f,
-        .origin.y = self.bottomButtonYPos,
-        .size = self.bottomButton.frame.size
-    };
-}
-
-#define TOTAL_NUM_SHAKES 6
-#define INITIAL_SHAKE_AMPLITUDE 40.0f
-
-- (void)shakeInputCircles
-{
-    self.numShakes = 0;
-    self.shakeDirection = -1;
-    self.shakeAmplitude = INITIAL_SHAKE_AMPLITUDE;
-    [self shakeInputCirclesView];
-}
-
-- (void)shakeInputCirclesView
-{
-    [UIView animateWithDuration:0.03f animations:^ {
-        self.inputCirclesView.transform = CGAffineTransformMakeTranslation(self.shakeDirection * self.shakeAmplitude, 0.0f);
-    } completion:^(BOOL finished) {
-        if (self.numShakes < TOTAL_NUM_SHAKES)
-        {
-            self.numShakes++;
-            self.shakeDirection = -1 * self.shakeDirection;
-            self.shakeAmplitude = (TOTAL_NUM_SHAKES - self.numShakes) * (INITIAL_SHAKE_AMPLITUDE / TOTAL_NUM_SHAKES);
-            [self shakeInputCirclesView];
-            
-        } else {
-            
-            self.inputCirclesView.transform = CGAffineTransformIdentity;
-            [self resetInput];
-        }
-    }];
 }
 
 #pragma mark - Properties
@@ -187,7 +112,7 @@
         [self resetInput];
     } else {
         [self.inputPin deleteCharactersInRange:NSMakeRange([self.inputPin length] - 1, 1)];
-        [self.inputCirclesViews[[self.inputPin length]] setFilled:NO];
+        [self.inputCirclesView unfillCircleAtPosition:[self.inputPin length]];
     }
 }
 
@@ -202,7 +127,7 @@
     }
     
     [self.inputPin appendString:[NSString stringWithFormat:@"%d", number]];
-    [self.inputCirclesViews[[self.inputPin length] - 1] setFilled:YES];
+    [self.inputCirclesView fillCircleAtPosition:[self.inputPin length] - 1];
     
     [self updateBottomButton];
     
@@ -227,7 +152,9 @@
         
     } else {
         
-        [self shakeInputCircles];
+        [self.inputCirclesView shakeWithCompletion:^{
+            [self resetInput];
+        }];
         
         if ([self.delegate userCanRetryInPinViewController:self]) {
             if ([self.delegate respondsToSelector:@selector(pinViewControllerWrongPinEntered:)]) {
@@ -249,12 +176,31 @@
 
 #pragma mark - Util
 
+- (void)updateBottomButton
+{
+    if ([self.inputPin length] == 0) {
+        [self.bottomButton setTitle:NSLocalizedStringFromTable(@"cancel_button_title", @"THPinViewController", nil)
+                           forState:UIControlStateNormal];
+        [self.bottomButton removeTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bottomButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [self.bottomButton setTitle:NSLocalizedStringFromTable(@"delete_button_title", @"THPinViewController", nil)
+                           forState:UIControlStateNormal];
+        [self.bottomButton removeTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bottomButton addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [self.bottomButton sizeToFit];
+    self.bottomButton.frame = (CGRect) {
+        .origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(self.bottomButton.frame) - 15.0f,
+        .origin.y = self.bottomButtonYPos,
+        .size = self.bottomButton.frame.size
+    };
+}
+
 - (void)resetInput
 {
     self.inputPin = [NSMutableString string];
-    for (THPinInputCircleView *view in self.inputCirclesViews) {
-        view.filled = NO;
-    }
+    [self.inputCirclesView unfillAllCircles];
     [self updateBottomButton];
 }
 

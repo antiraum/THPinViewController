@@ -25,6 +25,7 @@
 		E26048DD19027DBC006ACBC7 /* THPinCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048D819027DBC006ACBC7 /* THPinCircleButton.m */; };
 		E26048DE19027DBC006ACBC7 /* THPinInputCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048DA19027DBC006ACBC7 /* THPinInputCircleView.m */; };
 		E26048DF19027DBC006ACBC7 /* THPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048DC19027DBC006ACBC7 /* THPinViewController.m */; };
+		E2742FC419043598003EF85C /* THPinNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2742FC319043598003EF85C /* THPinNumPadView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		E26048DA19027DBC006ACBC7 /* THPinInputCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCircleView.m; sourceTree = "<group>"; };
 		E26048DB19027DBC006ACBC7 /* THPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewController.h; sourceTree = "<group>"; };
 		E26048DC19027DBC006ACBC7 /* THPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinViewController.m; sourceTree = "<group>"; };
+		E2742FC219043598003EF85C /* THPinNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinNumPadView.h; sourceTree = "<group>"; };
+		E2742FC319043598003EF85C /* THPinNumPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinNumPadView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,8 @@
 				E26048D819027DBC006ACBC7 /* THPinCircleButton.m */,
 				E26048D919027DBC006ACBC7 /* THPinInputCircleView.h */,
 				E26048DA19027DBC006ACBC7 /* THPinInputCircleView.m */,
+				E2742FC219043598003EF85C /* THPinNumPadView.h */,
+				E2742FC319043598003EF85C /* THPinNumPadView.m */,
 				E26048DB19027DBC006ACBC7 /* THPinViewController.h */,
 				E26048DC19027DBC006ACBC7 /* THPinViewController.m */,
 				E222D1F81902EDD600DD1762 /* THPinViewController.strings */,
@@ -277,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E26048B819027D01006ACBC7 /* THViewController.m in Sources */,
+				E2742FC419043598003EF85C /* THPinNumPadView.m in Sources */,
 				E26048B219027D01006ACBC7 /* THAppDelegate.m in Sources */,
 				E26048DE19027DBC006ACBC7 /* THPinInputCircleView.m in Sources */,
 				E26048AE19027D01006ACBC7 /* main.m in Sources */,

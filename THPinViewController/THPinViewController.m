@@ -8,9 +8,9 @@
 
 #import "THPinViewController.h"
 #import "THPinInputCircleView.h"
-#import "THPinCircleButton.h"
+#import "THPinNumPadView.h"
 
-@interface THPinViewController ()
+@interface THPinViewController () <THPinNumPadViewDelegate>
 
 @property(nonatomic, strong) UILabel *promptLabel;
 @property(nonatomic, strong) UIView *inputCirclesView;
@@ -61,7 +61,10 @@
     [self drawInputCirclesAtYPos:y];
     
     y += (isFourInchScreen) ? 45.0f : 33.0f;
-    [self drawNumPadAtYPos:y];
+    THPinNumPadView *numPadView = [[THPinNumPadView alloc] initWithDelegate:self];
+    numPadView.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - numPadView.intrinsicContentSize.width) / 2.0f, y,
+                                  numPadView.intrinsicContentSize.width, numPadView.intrinsicContentSize.height);
+    [self.view addSubview:numPadView];
     
     self.bottomButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.view addSubview:self.bottomButton];
@@ -90,68 +93,6 @@
         [self.inputCirclesView addSubview:circleView];
         [self.inputCirclesViews addObject:circleView];
     }
-}
-
-- (void)drawNumPadAtYPos:(CGFloat)yPos
-{
-    CGFloat hPadding = 20.0f;
-    CGFloat vPadding = 12.5f;
-    CGFloat numPadWidth = 3.0f * [THPinCircleButton diameter] + 2.0f * hPadding;
-    CGFloat numPadHeight = 4.0f * [THPinCircleButton diameter] + 3.0f * vPadding;
-    CGRect numPadFrame = CGRectMake((CGRectGetWidth(self.view.bounds) - numPadWidth) / 2.0f, yPos,
-                                    CGRectGetWidth(self.view.bounds), numPadHeight);
-    UIView *numPadView = [[UIView alloc] initWithFrame:numPadFrame];
-    [self.view addSubview:numPadView];
-    
-    CGFloat x = 0.0f;
-    CGFloat y = 0.0f;
-    for (NSUInteger i = 1; i < 10; i++) {
-        CGRect frame = CGRectMake(x, y, [THPinCircleButton diameter], [THPinCircleButton diameter]);
-        NSString *letters = nil;
-        switch (i) {
-            case 1:
-                letters = @" "; // empty string to trigger shifted number position
-                break;
-            case 2:
-                letters = @"ABC";
-                break;
-            case 3:
-                letters = @"DEF";
-                break;
-            case 4:
-                letters = @"GHI";
-                break;
-            case 5:
-                letters = @"JKL";
-                break;
-            case 6:
-                letters = @"MNO";
-                break;
-            case 7:
-                letters = @"PQRS";
-                break;
-            case 8:
-                letters = @"TUV";
-                break;
-            case 9:
-                letters = @"WXYZ";
-                break;
-        }
-        THPinCircleButton *btn = [[THPinCircleButton alloc] initWithFrame:frame number:i letters:letters];
-        [btn addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [numPadView addSubview:btn];
-        if (i % 3) {
-            x += [THPinCircleButton diameter] + hPadding;
-        } else {
-            x = 0.0f;
-            y += [THPinCircleButton diameter] + vPadding;
-        }
-    }
-    CGRect frame = CGRectMake([THPinCircleButton diameter] + hPadding, y,
-                              [THPinCircleButton diameter], [THPinCircleButton diameter]);
-    THPinCircleButton *btn = [[THPinCircleButton alloc] initWithFrame:frame number:0 letters:nil];
-    [btn addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [numPadView addSubview:btn];
 }
 
 - (void)updateBottomButton
@@ -228,7 +169,31 @@
 
 #pragma mark - User Interaction
 
-- (void)numberButtonTapped:(id)sender
+- (void)cancel:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(pinViewControllerWillDismissAfterPinEntryWasCancelled:)]) {
+        [self.delegate pinViewControllerWillDismissAfterPinEntryWasCancelled:self];
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(pinViewControllerDidDismissAfterPinEntryWasCancelled:)]) {
+            [self.delegate pinViewControllerDidDismissAfterPinEntryWasCancelled:self];
+        }
+    }];
+}
+
+- (void)delete:(id)sender
+{
+    if ([self.inputPin length] < 2) {
+        [self resetInput];
+    } else {
+        [self.inputPin deleteCharactersInRange:NSMakeRange([self.inputPin length] - 1, 1)];
+        [self.inputCirclesViews[[self.inputPin length]] setFilled:NO];
+    }
+}
+
+#pragma mark - THPinNumPadViewDelegate
+
+- (void)pinNumPadView:(THPinNumPadView *)pinNumPadView numberTapped:(NSUInteger)number
 {
     NSUInteger pinLength = [self.delegate pinLengthForPinViewController:self];
     
@@ -236,7 +201,7 @@
         return;
     }
     
-    [self.inputPin appendString:[NSString stringWithFormat:@"%d", [(THPinCircleButton *)sender number]]];
+    [self.inputPin appendString:[NSString stringWithFormat:@"%d", number]];
     [self.inputCirclesViews[[self.inputPin length] - 1] setFilled:YES];
     
     [self updateBottomButton];
@@ -279,28 +244,7 @@
             }];
         }
     }
-}
-
-- (void)cancel:(id)sender
-{
-    if ([self.delegate respondsToSelector:@selector(pinViewControllerWillDismissAfterPinEntryWasCancelled:)]) {
-        [self.delegate pinViewControllerWillDismissAfterPinEntryWasCancelled:self];
-    }
-    [self dismissViewControllerAnimated:YES completion:^{
-        if ([self.delegate respondsToSelector:@selector(pinViewControllerDidDismissAfterPinEntryWasCancelled:)]) {
-            [self.delegate pinViewControllerDidDismissAfterPinEntryWasCancelled:self];
-        }
-    }];
-}
-
-- (void)delete:(id)sender
-{
-    if ([self.inputPin length] < 2) {
-        [self resetInput];
-    } else {
-        [self.inputPin deleteCharactersInRange:NSMakeRange([self.inputPin length] - 1, 1)];
-        [self.inputCirclesViews[[self.inputPin length]] setFilled:NO];
-    }
+    
 }
 
 #pragma mark - Util

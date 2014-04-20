@@ -136,6 +136,10 @@
                      }];
 }
 
+- (CGSize)intrinsicContentSize {
+    return CGSizeMake(75.0f, 75.0f);
+}
+
 + (CGFloat)diameter
 {
     return 75.0f;

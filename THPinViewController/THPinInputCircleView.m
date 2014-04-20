@@ -33,6 +33,10 @@
     self.backgroundColor = (filled) ? self.tintColor : [UIColor whiteColor];
 }
 
+- (CGSize)intrinsicContentSize {
+    return CGSizeMake(12.0f, 12.0f);
+}
+
 + (CGFloat)diameter
 {
     return 12.0f;

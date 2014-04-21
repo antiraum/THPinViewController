@@ -40,7 +40,7 @@
 
 + (CGFloat)diameter
 {
-    return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 16.0f : 12.0f;
+    return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 16.0f : 12.5f;
 }
 
 @end

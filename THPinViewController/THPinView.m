@@ -85,7 +85,7 @@
             [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeRight
                                                              relatedBy:NSLayoutRelationEqual
                                                                 toItem:self attribute:NSLayoutAttributeRight
-                                                            multiplier:1.0f constant:-15.0f]];
+                                                            multiplier:1.0f constant:0.0f]];
         }
         
         NSMutableString *vFormat = [NSMutableString stringWithString:@"V:|[promptLabel]-(paddingBetweenPromptLabelAndInputCircles)-[inputCirclesView]-(paddingBetweenInputCirclesAndNumPad)-[numPadView]"];
@@ -96,9 +96,9 @@
             [vFormat appendString:@"-(paddingBetweenNumPadAndBottomButton)-[bottomButton]"];
             BOOL isFourInchScreen = (fabs(CGRectGetHeight([[UIScreen mainScreen] bounds]) - 568.0f) < DBL_EPSILON);
             if (isFourInchScreen) {
-                self.paddingBetweenPromptLabelAndInputCircles = 16.0f;
-                self.paddingBetweenInputCirclesAndNumPad = 33.0f;
-                self.paddingBetweenNumPadAndBottomButton = 19.5f;
+                self.paddingBetweenPromptLabelAndInputCircles = 22.5f;
+                self.paddingBetweenInputCirclesAndNumPad = 41.5f;
+                self.paddingBetweenNumPadAndBottomButton = 19.0f;
             } else {
                 self.paddingBetweenPromptLabelAndInputCircles = 9.0f;
                 self.paddingBetweenInputCirclesAndNumPad = 21.0f;

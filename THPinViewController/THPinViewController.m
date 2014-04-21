@@ -45,7 +45,7 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pinView attribute:NSLayoutAttributeCenterY
                                                           relatedBy:NSLayoutRelationEqual
                                                              toItem:self.view attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.0f constant:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? -9.0f : 0.0f]];
+                                                         multiplier:1.0f constant:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? -9.0f : 25.5f]];
 }
 
 #pragma mark - Properties

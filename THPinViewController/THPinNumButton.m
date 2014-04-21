@@ -55,15 +55,15 @@
             self.lettersLabel.translatesAutoresizingMaskIntoConstraints = NO;
             self.lettersLabel.text = letters;
             self.lettersLabel.textAlignment = NSTextAlignmentCenter;
-            self.lettersLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 11.0f : 10.0f];
+            self.lettersLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 11.0f : 9.0f];
             [self.lettersLabel sizeToFit];
             [contentView addSubview:self.lettersLabel];
             [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[lettersLabel]|" options:0
                                                                                 metrics:nil
                                                                                   views:@{ @"lettersLabel" : self.lettersLabel }]];
             
-            CGFloat numberLabelYCorrection = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 0.0f : -3.0f;
-            CGFloat lettersLabelYCorrection = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? -6.5f : -5.0f;
+            CGFloat numberLabelYCorrection = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 0.0f : -3.5f;
+            CGFloat lettersLabelYCorrection = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? -6.5f : -4.0f;
             
             contentViewHeight += CGRectGetHeight(self.lettersLabel.frame) + numberLabelYCorrection;
             

@@ -1,49 +1,58 @@
 THPinViewController
 ===================
 
-iOS 7 Style PIN Screen for iPhone and iPad
+iOS 7 style PIN screen for iPhone and iPad that can be displayed modally whenever the user needs to authenticate, e.g. when accessing a specially protected part of your app.
 
-<!-- Features
+Features
 --------
 
-* Caches UIImage instances in a NSCache
-* Saves UIImage representations on disk as JPGs and PNGs
-* Performs disk writes in a background queue
+* Has iPhone portrait and iPad portrait and landscape layouts
+* Supports variable PIN lengths
+* Background and tint colors as well as text and color of the prompt can be customized
 
 Usage
 -----
 
-	// configure
-    [[THPinViewController sharedCache] setMemoryCacheSize:100];
-    [[THPinViewController sharedCache] setTimeout:(24 * 60 * 60)];
-    [[THPinViewController sharedCache] setJpgQuality:0.8];
-    
-    // cache an image (in memory and/or on disk, as PNG or JPG)
-    UIImage* img = [UIImage imageNamed:@"test"];
-    NSString* imgKey = @"testImgKey";
-    [[THPinViewController sharedCache] cacheImage:img forKey:imgKey inMemory:YES onDisk:YES hasTransparency:YES];
-    
-    // query the cache
-    if ([[THPinViewController sharedCache] hasCacheForKey:imgKey onlyInMemory:YES])
-        NSLog(@"image is cached in memory");
-    if ([[THPinViewController sharedCache] hasCacheForKey:imgKey onlyInMemory:NO])
-        NSLog(@"image is cached in memory or disk");
-    
-    // access cached images
-    UIImage* imgFromMemoryCache = [[THPinViewController sharedCache] imageForKey:imgKey onlyFromMemory:YES];
-    UIImage* imgFromMemoryOrDiskCache = [[THPinViewController sharedCache] imageForKey:imgKey onlyFromMemory:NO];
-    
-    // remove from cache
-    [[THPinViewController sharedCache] removeCacheForKey:imgKey];
-    
-    // clean the cache (enforces the timeout)
-    [[THPinViewController sharedCache] cleanCache];
-    
-    // clear the cache
-    [[THPinViewController sharedCache] clearCache];
-    
-    // Override point for customization after application launch.
-    [[THPinViewController sharedCache] cleanCache];
+	THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
+    pinViewController.backgroundColor = [UIColor lightGrayColor];
+    pinViewController.promptTitle = @"Enter PIN";
+    pinViewController.promptColor = [UIColor whiteColor];
+    pinViewController.view.tintColor = [UIColor whiteColor];
+    [self presentViewController:pinViewController animated:YES completion:nil];
+	
+	// mandatory delegate methods
+	
+	- (NSUInteger)pinLengthForPinViewController:(THPinViewController *)pinViewController
+	{
+	    return 4;
+	}
+
+	- (BOOL)pinViewController:(THPinViewController *)pinViewController isPinValid:(NSString *)pin
+	{
+	    if ([pin isEqualToString:self.correctPin]) {
+	        return YES;
+	    } else {
+	        self.remainingPinEntries--;
+	        return NO;
+	    }
+	}
+
+	- (BOOL)userCanRetryInPinViewController:(THPinViewController *)pinViewController
+	{
+	    return (self.remainingPinEntries > 0);
+	}
+	
+	// optional delegate methods
+	
+	- (void)pinViewControllerIncorrectPinEntered:(THPinViewController *)pinViewController {}
+	- (void)pinViewControllerWillDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController {}
+	- (void)pinViewControllerDidDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController {}
+	- (void)pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController {}
+	- (void)pinViewControllerDidDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController {}
+	- (void)pinViewControllerWillDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController {}
+	- (void)pinViewControllerDidDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController {}
+
+See the example project for more details.
 
 Installation
 -------
@@ -53,7 +62,7 @@ Installation
 	git submodule add git://github.com/antiraum/THPinViewController.git <local path>
 	git submodule update
 
-###Via Cocoapods
+<!--###Via Cocoapods
 
 Add this line to your Podfile:
 

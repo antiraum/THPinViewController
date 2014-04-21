@@ -41,7 +41,7 @@
                                                                 toItem:self attribute:NSLayoutAttributeCenterX
                                                             multiplier:1.0f constant:0.0f]];
             
-            NSString *rowName = [NSString stringWithFormat:@"row%d", row];
+            NSString *rowName = [NSString stringWithFormat:@"row%lu", (unsigned long)row];
             if (row > 0) {
                 [vFormat appendString:@"-(vPadding)-"];
             }
@@ -66,7 +66,7 @@
                 [button addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
                 [rowView addSubview:button];
                 
-                NSString *buttonName = [NSString stringWithFormat:@"button%d%d", row, col];
+                NSString *buttonName = [NSString stringWithFormat:@"button%lu%lu", (unsigned long)row, (unsigned long)col];
                 [rowView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|[%@]|", buttonName]
                                                                                 options:0 metrics:nil views:@{ buttonName : button }]];
                 

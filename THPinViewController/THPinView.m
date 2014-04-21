@@ -204,7 +204,7 @@
         return;
     }
     
-    [self.input appendString:[NSString stringWithFormat:@"%d", number]];
+    [self.input appendString:[NSString stringWithFormat:@"%lu", (unsigned long)number]];
     [self.inputCirclesView fillCircleAtPosition:[self.input length] - 1];
     
     [self updateBottomButton];

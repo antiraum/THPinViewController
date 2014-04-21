@@ -40,7 +40,7 @@
             circleView.translatesAutoresizingMaskIntoConstraints = NO;
             [self addSubview:circleView];
             [self.circleViews addObject:circleView];
-            NSString *name = [NSString stringWithFormat:@"circle%d", i];
+            NSString *name = [NSString stringWithFormat:@"circle%lu", (unsigned long)i];
             if (i > 0) {
                 [format appendString:@"-(padding)-"];
             }

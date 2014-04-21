@@ -40,7 +40,7 @@
         
         self.numberLabel = [[UILabel alloc] init];
         self.numberLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        self.numberLabel.text = [NSString stringWithFormat:@"%d", number];
+        self.numberLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)number];
         self.numberLabel.textAlignment = NSTextAlignmentCenter;
         self.numberLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 41.0f : 36.0f];
         [self.numberLabel sizeToFit];

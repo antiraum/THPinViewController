@@ -94,8 +94,8 @@
     [[UIAlertView alloc] initWithTitle:@"Incorrect PIN"
                                message:(self.remainingPinEntries == 1 ?
                                         @"You can try again once." :
-                                        [NSString stringWithFormat:@"You can try again %d times.",
-                                         self.remainingPinEntries])
+                                        [NSString stringWithFormat:@"You can try again %lu times.",
+                                         (unsigned long)self.remainingPinEntries])
                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 

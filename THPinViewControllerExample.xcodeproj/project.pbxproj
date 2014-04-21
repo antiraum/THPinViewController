@@ -27,6 +27,7 @@
 		E26048DF19027DBC006ACBC7 /* THPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048DC19027DBC006ACBC7 /* THPinViewController.m */; };
 		E2742FC419043598003EF85C /* THPinNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2742FC319043598003EF85C /* THPinNumPadView.m */; };
 		E2742FC719043A27003EF85C /* THPinInputCirclesView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2742FC619043A27003EF85C /* THPinInputCirclesView.m */; };
+		E2742FCB19058BCA003EF85C /* THPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2742FCA19058BCA003EF85C /* THPinView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		E2742FC319043598003EF85C /* THPinNumPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinNumPadView.m; sourceTree = "<group>"; };
 		E2742FC519043A27003EF85C /* THPinInputCirclesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCirclesView.h; sourceTree = "<group>"; };
 		E2742FC619043A27003EF85C /* THPinInputCirclesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCirclesView.m; sourceTree = "<group>"; };
+		E2742FC919058BCA003EF85C /* THPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinView.h; sourceTree = "<group>"; };
+		E2742FCA19058BCA003EF85C /* THPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +184,8 @@
 				E26048D819027DBC006ACBC7 /* THPinNumButton.m */,
 				E2742FC219043598003EF85C /* THPinNumPadView.h */,
 				E2742FC319043598003EF85C /* THPinNumPadView.m */,
+				E2742FC919058BCA003EF85C /* THPinView.h */,
+				E2742FCA19058BCA003EF85C /* THPinView.m */,
 				E26048DB19027DBC006ACBC7 /* THPinViewController.h */,
 				E26048DC19027DBC006ACBC7 /* THPinViewController.m */,
 				E222D1F81902EDD600DD1762 /* THPinViewController.strings */,
@@ -294,6 +299,7 @@
 				E26048AE19027D01006ACBC7 /* main.m in Sources */,
 				E26048DF19027DBC006ACBC7 /* THPinViewController.m in Sources */,
 				E26048DD19027DBC006ACBC7 /* THPinNumButton.m in Sources */,
+				E2742FCB19058BCA003EF85C /* THPinView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

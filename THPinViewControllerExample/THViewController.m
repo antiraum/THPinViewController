@@ -86,6 +86,10 @@
 
 - (void)pinViewControllerIncorrectPinEntered:(THPinViewController *)pinViewController
 {
+    if (self.remainingPinEntries > NUMBER_OF_PIN_ENTRIES / 2) {
+        return;
+    }
+
     UIAlertView *alert =
     [[UIAlertView alloc] initWithTitle:@"Incorrect PIN"
                                message:(self.remainingPinEntries == 1 ?

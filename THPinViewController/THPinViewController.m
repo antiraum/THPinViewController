@@ -38,14 +38,26 @@
     self.pinView.promptColor = self.promptColor;
     self.pinView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.pinView];
+    // center pin view
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pinView attribute:NSLayoutAttributeCenterX
                                                           relatedBy:NSLayoutRelationEqual
                                                              toItem:self.view attribute:NSLayoutAttributeCenterX
                                                          multiplier:1.0f constant:0.0f]];
+    CGFloat pinViewYOffset = 0.0f;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        pinViewYOffset = -9.0f;
+    } else {
+        BOOL isFourInchScreen = (fabs(CGRectGetHeight([[UIScreen mainScreen] bounds]) - 568.0f) < DBL_EPSILON);
+        if (isFourInchScreen) {
+            pinViewYOffset = 25.5f;
+        } else {
+            pinViewYOffset = 18.5f;
+        }
+    }
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pinView attribute:NSLayoutAttributeCenterY
                                                           relatedBy:NSLayoutRelationEqual
                                                              toItem:self.view attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.0f constant:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? -9.0f : 25.5f]];
+                                                         multiplier:1.0f constant:pinViewYOffset]];
 }
 
 #pragma mark - Properties

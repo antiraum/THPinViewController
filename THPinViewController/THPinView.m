@@ -100,9 +100,9 @@
                 self.paddingBetweenInputCirclesAndNumPad = 41.5f;
                 self.paddingBetweenNumPadAndBottomButton = 19.0f;
             } else {
-                self.paddingBetweenPromptLabelAndInputCircles = 9.0f;
-                self.paddingBetweenInputCirclesAndNumPad = 21.0f;
-                self.paddingBetweenNumPadAndBottomButton = -6.5f;
+                self.paddingBetweenPromptLabelAndInputCircles = 15.5f;
+                self.paddingBetweenInputCirclesAndNumPad = 14.0f;
+                self.paddingBetweenNumPadAndBottomButton = -7.5f;
             }
         }
         [vFormat appendString:@"|"];

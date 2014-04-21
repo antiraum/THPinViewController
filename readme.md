@@ -69,11 +69,11 @@ Installation
 	git submodule add git://github.com/antiraum/THPinViewController.git <local path>
 	git submodule update
 
-<!--###Via Cocoapods
+###Via Cocoapods
 
 Add this line to your Podfile:
 
-    pod 'THPinViewController', '~> 1.0.0' -->
+    pod 'THPinViewController', '~> 1.0.0'
 	
 Compatibility
 -------

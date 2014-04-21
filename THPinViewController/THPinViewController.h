@@ -30,6 +30,7 @@
 @interface THPinViewController : UIViewController
 
 @property (nonatomic, weak) id<THPinViewControllerDelegate> delegate;
+@property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, copy) NSString *promptTitle;
 @property (nonatomic, strong) UIColor *promptColor;
 

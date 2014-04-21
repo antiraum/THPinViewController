@@ -30,6 +30,7 @@
 
     self.contentButton = [UIButton buttonWithType:UIButtonTypeSystem];
     self.contentButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.contentButton.tintColor = [UIColor grayColor];
     [self.contentButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
     [self.contentButton addTarget:self action:@selector(showPinView:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.contentButton];
@@ -47,7 +48,8 @@
 {
     THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
     pinViewController.promptTitle = @"Enter PIN";
-    pinViewController.promptColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
+    pinViewController.backgroundColor = [UIColor grayColor];
+    pinViewController.promptColor = [UIColor whiteColor];
     [self presentViewController:pinViewController animated:YES completion:nil];
 }
 

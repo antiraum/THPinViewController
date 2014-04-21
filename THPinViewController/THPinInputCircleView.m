@@ -10,9 +10,9 @@
 
 @implementation THPinInputCircleView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (id)init
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self)
     {
         self.layer.cornerRadius = [self.class diameter] / 2.0f;
@@ -30,7 +30,7 @@
 
 - (void)setFilled:(BOOL)filled
 {
-    self.backgroundColor = (filled) ? self.tintColor : [UIColor whiteColor];
+    self.backgroundColor = (filled) ? self.tintColor : [UIColor clearColor];
 }
 
 - (CGSize)intrinsicContentSize

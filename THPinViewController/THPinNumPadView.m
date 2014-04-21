@@ -62,6 +62,7 @@
                 THPinNumButton *button = [[THPinNumButton alloc] initWithNumber:number
                                                                         letters:[self lettersForRow:row column:col]];
                 button.translatesAutoresizingMaskIntoConstraints = NO;
+                button.backgroundColor = self.backgroundColor;
                 [button addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
                 [rowView addSubview:button];
                 
@@ -141,6 +142,16 @@
 {
     return CGSizeMake(3.0f * [THPinNumButton diameter] + 2.0f * self.hPadding,
                       4.0f * [THPinNumButton diameter] + 3.0f * self.vPadding);
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    [super setBackgroundColor:backgroundColor];
+    for (UIView *rowView in self.subviews) {
+        for (UIView *button in rowView.subviews) {
+            button.backgroundColor = self.backgroundColor;
+        }
+    }
 }
 
 - (void)numberButtonTapped:(id)sender

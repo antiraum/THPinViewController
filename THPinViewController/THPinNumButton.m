@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UILabel *numberLabel;
 @property (nonatomic, strong) UILabel *lettersLabel;
 
+@property (nonatomic, strong) UIColor *backgroundColorBackup;
+
 @end
 
 @implementation THPinNumButton
@@ -108,9 +110,10 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
+    self.backgroundColorBackup = self.backgroundColor;
     self.backgroundColor = self.tintColor;
-    self.numberLabel.textColor = [UIColor whiteColor];
-    self.lettersLabel.textColor = [UIColor whiteColor];
+    self.numberLabel.textColor = self.backgroundColorBackup;
+    self.lettersLabel.textColor = self.backgroundColorBackup;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -129,7 +132,7 @@
 {
     [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                         self.backgroundColor = [UIColor whiteColor];
+                         self.backgroundColor = self.backgroundColorBackup;
                      } completion:^(BOOL finished) {
                          self.numberLabel.textColor = self.tintColor;
                          self.lettersLabel.textColor = self.tintColor;

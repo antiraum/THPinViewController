@@ -59,6 +59,7 @@
         
         self.numPadView = [[THPinNumPadView alloc] initWithDelegate:self];
         self.numPadView.translatesAutoresizingMaskIntoConstraints = NO;
+        self.numPadView.backgroundColor = self.backgroundColor;
         [self addSubview:self.numPadView];
         [self addConstraint:[NSLayoutConstraint constraintWithItem:self.numPadView attribute:NSLayoutAttributeCenterX
                                                          relatedBy:NSLayoutRelationEqual
@@ -131,6 +132,12 @@
 }
 
 #pragma mark - Properties
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    [super setBackgroundColor:backgroundColor];
+    self.numPadView.backgroundColor = self.backgroundColor;
+}
 
 - (NSString *)promptTitle
 {

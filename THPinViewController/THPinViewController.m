@@ -22,6 +22,7 @@
     self = [super init];
     if (self) {
         self.delegate = delegate;
+        self.backgroundColor = [UIColor whiteColor];
         self.promptTitle = NSLocalizedStringFromTable(@"prompt_title", @"THPinViewController", nil);
     }
     return self;
@@ -31,9 +32,10 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = self.backgroundColor;
     
     self.pinView = [[THPinView alloc] initWithDelegate:self];
+    self.pinView.backgroundColor = self.view.backgroundColor;
     self.pinView.promptTitle = self.promptTitle;
     self.pinView.promptColor = self.promptColor;
     self.pinView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -61,6 +63,16 @@
 }
 
 #pragma mark - Properties
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    if ([self.backgroundColor isEqual:backgroundColor]) {
+        return;
+    }
+    _backgroundColor = backgroundColor;
+    self.view.backgroundColor = self.backgroundColor;
+    self.pinView.backgroundColor = self.backgroundColor;
+}
 
 - (void)setPromptTitle:(NSString *)promptTitle
 {

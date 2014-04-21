@@ -30,7 +30,6 @@
 
     self.contentButton = [UIButton buttonWithType:UIButtonTypeSystem];
     self.contentButton.translatesAutoresizingMaskIntoConstraints = NO;
-    self.contentButton.tintColor = [UIColor grayColor];
     [self.contentButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
     [self.contentButton addTarget:self action:@selector(showPinView:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.contentButton];
@@ -47,9 +46,10 @@
 - (void)showPinView:(id)sender
 {
     THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
+    pinViewController.backgroundColor = [UIColor lightGrayColor];
     pinViewController.promptTitle = @"Enter PIN";
-    pinViewController.backgroundColor = [UIColor grayColor];
     pinViewController.promptColor = [UIColor whiteColor];
+    pinViewController.view.tintColor = [UIColor whiteColor];
     [self presentViewController:pinViewController animated:YES completion:nil];
 }
 
@@ -89,7 +89,7 @@
     if (self.remainingPinEntries > NUMBER_OF_PIN_ENTRIES / 2) {
         return;
     }
-
+    
     UIAlertView *alert =
     [[UIAlertView alloc] initWithTitle:@"Incorrect PIN"
                                message:(self.remainingPinEntries == 1 ?

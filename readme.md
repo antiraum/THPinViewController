@@ -10,6 +10,13 @@ Features
 * Supports variable PIN lengths
 * Background and tint colors as well as text and color of the prompt can be customized
 
+Screenshots
+-----------
+
+<img src="THPinViewController_iphone_4inch.png" width="49%" />
+<img src="THPinViewController_iphone_3-5inch.png" width="49%" />
+<img src="THPinViewController_ipad.png" width="98%" />
+
 Usage
 -----
 

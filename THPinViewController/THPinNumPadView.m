@@ -28,57 +28,113 @@
         self.hPadding = 20.0f;
         self.vPadding = 12.5f;
         
-        CGFloat x = 0.0f;
-        CGFloat y = 0.0f;
-        for (NSUInteger i = 1; i < 10; i++) {
-            CGRect frame = CGRectMake(x, y, [THPinNumButton diameter], [THPinNumButton diameter]);
-            NSString *letters = nil;
-            switch (i) {
-                case 1:
-                    letters = @" "; // empty string to trigger shifted number position
-                    break;
-                case 2:
-                    letters = @"ABC";
-                    break;
-                case 3:
-                    letters = @"DEF";
-                    break;
-                case 4:
-                    letters = @"GHI";
-                    break;
-                case 5:
-                    letters = @"JKL";
-                    break;
-                case 6:
-                    letters = @"MNO";
-                    break;
-                case 7:
-                    letters = @"PQRS";
-                    break;
-                case 8:
-                    letters = @"TUV";
-                    break;
-                case 9:
-                    letters = @"WXYZ";
-                    break;
+        NSMutableString *vFormat = [NSMutableString stringWithString:@"V:|"];
+        NSMutableDictionary *rowViews = [NSMutableDictionary dictionary];
+        
+        for (NSUInteger row = 0; row < 4; row++)
+        {
+            UIView *rowView = [[UIView alloc] init];
+            rowView.translatesAutoresizingMaskIntoConstraints = NO;
+            [self addSubview:rowView];
+            [self addConstraint:[NSLayoutConstraint constraintWithItem:rowView attribute:NSLayoutAttributeCenterX
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self attribute:NSLayoutAttributeCenterX
+                                                            multiplier:1.0f constant:0.0f]];
+            
+            NSString *rowName = [NSString stringWithFormat:@"row%d", row];
+            if (row > 0) {
+                [vFormat appendString:@"-(vPadding)-"];
             }
-            THPinNumButton *btn = [[THPinNumButton alloc] initWithFrame:frame number:i letters:letters];
-            [btn addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-            [self addSubview:btn];
-            if (i % 3) {
-                x += [THPinNumButton diameter] + self.hPadding;
-            } else {
-                x = 0.0f;
-                y += [THPinNumButton diameter] + self.vPadding;
+            [vFormat appendFormat:@"[%@(==rowHeight)]", rowName];
+            rowViews[rowName] = rowView;
+            
+            NSMutableString *hFormat = [NSMutableString stringWithString:@"H:|"];
+            NSMutableDictionary *buttonViews = [NSMutableDictionary dictionary];
+            
+            for (NSUInteger col = 0; col < 3; col++)
+            {
+                if (row == 3 && col != 1) {
+                    // only one button on last row
+                    continue;
+                }
+                
+                NSUInteger number = (row < 3) ? row * 3 + col + 1 : 0;
+                THPinNumButton *button = [[THPinNumButton alloc] initWithNumber:number
+                                                                        letters:[self lettersForRow:row column:col]];
+                button.translatesAutoresizingMaskIntoConstraints = NO;
+                [button addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+                [rowView addSubview:button];
+                
+                NSString *buttonName = [NSString stringWithFormat:@"button%d%d", row, col];
+                [rowView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|[%@]|", buttonName]
+                                                                                options:0 metrics:nil views:@{ buttonName : button }]];
+                
+                if (row < 3) {
+                    if ([buttonViews count] > 0) {
+                        [hFormat appendString:@"-(hPadding)-"];
+                    }
+                    [hFormat appendFormat:@"[%@]", buttonName];
+                } else {
+                    [hFormat appendFormat:@"-[%@]-", buttonName];
+                }
+                buttonViews[buttonName] = button;
             }
+            
+            [hFormat appendString:@"|"];
+            NSDictionary *metrics = @{ @"hPadding" : @(self.hPadding) };
+            [rowView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:hFormat options:0 metrics:metrics views:buttonViews]];
         }
-        CGRect frame = CGRectMake([THPinNumButton diameter] + self.hPadding, y,
-                                  [THPinNumButton diameter], [THPinNumButton diameter]);
-        THPinNumButton *btn = [[THPinNumButton alloc] initWithFrame:frame number:0 letters:nil];
-        [btn addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:btn];
+        
+        [vFormat appendString:@"|"];
+        NSDictionary *metrics = @{ @"rowHeight" : @([THPinNumButton diameter]),
+                                   @"vPadding" : @(self.vPadding) };
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vFormat options:0 metrics:metrics views:rowViews]];
     }
     return self;
+}
+
+- (NSString *)lettersForRow:(NSUInteger)row column:(NSUInteger)col
+{
+    switch (row)
+    {
+        case 0:
+        {
+            switch (col)
+            {
+                case 0:
+                    return @" "; // empty string to trigger shifted number position
+                case 1:
+                    return @"ABC";
+                case 2:
+                    return @"DEF";
+            }
+        }
+        case 1:
+        {
+            switch (col)
+            {
+                case 0:
+                    return @"GHI";
+                case 1:
+                    return @"JKL";
+                case 2:
+                    return @"MNO";
+            }
+        }
+        case 2:
+        {
+            switch (col)
+            {
+                case 0:
+                    return @"PQRS";
+                case 1:
+                    return @"TUV";
+                case 2:
+                    return @"WXYZ";
+            }
+        }
+    }
+    return nil;
 }
 
 - (CGSize)intrinsicContentSize

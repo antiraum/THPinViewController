@@ -12,4 +12,6 @@
 
 @property (nonatomic, assign) BOOL filled;
 
++ (CGFloat)diameter;
+
 @end

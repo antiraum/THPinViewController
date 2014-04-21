@@ -33,7 +33,9 @@
         self.circleViews = [NSMutableArray array];
         NSMutableString *format = [NSMutableString stringWithString:@"H:|"];
         NSMutableDictionary *views = [NSMutableDictionary dictionary];
-        for (NSUInteger i = 0; i < self.pinLength; i++) {
+        
+        for (NSUInteger i = 0; i < self.pinLength; i++)
+        {
             THPinInputCircleView* circleView = [[THPinInputCircleView alloc] init];
             circleView.translatesAutoresizingMaskIntoConstraints = NO;
             [self addSubview:circleView];
@@ -45,6 +47,7 @@
             [format appendFormat:@"[%@]", name];
             views[name] = circleView;
         }
+        
         [format appendString:@"|"];
         NSDictionary *metrics = @{ @"padding" : @(self.circlePadding) };
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:views]];
@@ -54,14 +57,13 @@
 
 - (CGSize)intrinsicContentSize
 {
-    CGSize circleSize = [[self.circleViews firstObject] intrinsicContentSize];
-    return CGSizeMake(self.pinLength * circleSize.width + (self.pinLength - 1) * self.circlePadding,
-                      circleSize.height);
+    return CGSizeMake(self.pinLength * [THPinInputCircleView diameter] + (self.pinLength - 1) * self.circlePadding,
+                      [THPinInputCircleView diameter]);
 }
 
 - (CGFloat)circlePadding
 {
-    return 2.0f * [[self.circleViews firstObject] intrinsicContentSize].width;
+    return 2.0f * [THPinInputCircleView diameter];
 }
 
 - (void)fillCircleAtPosition:(NSUInteger)position
@@ -106,9 +108,7 @@
             self.shakeDirection = -1 * self.shakeDirection;
             self.shakeAmplitude = (TOTAL_NUM_SHAKES - self.numShakes) * (INITIAL_SHAKE_AMPLITUDE / TOTAL_NUM_SHAKES);
             [self performShake];
-            
         } else {
-            
             self.transform = CGAffineTransformIdentity;
             if (self.shakeCompletionBlock) {
                 self.shakeCompletionBlock();

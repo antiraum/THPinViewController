@@ -20,9 +20,9 @@
 
 @implementation THPinNumButton
 
-- (instancetype)initWithFrame:(CGRect)frame number:(NSUInteger)number letters:(NSString *)letters
+- (instancetype)initWithNumber:(NSUInteger)number letters:(NSString *)letters
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self)
     {
         self.number = number;
@@ -138,7 +138,7 @@
 
 - (CGSize)intrinsicContentSize
 {
-    return CGSizeMake(75.0f, 75.0f);
+    return CGSizeMake([self.class diameter], [self.class diameter]);
 }
 
 + (CGFloat)diameter

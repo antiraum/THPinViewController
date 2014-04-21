@@ -13,7 +13,8 @@
 @property (nonatomic, readonly, assign) NSUInteger number;
 @property (nonatomic, readonly, copy) NSString *letters;
 
-- (instancetype)initWithFrame:(CGRect)frame number:(NSUInteger)number letters:(NSString *)letters;
+- (instancetype)initWithNumber:(NSUInteger)number letters:(NSString *)letters;
+
 + (CGFloat)diameter;
 
 @end

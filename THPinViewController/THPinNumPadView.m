@@ -25,8 +25,8 @@
     {
         self.delegate = delegate;
         
-        self.hPadding = 20.0f;
-        self.vPadding = 12.5f;
+        self.hPadding = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 24.0f : 20.0f;
+        self.vPadding = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 19.0f : 12.5f;
         
         NSMutableString *vFormat = [NSMutableString stringWithString:@"V:|"];
         NSMutableDictionary *rowViews = [NSMutableDictionary dictionary];

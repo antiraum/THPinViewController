@@ -40,7 +40,7 @@
         self.numberLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.numberLabel.text = [NSString stringWithFormat:@"%d", number];
         self.numberLabel.textAlignment = NSTextAlignmentCenter;
-        self.numberLabel.font = [UIFont systemFontOfSize:36.0f];
+        self.numberLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 41.0f : 36.0f];
         [self.numberLabel sizeToFit];
         [contentView addSubview:self.numberLabel];
         [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[numberLabel]|" options:0
@@ -55,15 +55,15 @@
             self.lettersLabel.translatesAutoresizingMaskIntoConstraints = NO;
             self.lettersLabel.text = letters;
             self.lettersLabel.textAlignment = NSTextAlignmentCenter;
-            self.lettersLabel.font = [UIFont systemFontOfSize:10.0f];
+            self.lettersLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 11.0f : 10.0f];
             [self.lettersLabel sizeToFit];
             [contentView addSubview:self.lettersLabel];
             [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[lettersLabel]|" options:0
                                                                                 metrics:nil
                                                                                   views:@{ @"lettersLabel" : self.lettersLabel }]];
             
-            CGFloat numberLabelYCorrection = -3.0f;
-            CGFloat lettersLabelYCorrection = -5.0f;
+            CGFloat numberLabelYCorrection = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 0.0f : -3.0f;
+            CGFloat lettersLabelYCorrection = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? -6.5f : -5.0f;
             
             contentViewHeight += CGRectGetHeight(self.lettersLabel.frame) + numberLabelYCorrection;
             
@@ -143,7 +143,7 @@
 
 + (CGFloat)diameter
 {
-    return 75.0f;
+    return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 82.0f : 75.0f;
 }
 
 @end

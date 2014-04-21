@@ -22,6 +22,7 @@
     self = [super init];
     if (self) {
         self.delegate = delegate;
+        self.promptTitle = NSLocalizedStringFromTable(@"prompt_title", @"THPinViewController", nil);
     }
     return self;
 }
@@ -33,6 +34,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.pinView = [[THPinView alloc] initWithDelegate:self];
+    self.pinView.promptTitle = self.promptTitle;
+    self.pinView.promptColor = self.promptColor;
     self.pinView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.pinView];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pinView attribute:NSLayoutAttributeCenterX
@@ -42,29 +45,27 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pinView attribute:NSLayoutAttributeCenterY
                                                           relatedBy:NSLayoutRelationEqual
                                                              toItem:self.view attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.0f constant:0.0f]];
+                                                         multiplier:1.0f constant:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? -9.0f : 0.0f]];
 }
 
 #pragma mark - Properties
 
-- (NSString *)promptTitle
-{
-    return self.pinView.promptTitle;
-}
-
 - (void)setPromptTitle:(NSString *)promptTitle
 {
-    self.pinView.promptTitle = promptTitle;
-}
-
-- (UIColor *)promptColor
-{
-    return self.pinView.promptColor;
+    if ([self.promptTitle isEqualToString:promptTitle]) {
+        return;
+    }
+    _promptTitle = [promptTitle copy];
+    self.pinView.promptTitle = self.promptTitle;
 }
 
 - (void)setPromptColor:(UIColor *)promptColor
 {
-    self.pinView.promptColor = promptColor;
+    if ([self.promptColor isEqual:promptColor]) {
+        return;
+    }
+    _promptColor = promptColor;
+    self.pinView.promptColor = self.promptColor;
 }
 
 #pragma mark - THPinViewDelegate

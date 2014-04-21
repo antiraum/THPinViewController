@@ -9,6 +9,7 @@
 #import "THPinView.h"
 #import "THPinInputCirclesView.h"
 #import "THPinNumPadView.h"
+#import "THPinNumButton.h"
 
 @interface THPinView () <THPinNumPadViewDelegate>
 
@@ -16,6 +17,10 @@
 @property (nonatomic, strong) THPinInputCirclesView *inputCirclesView;
 @property (nonatomic, strong) THPinNumPadView *numPadView;
 @property (nonatomic, strong) UIButton *bottomButton;
+
+@property (nonatomic, assign) CGFloat paddingBetweenPromptLabelAndInputCircles;
+@property (nonatomic, assign) CGFloat paddingBetweenInputCirclesAndNumPad;
+@property (nonatomic, assign) CGFloat paddingBetweenNumPadAndBottomButton;
 
 @property (nonatomic, strong) NSMutableString *input;
 
@@ -29,7 +34,6 @@
     if (self)
     {
         self.delegate = delegate;
-        self.promptTitle = NSLocalizedStringFromTable(@"prompt_title", @"THPinViewController", nil);
         self.input = [NSMutableString string];
         
         self.promptLabel = [[UILabel alloc] init];
@@ -37,93 +41,115 @@
         self.promptLabel.textAlignment = NSTextAlignmentCenter;
         self.promptLabel.textColor = self.promptColor;
         self.promptLabel.text = self.promptTitle;
-        self.promptLabel.font = [UIFont systemFontOfSize:18.0f];
+        self.promptLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 22.0f : 18.0f];
         [self.promptLabel sizeToFit];
         //    [self.promptLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
         //    [self.promptLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
         [self addSubview:self.promptLabel];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[promptLabel]|" options:0 metrics:nil
-                                                                            views:@{ @"promptLabel" : self.promptLabel }]];
+                                                                       views:@{ @"promptLabel" : self.promptLabel }]];
         
         self.inputCirclesView = [[THPinInputCirclesView alloc] initWithPinLength:[self.delegate pinLengthForPinView:self]];
         self.inputCirclesView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.inputCirclesView];
         [self addConstraint:[NSLayoutConstraint constraintWithItem:self.inputCirclesView attribute:NSLayoutAttributeCenterX
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self attribute:NSLayoutAttributeCenterX
-                                                             multiplier:1.0f constant:0.0f]];
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:self attribute:NSLayoutAttributeCenterX
+                                                        multiplier:1.0f constant:0.0f]];
         
         self.numPadView = [[THPinNumPadView alloc] initWithDelegate:self];
         self.numPadView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.numPadView];
         [self addConstraint:[NSLayoutConstraint constraintWithItem:self.numPadView attribute:NSLayoutAttributeCenterX
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self attribute:NSLayoutAttributeCenterX
-                                                             multiplier:1.0f constant:0.0f]];
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:self attribute:NSLayoutAttributeCenterX
+                                                        multiplier:1.0f constant:0.0f]];
         
         self.bottomButton = [UIButton buttonWithType:UIButtonTypeSystem];
         self.bottomButton.translatesAutoresizingMaskIntoConstraints = NO;
+        self.bottomButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
         [self updateBottomButton];
         [self addSubview:self.bottomButton];
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeRight
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self attribute:NSLayoutAttributeRight
-                                                             multiplier:1.0f constant:-15.0f]];
-        
-        NSString *vFormat = nil;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            vFormat = @"V:|[promptLabel]-16-[inputCirclesView]-33-[numPadView]-(-20)-[bottomButton]|";
+            // place button right of zero number button
+            [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeCenterX
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self attribute:NSLayoutAttributeRight
+                                                            multiplier:1.0f constant:-[THPinNumButton diameter] / 2.0f]];
+            [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeCenterY
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self attribute:NSLayoutAttributeBottom
+                                                            multiplier:1.0f constant:-[THPinNumButton diameter] / 2.0f]];
         } else {
+            // place button beneath the num pad on the right
+            [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeRight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self attribute:NSLayoutAttributeRight
+                                                            multiplier:1.0f constant:-15.0f]];
+        }
+        
+        NSMutableString *vFormat = [NSMutableString stringWithString:@"V:|[promptLabel]-(paddingBetweenPromptLabelAndInputCircles)-[inputCirclesView]-(paddingBetweenInputCirclesAndNumPad)-[numPadView]"];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            self.paddingBetweenPromptLabelAndInputCircles = 22.0f;
+            self.paddingBetweenInputCirclesAndNumPad = 52.0f;
+        } else {
+            [vFormat appendString:@"-(paddingBetweenNumPadAndBottomButton)-[bottomButton]"];
             BOOL isFourInchScreen = (fabs(CGRectGetHeight([[UIScreen mainScreen] bounds]) - 568.0f) < DBL_EPSILON);
             if (isFourInchScreen) {
-                vFormat = @"V:|[promptLabel]-16-[inputCirclesView]-33-[numPadView]-19.5-[bottomButton]|";
+                self.paddingBetweenPromptLabelAndInputCircles = 16.0f;
+                self.paddingBetweenInputCirclesAndNumPad = 33.0f;
+                self.paddingBetweenNumPadAndBottomButton = 19.5f;
             } else {
-                vFormat = @"V:|[promptLabel]-9-[inputCirclesView]-21-[numPadView]-(-6.5)-[bottomButton]|";
+                self.paddingBetweenPromptLabelAndInputCircles = 9.0f;
+                self.paddingBetweenInputCirclesAndNumPad = 21.0f;
+                self.paddingBetweenNumPadAndBottomButton = -6.5f;
             }
         }
+        [vFormat appendString:@"|"];
+        
+        NSDictionary *metrics = @{ @"paddingBetweenPromptLabelAndInputCircles" : @(self.paddingBetweenPromptLabelAndInputCircles),
+                                   @"paddingBetweenInputCirclesAndNumPad" : @(self.paddingBetweenInputCirclesAndNumPad),
+                                   @"paddingBetweenNumPadAndBottomButton" : @(self.paddingBetweenNumPadAndBottomButton) };
         NSDictionary *views = @{ @"promptLabel" : self.promptLabel,
                                  @"inputCirclesView" : self.inputCirclesView,
                                  @"numPadView" : self.numPadView,
                                  @"bottomButton" : self.bottomButton };
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vFormat options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vFormat options:0 metrics:metrics views:views]];
     }
     return self;
 }
 
 - (CGSize)intrinsicContentSize
 {
-    CGFloat height = 0;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        height = self.promptLabel.intrinsicContentSize.height + 16 + self.inputCirclesView.intrinsicContentSize.height + 33 + self.numPadView.intrinsicContentSize.height + (-20) + self.bottomButton.intrinsicContentSize.height;
-    } else {
-        BOOL isFourInchScreen = (fabs(CGRectGetHeight([[UIScreen mainScreen] bounds]) - 568.0f) < DBL_EPSILON);
-        if (isFourInchScreen) {
-            height = self.promptLabel.intrinsicContentSize.height + 16 + self.inputCirclesView.intrinsicContentSize.height + 33 + self.numPadView.intrinsicContentSize.height + 19.5 + self.bottomButton.intrinsicContentSize.height;
-        } else {
-            height = self.promptLabel.intrinsicContentSize.height + 9 + self.inputCirclesView.intrinsicContentSize.height + 21 + self.numPadView.intrinsicContentSize.height + (-6.5) + self.bottomButton.intrinsicContentSize.height;
-        }
+    CGFloat height = (self.promptLabel.intrinsicContentSize.height + self.paddingBetweenPromptLabelAndInputCircles +
+                      self.inputCirclesView.intrinsicContentSize.height + self.paddingBetweenInputCirclesAndNumPad +
+                      self.numPadView.intrinsicContentSize.height);
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        height += self.paddingBetweenNumPadAndBottomButton + self.bottomButton.intrinsicContentSize.height;
     }
     return CGSizeMake(self.numPadView.intrinsicContentSize.width, height);
 }
 
 #pragma mark - Properties
 
+- (NSString *)promptTitle
+{
+    return self.promptLabel.text;
+}
+
 - (void)setPromptTitle:(NSString *)promptTitle
 {
-    if ([self.promptTitle isEqualToString:promptTitle]) {
-        return;
-    }
-    _promptTitle = [promptTitle copy];
-    self.promptLabel.text = self.promptTitle;
+    self.promptLabel.text = promptTitle;
+}
+
+- (UIColor *)promptColor
+{
+    return self.promptLabel.textColor;
 }
 
 - (void)setPromptColor:(UIColor *)promptColor
 {
-    if ([self.promptColor isEqual:promptColor]) {
-        return;
-    }
-    _promptColor = promptColor;
-    self.promptLabel.textColor = self.promptColor;
+    self.promptLabel.textColor = promptColor;
 }
 
 #pragma mark - Public

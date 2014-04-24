@@ -12,6 +12,7 @@
 
 @protocol THPinViewControllerDelegate <NSObject>
 
+@required
 - (NSUInteger)pinLengthForPinViewController:(THPinViewController *)pinViewController;
 - (BOOL)pinViewController:(THPinViewController *)pinViewController isPinValid:(NSString *)pin;
 - (BOOL)userCanRetryInPinViewController:(THPinViewController *)pinViewController;

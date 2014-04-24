@@ -12,6 +12,7 @@
 
 @protocol THPinNumPadViewDelegate <NSObject>
 
+@required
 - (void)pinNumPadView:(THPinNumPadView *)pinNumPadView numberTapped:(NSUInteger)number;
 
 @end

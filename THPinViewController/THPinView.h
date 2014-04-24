@@ -12,6 +12,7 @@
 
 @protocol THPinViewDelegate <NSObject>
 
+@required
 - (NSUInteger)pinLengthForPinView:(THPinView *)pinView;
 - (BOOL)pinView:(THPinView *)pinView isPinValid:(NSString *)pin;
 - (void)cancelButtonTappedInPinView:(THPinView *)pinView;

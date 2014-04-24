@@ -17,6 +17,11 @@
 
 @implementation THPinViewController
 
+- (id)init {
+    NSAssert(NO, @"use initWithDelegate:");
+    return nil;
+}
+
 - (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate
 {
     self = [super init];

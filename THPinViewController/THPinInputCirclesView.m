@@ -23,6 +23,11 @@
 
 @implementation THPinInputCirclesView
 
+- (id)init {
+    NSAssert(NO, @"use initWithPinLength:");
+    return nil;
+}
+
 - (instancetype)initWithPinLength:(NSUInteger)pinLength
 {
     self = [super init];

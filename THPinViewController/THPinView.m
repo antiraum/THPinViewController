@@ -28,6 +28,11 @@
 
 @implementation THPinView
 
+- (id)init {
+    NSAssert(NO, @"use initWithDelegate:");
+    return nil;
+}
+
 - (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate;
 {
     self = [super init];

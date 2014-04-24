@@ -22,6 +22,11 @@
 
 @implementation THPinNumButton
 
+- (id)init {
+    NSAssert(NO, @"use initWithNumber:letters:");
+    return nil;
+}
+
 - (instancetype)initWithNumber:(NSUInteger)number letters:(NSString *)letters
 {
     self = [super init];

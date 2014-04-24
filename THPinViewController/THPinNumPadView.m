@@ -20,11 +20,19 @@
 
 - (instancetype)initWithDelegate:(id<THPinNumPadViewDelegate>)delegate
 {
-    self = [super init];
+    self = [self init];
     if (self)
     {
         self.delegate = delegate;
-        
+    }
+    return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
         self.hPadding = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 24.0f : 20.0f;
         self.vPadding = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 19.0f : 13.0f;
         

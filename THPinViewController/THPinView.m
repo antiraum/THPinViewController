@@ -42,6 +42,7 @@
         self.promptLabel.textColor = self.promptColor;
         self.promptLabel.text = self.promptTitle;
         self.promptLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 22.0f : 18.0f];
+        [self.promptLabel setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
         [self addSubview:self.promptLabel];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[promptLabel]|" options:0 metrics:nil
                                                                        views:@{ @"promptLabel" : self.promptLabel }]];
@@ -66,6 +67,8 @@
         self.bottomButton = [UIButton buttonWithType:UIButtonTypeSystem];
         self.bottomButton.translatesAutoresizingMaskIntoConstraints = NO;
         self.bottomButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+        self.bottomButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [self.bottomButton setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
         [self updateBottomButton];
         [self addSubview:self.bottomButton];
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -78,12 +81,19 @@
                                                              relatedBy:NSLayoutRelationEqual
                                                                 toItem:self attribute:NSLayoutAttributeBottom
                                                             multiplier:1.0f constant:-[THPinNumButton diameter] / 2.0f]];
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[bottomButton(<=numButtonWidth)]" options:0
+                                                                         metrics:@{ @"numButtonWidth" : @([THPinNumButton diameter]) }
+                                                                           views:@{ @"bottomButton" : self.bottomButton }]];
         } else {
             // place button beneath the num pad on the right
             [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeRight
                                                              relatedBy:NSLayoutRelationEqual
                                                                 toItem:self attribute:NSLayoutAttributeRight
                                                             multiplier:1.0f constant:0.0f]];
+            [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeWidth
+                                                             relatedBy:NSLayoutRelationLessThanOrEqual
+                                                                toItem:self attribute:NSLayoutAttributeWidth
+                                                            multiplier:0.4f constant:0.0f]];
         }
         
         NSMutableString *vFormat = [NSMutableString stringWithString:@"V:|[promptLabel]-(paddingBetweenPromptLabelAndInputCircles)-[inputCirclesView]-(paddingBetweenInputCirclesAndNumPad)-[numPadView]"];

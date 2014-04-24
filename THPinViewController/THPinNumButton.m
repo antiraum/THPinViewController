@@ -43,13 +43,13 @@
         self.numberLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)number];
         self.numberLabel.textAlignment = NSTextAlignmentCenter;
         self.numberLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 41.0f : 36.0f];
-        [self.numberLabel sizeToFit];
         [contentView addSubview:self.numberLabel];
         [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[numberLabel]|" options:0
                                                                             metrics:nil
                                                                               views:@{ @"numberLabel" : self.numberLabel }]];
         
-        CGFloat contentViewHeight = CGRectGetHeight(self.numberLabel.frame);
+        CGSize numberSize = [self.numberLabel.text sizeWithAttributes:@{ NSFontAttributeName : self.numberLabel.font }];
+        CGFloat contentViewHeight = ceil(numberSize.height);
         
         if (letters)
         {
@@ -58,7 +58,6 @@
             self.lettersLabel.text = letters;
             self.lettersLabel.textAlignment = NSTextAlignmentCenter;
             self.lettersLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 11.0f : 9.0f];
-            [self.lettersLabel sizeToFit];
             [contentView addSubview:self.lettersLabel];
             [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[lettersLabel]|" options:0
                                                                                 metrics:nil
@@ -67,7 +66,8 @@
             CGFloat numberLabelYCorrection = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 0.0f : -3.5f;
             CGFloat lettersLabelYCorrection = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? -6.5f : -4.0f;
             
-            contentViewHeight += CGRectGetHeight(self.lettersLabel.frame) + numberLabelYCorrection;
+            CGSize lettersSize = [self.lettersLabel.text sizeWithAttributes:@{ NSFontAttributeName : self.lettersLabel.font }];
+            contentViewHeight += ceil(lettersSize.height) + numberLabelYCorrection;
             
             // pin number label to top
             [contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.numberLabel attribute:NSLayoutAttributeTop
@@ -79,6 +79,13 @@
                                                                     relatedBy:NSLayoutRelationEqual
                                                                        toItem:contentView attribute:NSLayoutAttributeBottom
                                                                    multiplier:1.0f constant:lettersLabelYCorrection]];
+        } else {
+            
+            // pin number label to top
+            [contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.numberLabel attribute:NSLayoutAttributeTop
+                                                                    relatedBy:NSLayoutRelationEqual
+                                                                       toItem:contentView attribute:NSLayoutAttributeTop
+                                                                   multiplier:1.0f constant:0.0f]];
         }
 
         // set contentView height

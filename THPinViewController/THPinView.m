@@ -42,9 +42,6 @@
         self.promptLabel.textColor = self.promptColor;
         self.promptLabel.text = self.promptTitle;
         self.promptLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 22.0f : 18.0f];
-        [self.promptLabel sizeToFit];
-        //    [self.promptLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        //    [self.promptLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
         [self addSubview:self.promptLabel];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[promptLabel]|" options:0 metrics:nil
                                                                        views:@{ @"promptLabel" : self.promptLabel }]];
@@ -174,7 +171,6 @@
         [self.bottomButton removeTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
         [self.bottomButton addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
     }
-    [self.bottomButton sizeToFit];
 }
 
 #pragma mark - User Interaction

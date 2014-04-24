@@ -43,6 +43,10 @@
 /* Begin PBXFileReference section */
 		E222D1F91902EDD600DD1762 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = THPinViewController.strings; sourceTree = "<group>"; };
 		E222D1FC1902F00900DD1762 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E24C81161908E4740026FE73 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		E24C81171908E4E70026FE73 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		E24C81181908E5040026FE73 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		E24C81191908E50D0026FE73 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/THPinViewController.strings; sourceTree = "<group>"; };
 		E260489E19027D01006ACBC7 /* THPinViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THPinViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26048A119027D01006ACBC7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E26048A319027D01006ACBC7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -252,6 +256,10 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
+				fr,
+				es,
+				it,
 			);
 			mainGroup = E260489519027D01006ACBC7;
 			productRefGroup = E260489F19027D01006ACBC7 /* Products */;
@@ -326,6 +334,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				E222D1F91902EDD600DD1762 /* en */,
+				E24C81161908E4740026FE73 /* de */,
+				E24C81171908E4E70026FE73 /* fr */,
+				E24C81181908E5040026FE73 /* es */,
+				E24C81191908E50D0026FE73 /* it */,
 			);
 			name = THPinViewController.strings;
 			path = en.lproj;

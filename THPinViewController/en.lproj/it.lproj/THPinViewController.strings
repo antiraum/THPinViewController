@@ -1,0 +1,11 @@
+/* 
+  THPinViewController.strings
+  THPinViewController
+
+  Created by Thomas Heß on 19.4.14.
+  Copyright (c) 2014 Thomas Heß. All rights reserved.
+*/
+
+"prompt_title" = "Inserisci PIN";
+"cancel_button_title" = "Annulla";
+"delete_button_title" = "Elimina";

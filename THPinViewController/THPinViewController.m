@@ -96,7 +96,9 @@
 
 - (NSUInteger)pinLengthForPinView:(THPinView *)pinView
 {
-    return [self.delegate pinLengthForPinViewController:self];
+    NSUInteger pinLength = [self.delegate pinLengthForPinViewController:self];
+    NSAssert(pinLength > 0, @"PIN length must be greater than 0");
+    return MAX(pinLength, 1);
 }
 
 - (BOOL)pinView:(THPinView *)pinView isPinValid:(NSString *)pin

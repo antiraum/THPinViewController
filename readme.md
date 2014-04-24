@@ -73,7 +73,7 @@ Installation
 
 Add this line to your Podfile:
 
-    pod 'THPinViewController', '~> 1.0.0'
+    pod 'THPinViewController', '~> 1.0.1'
 	
 Compatibility
 -------

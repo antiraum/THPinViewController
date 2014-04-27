@@ -94,9 +94,9 @@
         }
 
         // set contentView height
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[contentView(==contentViewHeight)]" options:0
-                                                                     metrics:@{ @"contentViewHeight" : @(contentViewHeight) }
-                                                                       views:@{ @"contentView" : contentView }]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:contentView attribute:NSLayoutAttributeHeight
+                                                         relatedBy:NSLayoutRelationEqual toItem:nil attribute:0
+                                                        multiplier:0.0f constant:contentViewHeight]];
         // center contentView horizontally
         [self addConstraint:[NSLayoutConstraint constraintWithItem:contentView attribute:NSLayoutAttributeCenterX
                                                          relatedBy:NSLayoutRelationEqual

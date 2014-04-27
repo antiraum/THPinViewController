@@ -50,6 +50,7 @@
     pinViewController.promptTitle = @"Enter PIN";
     pinViewController.promptColor = [UIColor whiteColor];
     pinViewController.view.tintColor = [UIColor whiteColor];
+    pinViewController.hideLetters = YES;
     [self presentViewController:pinViewController animated:YES completion:nil];
 }
 
@@ -71,6 +72,7 @@
 
 - (BOOL)pinViewController:(THPinViewController *)pinViewController isPinValid:(NSString *)pin
 {
+    pinViewController.hideLetters = (! pinViewController.hideLetters);
     if ([pin isEqualToString:self.correctPin]) {
         return YES;
     } else {

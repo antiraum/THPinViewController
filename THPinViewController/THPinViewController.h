@@ -34,6 +34,7 @@
 @property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, copy) NSString *promptTitle;
 @property (nonatomic, strong) UIColor *promptColor;
+@property (nonatomic, assign) BOOL hideLetters;
 
 - (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate;
 

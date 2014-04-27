@@ -43,6 +43,7 @@
     self.pinView.backgroundColor = self.view.backgroundColor;
     self.pinView.promptTitle = self.promptTitle;
     self.pinView.promptColor = self.promptColor;
+    self.pinView.hideLetters = self.hideLetters;
     self.pinView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.pinView];
     // center pin view
@@ -95,6 +96,15 @@
     }
     _promptColor = promptColor;
     self.pinView.promptColor = self.promptColor;
+}
+
+- (void)setHideLetters:(BOOL)hideLetters
+{
+    if (self.hideLetters == hideLetters) {
+        return;
+    }
+    _hideLetters = hideLetters;
+    self.pinView.hideLetters = self.hideLetters;
 }
 
 #pragma mark - THPinViewDelegate

@@ -26,6 +26,7 @@
 @property (nonatomic, weak) id<THPinViewDelegate> delegate;
 @property (nonatomic, copy) NSString *promptTitle;
 @property (nonatomic, strong) UIColor *promptColor;
+@property (nonatomic, assign) BOOL hideLetters;
 
 - (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate;
 

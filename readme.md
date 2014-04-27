@@ -25,6 +25,7 @@ Usage
     pinViewController.promptTitle = @"Enter PIN";
     pinViewController.promptColor = [UIColor whiteColor];
     pinViewController.view.tintColor = [UIColor whiteColor];
+	pinViewController.hideLetters = YES;
     [self presentViewController:pinViewController animated:YES completion:nil];
 	
 	// mandatory delegate methods

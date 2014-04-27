@@ -8,6 +8,7 @@ Features
 
 * Has iPhone portrait and iPad portrait and landscape layouts
 * Supports variable PIN lengths
+* Buttons can show numbers and letters or only numbers
 * Background and tint colors as well as text and color of the prompt can be customized
 
 Screenshots
@@ -74,7 +75,7 @@ Installation
 
 Add this line to your Podfile:
 
-    pod 'THPinViewController', '~> 1.0.1'
+    pod 'THPinViewController', '~> 1.1.0'
 	
 Compatibility
 -------

@@ -18,7 +18,7 @@
 - (BOOL)userCanRetryInPinViewController:(THPinViewController *)pinViewController;
 
 @optional
-- (void)pinViewControllerIncorrectPinEntered:(THPinViewController *)pinViewController;
+- (void)incorrectPinEnteredInPinViewController:(THPinViewController *)pinViewController;
 - (void)pinViewControllerWillDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController;
 - (void)pinViewControllerDidDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController;
 - (void)pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController;

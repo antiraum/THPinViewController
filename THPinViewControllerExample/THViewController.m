@@ -84,7 +84,7 @@
     return (self.remainingPinEntries > 0);
 }
 
-- (void)pinViewControllerIncorrectPinEntered:(THPinViewController *)pinViewController
+- (void)incorrectPinEnteredInPinViewController:(THPinViewController *)pinViewController
 {
     if (self.remainingPinEntries > NUMBER_OF_PIN_ENTRIES / 2) {
         return;

@@ -138,8 +138,8 @@
 - (void)incorrectPinWasEnteredInPinView:(THPinView *)pinView
 {
     if ([self.delegate userCanRetryInPinViewController:self]) {
-        if ([self.delegate respondsToSelector:@selector(pinViewControllerIncorrectPinEntered:)]) {
-            [self.delegate pinViewControllerIncorrectPinEntered:self];
+        if ([self.delegate respondsToSelector:@selector(incorrectPinEnteredInPinViewController:)]) {
+            [self.delegate incorrectPinEnteredInPinViewController:self];
         }
     } else {
         if ([self.delegate respondsToSelector:@selector(pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:)]) {

@@ -87,9 +87,9 @@
                                                              relatedBy:NSLayoutRelationEqual
                                                                 toItem:self attribute:NSLayoutAttributeBottom
                                                             multiplier:1.0f constant:-[THPinNumButton diameter] / 2.0f]];
-            [self addConstraints:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeWidth
-                                                              relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:0
-                                                             multiplier:0.0f constant:[THPinNumButton diameter]]];
+            [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeWidth
+                                                             relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:0
+                                                            multiplier:0.0f constant:[THPinNumButton diameter]]];
         } else {
             // place button beneath the num pad on the right
             [self addConstraint:[NSLayoutConstraint constraintWithItem:self.bottomButton attribute:NSLayoutAttributeRight

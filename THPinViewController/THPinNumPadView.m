@@ -28,7 +28,7 @@
     return self;
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self)

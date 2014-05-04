@@ -17,7 +17,7 @@
 
 @implementation THPinViewController
 
-- (id)init {
+- (instancetype)init {
     NSAssert(NO, @"use initWithDelegate:");
     return nil;
 }

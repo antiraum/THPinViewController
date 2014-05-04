@@ -22,7 +22,7 @@
 
 @implementation THPinNumButton
 
-- (id)init {
+- (instancetype)init {
     NSAssert(NO, @"use initWithNumber:letters:");
     return nil;
 }

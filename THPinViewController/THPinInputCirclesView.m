@@ -23,7 +23,7 @@
 
 @implementation THPinInputCirclesView
 
-- (id)init {
+- (instancetype)init {
     NSAssert(NO, @"use initWithPinLength:");
     return nil;
 }

@@ -23,7 +23,7 @@
     self = [self init];
     if (self)
     {
-        self.delegate = delegate;
+        _delegate = delegate;
     }
     return self;
 }
@@ -33,8 +33,8 @@
     self = [super init];
     if (self)
     {
-        self.hPadding = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 24.0f : 20.0f;
-        self.vPadding = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 19.0f : 13.0f;
+        _hPadding = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 24.0f : 20.0f;
+        _vPadding = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 19.0f : 13.0f;
         
         [self setupViews];
     }
@@ -100,13 +100,13 @@
         }
         
         [hFormat appendString:@"|"];
-        NSDictionary *metrics = @{ @"hPadding" : @(self.hPadding) };
+        NSDictionary *metrics = @{ @"hPadding" : @(_hPadding) };
         [rowView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:hFormat options:0 metrics:metrics views:buttonViews]];
     }
     
     [vFormat appendString:@"|"];
     NSDictionary *metrics = @{ @"rowHeight" : @([THPinNumButton diameter]),
-                               @"vPadding" : @(self.vPadding) };
+                               @"vPadding" : @(_vPadding) };
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vFormat options:0 metrics:metrics views:rowViews]];
 }
 

@@ -15,7 +15,7 @@
     self = [super init];
     if (self)
     {
-        self.layer.cornerRadius = [self.class diameter] / 2.0f;
+        self.layer.cornerRadius = [[self class] diameter] / 2.0f;
         self.layer.borderWidth = 1.0f;
         
         [self tintColorDidChange];
@@ -35,7 +35,7 @@
 
 - (CGSize)intrinsicContentSize
 {
-    return CGSizeMake([self.class diameter], [self.class diameter]);
+    return CGSizeMake([[self class] diameter], [[self class] diameter]);
 }
 
 + (CGFloat)diameter

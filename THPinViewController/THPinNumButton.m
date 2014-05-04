@@ -32,10 +32,10 @@
     self = [super init];
     if (self)
     {
-        self.number = number;
-        self.letters = letters;
+        _number = number;
+        _letters = letters;
         
-        self.layer.cornerRadius = [self.class diameter] / 2.0f;
+        self.layer.cornerRadius = [[self class] diameter] / 2.0f;
         self.layer.borderWidth = 1.0f;
         
         UIView *contentView = [[UIView alloc] init];
@@ -43,51 +43,51 @@
         contentView.userInteractionEnabled = NO;
         [self addSubview:contentView];
         
-        self.numberLabel = [[UILabel alloc] init];
-        self.numberLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        self.numberLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)number];
-        self.numberLabel.textAlignment = NSTextAlignmentCenter;
-        self.numberLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 41.0f : 36.0f];
-        [contentView addSubview:self.numberLabel];
+        _numberLabel = [[UILabel alloc] init];
+        _numberLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _numberLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)number];
+        _numberLabel.textAlignment = NSTextAlignmentCenter;
+        _numberLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 41.0f : 36.0f];
+        [contentView addSubview:_numberLabel];
         [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[numberLabel]|" options:0
                                                                             metrics:nil
-                                                                              views:@{ @"numberLabel" : self.numberLabel }]];
+                                                                              views:@{ @"numberLabel" : _numberLabel }]];
         
-        CGSize numberSize = [self.numberLabel.text sizeWithAttributes:@{ NSFontAttributeName : self.numberLabel.font }];
+        CGSize numberSize = [_numberLabel.text sizeWithAttributes:@{ NSFontAttributeName : _numberLabel.font }];
         CGFloat contentViewHeight = ceil(numberSize.height);
         
         if (letters)
         {
-            self.lettersLabel = [[UILabel alloc] init];
-            self.lettersLabel.translatesAutoresizingMaskIntoConstraints = NO;
-            self.lettersLabel.text = letters;
-            self.lettersLabel.textAlignment = NSTextAlignmentCenter;
-            self.lettersLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 11.0f : 9.0f];
-            [contentView addSubview:self.lettersLabel];
+            _lettersLabel = [[UILabel alloc] init];
+            _lettersLabel.translatesAutoresizingMaskIntoConstraints = NO;
+            _lettersLabel.text = letters;
+            _lettersLabel.textAlignment = NSTextAlignmentCenter;
+            _lettersLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 11.0f : 9.0f];
+            [contentView addSubview:_lettersLabel];
             [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[lettersLabel]|" options:0
                                                                                 metrics:nil
-                                                                                  views:@{ @"lettersLabel" : self.lettersLabel }]];
+                                                                                  views:@{ @"lettersLabel" : _lettersLabel }]];
             
             CGFloat numberLabelYCorrection = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 0.0f : -3.5f;
             CGFloat lettersLabelYCorrection = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? -6.5f : -4.0f;
             
-            CGSize lettersSize = [self.lettersLabel.text sizeWithAttributes:@{ NSFontAttributeName : self.lettersLabel.font }];
+            CGSize lettersSize = [_lettersLabel.text sizeWithAttributes:@{ NSFontAttributeName : _lettersLabel.font }];
             contentViewHeight += ceil(lettersSize.height) + numberLabelYCorrection;
             
             // pin number label to top
-            [contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.numberLabel attribute:NSLayoutAttributeTop
+            [contentView addConstraint:[NSLayoutConstraint constraintWithItem:_numberLabel attribute:NSLayoutAttributeTop
                                                                     relatedBy:NSLayoutRelationEqual
                                                                        toItem:contentView attribute:NSLayoutAttributeTop
                                                                    multiplier:1.0f constant:numberLabelYCorrection]];
             // pin letter label to bottom
-            [contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.lettersLabel attribute:NSLayoutAttributeBottom
+            [contentView addConstraint:[NSLayoutConstraint constraintWithItem:_lettersLabel attribute:NSLayoutAttributeBottom
                                                                     relatedBy:NSLayoutRelationEqual
                                                                        toItem:contentView attribute:NSLayoutAttributeBottom
                                                                    multiplier:1.0f constant:lettersLabelYCorrection]];
         } else {
             
             // pin number label to top
-            [contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.numberLabel attribute:NSLayoutAttributeTop
+            [contentView addConstraint:[NSLayoutConstraint constraintWithItem:_numberLabel attribute:NSLayoutAttributeTop
                                                                     relatedBy:NSLayoutRelationEqual
                                                                        toItem:contentView attribute:NSLayoutAttributeTop
                                                                    multiplier:1.0f constant:0.0f]];
@@ -153,7 +153,7 @@
 
 - (CGSize)intrinsicContentSize
 {
-    return CGSizeMake([self.class diameter], [self.class diameter]);
+    return CGSizeMake([[self class] diameter], [[self class] diameter]);
 }
 
 + (CGFloat)diameter

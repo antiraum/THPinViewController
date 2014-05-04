@@ -26,9 +26,9 @@
 {
     self = [super init];
     if (self) {
-        self.delegate = delegate;
-        self.backgroundColor = [UIColor whiteColor];
-        self.promptTitle = NSLocalizedStringFromTable(@"prompt_title", @"THPinViewController", nil);
+        _delegate = delegate;
+        _backgroundColor = [UIColor whiteColor];
+        _promptTitle = NSLocalizedStringFromTable(@"prompt_title", @"THPinViewController", nil);
     }
     return self;
 }

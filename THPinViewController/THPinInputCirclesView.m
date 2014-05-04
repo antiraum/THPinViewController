@@ -33,18 +33,18 @@
     self = [super init];
     if (self)
     {
-        self.pinLength = pinLength;
+        _pinLength = pinLength;
         
-        self.circleViews = [NSMutableArray array];
+        _circleViews = [NSMutableArray array];
         NSMutableString *format = [NSMutableString stringWithString:@"H:|"];
         NSMutableDictionary *views = [NSMutableDictionary dictionary];
         
-        for (NSUInteger i = 0; i < self.pinLength; i++)
+        for (NSUInteger i = 0; i < _pinLength; i++)
         {
             THPinInputCircleView* circleView = [[THPinInputCircleView alloc] init];
             circleView.translatesAutoresizingMaskIntoConstraints = NO;
             [self addSubview:circleView];
-            [self.circleViews addObject:circleView];
+            [_circleViews addObject:circleView];
             NSString *name = [NSString stringWithFormat:@"circle%lu", (unsigned long)i];
             if (i > 0) {
                 [format appendString:@"-(padding)-"];

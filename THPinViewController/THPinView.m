@@ -33,7 +33,7 @@
     return nil;
 }
 
-- (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate;
+- (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate
 {
     self = [super init];
     if (self)

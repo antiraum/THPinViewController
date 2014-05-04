@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Thomas Heß. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "THAppDelegate.h"
+
+@import UIKit;
 
 int main(int argc, char * argv[])
 {

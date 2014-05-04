@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Thomas Heß. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 typedef void (^THPinInputCirclesViewShakeCompletionBlock)(void);
 

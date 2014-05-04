@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Thomas Heß. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+@import XCTest;
 
 @interface THPinViewControllerExampleTests : XCTestCase
 

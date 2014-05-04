@@ -19,14 +19,14 @@
 
 @implementation THViewController
 
-#define NUMBER_OF_PIN_ENTRIES 6
+static const NSUInteger THNumberOfPinEntries = 6;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.correctPin = @"1234";
-    self.remainingPinEntries = NUMBER_OF_PIN_ENTRIES;
+    self.remainingPinEntries = THNumberOfPinEntries;
 
     self.contentButton = [UIButton buttonWithType:UIButtonTypeSystem];
     self.contentButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -55,7 +55,7 @@
 
 - (void)logout:(id)sender
 {
-    self.remainingPinEntries = NUMBER_OF_PIN_ENTRIES;
+    self.remainingPinEntries = THNumberOfPinEntries;
     
     [self.contentButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
     [self.contentButton removeTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
@@ -86,7 +86,7 @@
 
 - (void)incorrectPinEnteredInPinViewController:(THPinViewController *)pinViewController
 {
-    if (self.remainingPinEntries > NUMBER_OF_PIN_ENTRIES / 2) {
+    if (self.remainingPinEntries > THNumberOfPinEntries / 2) {
         return;
     }
     
@@ -110,7 +110,7 @@
 
 - (void)pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController
 {
-    self.remainingPinEntries = NUMBER_OF_PIN_ENTRIES;
+    self.remainingPinEntries = THNumberOfPinEntries;
     
     [self.contentButton setTitle:@"Access Denied / Enter PIN" forState:UIControlStateNormal];
     [self.contentButton removeTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];

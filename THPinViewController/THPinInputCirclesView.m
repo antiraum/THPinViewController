@@ -90,14 +90,14 @@
     }
 }
 
-#define TOTAL_NUM_SHAKES 6
-#define INITIAL_SHAKE_AMPLITUDE 40.0f
+static const NSUInteger THTotalNumberOfShakes = 6;
+static const CGFloat THInitialShakeAmplitude = 40.0f;
 
 - (void)shakeWithCompletion:(THPinInputCirclesViewShakeCompletionBlock)completion
 {
     self.numShakes = 0;
     self.shakeDirection = -1;
-    self.shakeAmplitude = INITIAL_SHAKE_AMPLITUDE;
+    self.shakeAmplitude = THInitialShakeAmplitude;
     self.shakeCompletionBlock = completion;
     [self performShake];
 }
@@ -107,11 +107,11 @@
     [UIView animateWithDuration:0.03f animations:^ {
         self.transform = CGAffineTransformMakeTranslation(self.shakeDirection * self.shakeAmplitude, 0.0f);
     } completion:^(BOOL finished) {
-        if (self.numShakes < TOTAL_NUM_SHAKES)
+        if (self.numShakes < THTotalNumberOfShakes)
         {
             self.numShakes++;
             self.shakeDirection = -1 * self.shakeDirection;
-            self.shakeAmplitude = (TOTAL_NUM_SHAKES - self.numShakes) * (INITIAL_SHAKE_AMPLITUDE / TOTAL_NUM_SHAKES);
+            self.shakeAmplitude = (THTotalNumberOfShakes - self.numShakes) * (THInitialShakeAmplitude / THTotalNumberOfShakes);
             [self performShake];
         } else {
             self.transform = CGAffineTransformIdentity;

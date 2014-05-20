@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UIButton *contentButton;
 @property (nonatomic, copy) NSString *correctPin;
 @property (nonatomic, assign) NSUInteger remainingPinEntries;
+@property (nonatomic, assign) BOOL locked;
 
 @end
 
@@ -26,12 +27,10 @@ static const NSUInteger THNumberOfPinEntries = 6;
     [super viewDidLoad];
     
     self.correctPin = @"1234";
-    self.remainingPinEntries = THNumberOfPinEntries;
 
     self.contentButton = [UIButton buttonWithType:UIButtonTypeSystem];
     self.contentButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
-    [self.contentButton addTarget:self action:@selector(showPinView:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.contentButton];
     
     NSDictionary *views = @{ @"contentButton" : self.contentButton };
@@ -39,27 +38,65 @@ static const NSUInteger THNumberOfPinEntries = 6;
                                                                       metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentButton]|" options:0
                                                                       metrics:nil views:views]];
+    self.locked = YES;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:)
+                                                 name:UIApplicationDidEnterBackgroundNotification object:nil];
 }
 
-#pragma mark - User Interaction
+- (void)applicationDidEnterBackground:(NSNotification *)notification
+{
+    if (! self.locked) {
+        [self logout:self];
+        [self showPinViewAnimated:NO];
+    }
+}
 
-- (void)showPinView:(id)sender
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification
+                                                  object:nil];
+}
+
+#pragma mark - Properties
+
+- (void)setLocked:(BOOL)locked
+{
+    _locked = locked;
+    
+    if (self.locked) {
+        self.remainingPinEntries = THNumberOfPinEntries;
+        [self.contentButton removeTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [self.contentButton removeTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentButton addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+#pragma mark - UI
+
+- (void)showPinViewAnimated:(BOOL)animated
 {
     THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
     pinViewController.backgroundColor = [UIColor lightGrayColor];
     pinViewController.promptTitle = @"Enter PIN";
     pinViewController.promptColor = [UIColor whiteColor];
     pinViewController.view.tintColor = [UIColor whiteColor];
-    [self presentViewController:pinViewController animated:YES completion:nil];
+    [self presentViewController:pinViewController animated:animated completion:nil];
+}
+
+#pragma mark - User Interaction
+
+- (void)login:(id)sender
+{
+    [self showPinViewAnimated:YES];
 }
 
 - (void)logout:(id)sender
 {
-    self.remainingPinEntries = THNumberOfPinEntries;
-    
+    self.locked = YES;
     [self.contentButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
-    [self.contentButton removeTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentButton addTarget:self action:@selector(showPinView:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - THPinViewControllerDelegate
@@ -103,18 +140,14 @@ static const NSUInteger THNumberOfPinEntries = 6;
 
 - (void)pinViewControllerWillDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController
 {
+    self.locked = NO;
     [self.contentButton setTitle:@"This is the secret content / Logout" forState:UIControlStateNormal];
-    [self.contentButton removeTarget:self action:@selector(showPinView:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentButton addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController
 {
-    self.remainingPinEntries = THNumberOfPinEntries;
-    
+    self.locked = YES;
     [self.contentButton setTitle:@"Access Denied / Enter PIN" forState:UIControlStateNormal];
-    [self.contentButton removeTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentButton addTarget:self action:@selector(showPinView:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end

@@ -17,13 +17,13 @@ Screenshots
 
 <img src="THPinViewController_iphone_4inch.png" width="49%" />
 <img src="THPinViewController_translucent_background.png" width="49%" />
-<img src="THPinViewController_iphone_3-5inch.png" width="32%" />
+<img src="THPinViewController_iphone_3-5inch.png" width="33%" />
 <img src="THPinViewController_ipad.png" width="66%" />
 
 Usage
 -----
 
-``` objective-c
+```obj-c
 THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
 pinViewController.promptTitle = @"Enter PIN";
 pinViewController.promptColor = [UIColor darkTextColor];
@@ -89,7 +89,7 @@ git submodule update
 
 Add this line to your Podfile:
 
-``` ruby
+```ruby
 pod 'THPinViewController'
 ```
 	

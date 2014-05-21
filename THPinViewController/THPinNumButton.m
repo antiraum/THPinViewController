@@ -7,6 +7,7 @@
 //
 
 #import "THPinNumButton.h"
+#import "THPinViewController.h"
 
 @interface THPinNumButton ()
 
@@ -124,8 +125,10 @@
     [super touchesBegan:touches withEvent:event];
     self.backgroundColorBackup = self.backgroundColor;
     self.backgroundColor = self.tintColor;
-    self.numberLabel.textColor = self.backgroundColorBackup;
-    self.lettersLabel.textColor = self.backgroundColorBackup;
+    UIColor *textColor = ([self.backgroundColorBackup isEqual:[UIColor clearColor]] ?
+                          [self.class averageContentColor] : self.backgroundColorBackup);
+    self.numberLabel.textColor = textColor;
+    self.lettersLabel.textColor = textColor;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -159,6 +162,30 @@
 + (CGFloat)diameter
 {
     return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 82.0f : 75.0f;
+}
+
++ (UIColor *)averageContentColor
+{
+    static UIColor *averageContentColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIView *contentView = [[[UIApplication sharedApplication] keyWindow] viewWithTag:THPinViewControllerContentViewTag];
+        if (! contentView) {
+            return;
+        }
+        CGSize size = CGSizeMake(1.0f, 1.0f);
+        UIGraphicsBeginImageContext(size);
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGContextSetInterpolationQuality(ctx, kCGInterpolationMedium);
+        [contentView drawViewHierarchyInRect:(CGRect){ .size = size } afterScreenUpdates:NO];
+        uint8_t *data = CGBitmapContextGetData(ctx);
+        averageContentColor = [UIColor colorWithRed:data[2] / 255.0f
+                                               green:data[1] / 255.0f
+                                                blue:data[0] / 255.0f
+                                               alpha:1.0f];
+        UIGraphicsEndImageContext();
+    });
+    return averageContentColor;
 }
 
 @end

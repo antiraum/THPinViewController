@@ -10,56 +10,68 @@ Features
 * Supports variable PIN lengths
 * Buttons can show numbers and letters or only numbers
 * Background and tint colors as well as text and color of the prompt can be customized
+* Supports solid color and translucent/blurred background
 
 Screenshots
 -----------
 
 <img src="THPinViewController_iphone_4inch.png" width="49%" />
-<img src="THPinViewController_iphone_3-5inch.png" width="49%" />
-<img src="THPinViewController_ipad.png" width="98%" />
+<img src="THPinViewController_translucent_background.png" width="49%" />
+<img src="THPinViewController_iphone_3-5inch.png" width="32%" />
+<img src="THPinViewController_ipad.png" width="66%" />
 
 Usage
 -----
 
-	THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
-    pinViewController.backgroundColor = [UIColor lightGrayColor];
-    pinViewController.promptTitle = @"Enter PIN";
-    pinViewController.promptColor = [UIColor whiteColor];
-    pinViewController.view.tintColor = [UIColor whiteColor];
-	pinViewController.hideLetters = YES;
-    [self presentViewController:pinViewController animated:YES completion:nil];
-	
-	// mandatory delegate methods
-	
-	- (NSUInteger)pinLengthForPinViewController:(THPinViewController *)pinViewController
-	{
-	    return 4;
-	}
+``` objective-c
+THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
+pinViewController.promptTitle = @"Enter PIN";
+pinViewController.promptColor = [UIColor darkTextColor];
+pinViewController.view.tintColor = [UIColor darkTextColor];
+pinViewController.hideLetters = YES;
 
-	- (BOOL)pinViewController:(THPinViewController *)pinViewController isPinValid:(NSString *)pin
-	{
-	    if ([pin isEqualToString:self.correctPin]) {
-	        return YES;
-	    } else {
-	        self.remainingPinEntries--;
-	        return NO;
-	    }
-	}
+// for a solid color background, use this:
+pinViewController.backgroundColor = [UIColor whiteColor];
 
-	- (BOOL)userCanRetryInPinViewController:(THPinViewController *)pinViewController
-	{
-	    return (self.remainingPinEntries > 0);
-	}
-	
-	// optional delegate methods
-	
-	- (void)incorrectPinEnteredInPinViewController:(THPinViewController *)pinViewController {}
-	- (void)pinViewControllerWillDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController {}
-	- (void)pinViewControllerDidDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController {}
-	- (void)pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController {}
-	- (void)pinViewControllerDidDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController {}
-	- (void)pinViewControllerWillDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController {}
-	- (void)pinViewControllerDidDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController {}
+// for a translucent background, use this:
+self.view.tag = THPinViewControllerContentViewTag;
+self.modalPresentationStyle = UIModalPresentationCurrentContext;
+pinViewController.translucentBackground = YES;
+
+[self presentViewController:pinViewController animated:YES completion:nil];
+
+// mandatory delegate methods
+
+- (NSUInteger)pinLengthForPinViewController:(THPinViewController *)pinViewController
+{
+    return 4;
+}
+
+- (BOOL)pinViewController:(THPinViewController *)pinViewController isPinValid:(NSString *)pin
+{
+    if ([pin isEqualToString:self.correctPin]) {
+        return YES;
+    } else {
+        self.remainingPinEntries--;
+        return NO;
+    }
+}
+
+- (BOOL)userCanRetryInPinViewController:(THPinViewController *)pinViewController
+{
+    return (self.remainingPinEntries > 0);
+}
+
+// optional delegate methods
+
+- (void)incorrectPinEnteredInPinViewController:(THPinViewController *)pinViewController {}
+- (void)pinViewControllerWillDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController {}
+- (void)pinViewControllerDidDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController {}
+- (void)pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController {}
+- (void)pinViewControllerDidDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController {}
+- (void)pinViewControllerWillDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController {}
+- (void)pinViewControllerDidDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController {}
+```
 
 See the example project for more details.
 
@@ -68,14 +80,18 @@ Installation
 
 ###As a Git Submodule
 
-	git submodule add git://github.com/antiraum/THPinViewController.git <local path>
-	git submodule update
+```
+git submodule add git://github.com/antiraum/THPinViewController.git <local path>
+git submodule update
+```
 
 ###Via Cocoapods
 
 Add this line to your Podfile:
 
-    pod 'THPinViewController', '~> 1.1.2'
+``` ruby
+pod 'THPinViewController'
+```
 	
 Compatibility
 -------

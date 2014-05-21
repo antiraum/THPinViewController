@@ -11,7 +11,8 @@
 
 @interface THViewController () <THPinViewControllerDelegate>
 
-@property (nonatomic, strong) UIButton *contentButton;
+@property (nonatomic, strong) UIImageView *secretContentView;
+@property (nonatomic, strong) UIButton *loginLogoutButton;
 @property (nonatomic, copy) NSString *correctPin;
 @property (nonatomic, assign) NSUInteger remainingPinEntries;
 @property (nonatomic, assign) BOOL locked;
@@ -26,18 +27,34 @@ static const NSUInteger THNumberOfPinEntries = 6;
 {
     [super viewDidLoad];
     
-    self.correctPin = @"1234";
-
-    self.contentButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    self.contentButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
-    [self.view addSubview:self.contentButton];
+    self.view.backgroundColor = [UIColor colorWithRed:0.361f green:0.404f blue:0.671f alpha:1.0f];
     
-    NSDictionary *views = @{ @"contentButton" : self.contentButton };
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentButton]|" options:0
-                                                                      metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentButton]|" options:0
-                                                                      metrics:nil views:views]];
+    self.correctPin = @"1234";
+    
+    self.secretContentView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"confidential"]];
+    self.secretContentView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.secretContentView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:self.secretContentView];
+
+    self.loginLogoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.loginLogoutButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.loginLogoutButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
+    self.loginLogoutButton.tintColor = [UIColor whiteColor];
+    [self.view addSubview:self.loginLogoutButton];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.loginLogoutButton attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0f constant:0.0f]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.loginLogoutButton attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view attribute:NSLayoutAttributeTop
+                                                         multiplier:1.0f constant:60.0f]];
+    NSDictionary *views = @{ @"secretContentView" : self.secretContentView };
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(20)-[secretContentView]-(20)-|"
+                                                                      options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(120)-[secretContentView]-(20)-|"
+                                                                      options:0 metrics:nil views:views]];
     self.locked = YES;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:)
@@ -47,7 +64,6 @@ static const NSUInteger THNumberOfPinEntries = 6;
 - (void)applicationDidEnterBackground:(NSNotification *)notification
 {
     if (! self.locked) {
-        [self logout:self];
         [self showPinViewAnimated:NO];
     }
 }
@@ -66,11 +82,13 @@ static const NSUInteger THNumberOfPinEntries = 6;
     
     if (self.locked) {
         self.remainingPinEntries = THNumberOfPinEntries;
-        [self.contentButton removeTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+        [self.loginLogoutButton removeTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+        [self.loginLogoutButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+        self.secretContentView.hidden = YES;
     } else {
-        [self.contentButton removeTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentButton addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+        [self.loginLogoutButton removeTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+        [self.loginLogoutButton addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+        self.secretContentView.hidden = NO;
     }
 }
 
@@ -79,10 +97,19 @@ static const NSUInteger THNumberOfPinEntries = 6;
 - (void)showPinViewAnimated:(BOOL)animated
 {
     THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
-    pinViewController.backgroundColor = [UIColor lightGrayColor];
     pinViewController.promptTitle = @"Enter PIN";
-    pinViewController.promptColor = [UIColor whiteColor];
-    pinViewController.view.tintColor = [UIColor whiteColor];
+    UIColor *darkBlueColor = [UIColor colorWithRed:0.012f green:0.071f blue:0.365f alpha:1.0f];
+    pinViewController.promptColor = darkBlueColor;
+    pinViewController.view.tintColor = darkBlueColor;
+    
+    // for a solid background color, use this:
+    pinViewController.backgroundColor = [UIColor whiteColor];
+    
+    // for a translucent background, use this:
+    self.view.tag = THPinViewControllerContentViewTag;
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    pinViewController.translucentBackground = YES;
+    
     [self presentViewController:pinViewController animated:animated completion:nil];
 }
 
@@ -96,7 +123,7 @@ static const NSUInteger THNumberOfPinEntries = 6;
 - (void)logout:(id)sender
 {
     self.locked = YES;
-    [self.contentButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
+    [self.loginLogoutButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
 }
 
 #pragma mark - THPinViewControllerDelegate
@@ -141,13 +168,20 @@ static const NSUInteger THNumberOfPinEntries = 6;
 - (void)pinViewControllerWillDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController
 {
     self.locked = NO;
-    [self.contentButton setTitle:@"This is the secret content / Logout" forState:UIControlStateNormal];
+    [self.loginLogoutButton setTitle:@"Logout" forState:UIControlStateNormal];
 }
 
 - (void)pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController
 {
     self.locked = YES;
-    [self.contentButton setTitle:@"Access Denied / Enter PIN" forState:UIControlStateNormal];
+    [self.loginLogoutButton setTitle:@"Access Denied / Enter PIN" forState:UIControlStateNormal];
+}
+
+- (void)pinViewControllerWillDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController
+{
+    if (! self.locked) {
+        [self logout:self];
+    }
 }
 
 @end

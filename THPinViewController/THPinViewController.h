@@ -10,6 +10,9 @@
 
 @class THPinViewController;
 
+// when using translucentBackground assign this tag to the view that should be blurred
+static const NSInteger THPinViewControllerContentViewTag = 14742;
+
 @protocol THPinViewControllerDelegate <NSObject>
 
 @required
@@ -31,7 +34,8 @@
 @interface THPinViewController : UIViewController
 
 @property (nonatomic, weak) id<THPinViewControllerDelegate> delegate;
-@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) UIColor *backgroundColor; // is only used if translucentBackground == NO
+@property (nonatomic, assign) BOOL translucentBackground;
 @property (nonatomic, copy) NSString *promptTitle;
 @property (nonatomic, strong) UIColor *promptColor;
 @property (nonatomic, assign) BOOL hideLetters;

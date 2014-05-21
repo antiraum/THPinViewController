@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E222D1FD1902F00900DD1762 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E222D1FB1902F00900DD1762 /* Main.storyboard */; };
+		E25C5FBF192C993F0073E612 /* confidential@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E25C5FBE192C993F0073E612 /* confidential@2x.png */; };
+		E25C5FC5192CBF010073E612 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E25C5FC4192CBF010073E612 /* UIImage+ImageEffects.m */; };
 		E26048A219027D01006ACBC7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26048A119027D01006ACBC7 /* Foundation.framework */; };
 		E26048A419027D01006ACBC7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26048A319027D01006ACBC7 /* CoreGraphics.framework */; };
 		E26048A619027D01006ACBC7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26048A519027D01006ACBC7 /* UIKit.framework */; };
@@ -42,6 +44,9 @@
 
 /* Begin PBXFileReference section */
 		E222D1FC1902F00900DD1762 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E25C5FBE192C993F0073E612 /* confidential@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confidential@2x.png"; sourceTree = "<group>"; };
+		E25C5FC3192CBF010073E612 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		E25C5FC4192CBF010073E612 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		E260489E19027D01006ACBC7 /* THPinViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THPinViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26048A119027D01006ACBC7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E26048A319027D01006ACBC7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -143,6 +148,7 @@
 				E26048B719027D01006ACBC7 /* THViewController.m */,
 				E222D1FB1902F00900DD1762 /* Main.storyboard */,
 				E26048B919027D01006ACBC7 /* Images.xcassets */,
+				E25C5FBE192C993F0073E612 /* confidential@2x.png */,
 				E26048A819027D01006ACBC7 /* Supporting Files */,
 			);
 			path = THPinViewControllerExample;
@@ -193,6 +199,8 @@
 				E26048DB19027DBC006ACBC7 /* THPinViewController.h */,
 				E26048DC19027DBC006ACBC7 /* THPinViewController.m */,
 				E26BEDD31908EB6B000B40A0 /* THPinViewController.strings */,
+				E25C5FC3192CBF010073E612 /* UIImage+ImageEffects.h */,
+				E25C5FC4192CBF010073E612 /* UIImage+ImageEffects.m */,
 			);
 			path = THPinViewController;
 			sourceTree = "<group>";
@@ -279,6 +287,7 @@
 			files = (
 				E222D1FD1902F00900DD1762 /* Main.storyboard in Resources */,
 				E26BEDD91908EB6B000B40A0 /* THPinViewController.strings in Resources */,
+				E25C5FBF192C993F0073E612 /* confidential@2x.png in Resources */,
 				E26048BA19027D01006ACBC7 /* Images.xcassets in Resources */,
 				E26048AC19027D01006ACBC7 /* InfoPlist.strings in Resources */,
 			);
@@ -305,6 +314,7 @@
 				E2742FC719043A27003EF85C /* THPinInputCirclesView.m in Sources */,
 				E26048DE19027DBC006ACBC7 /* THPinInputCircleView.m in Sources */,
 				E26048AE19027D01006ACBC7 /* main.m in Sources */,
+				E25C5FC5192CBF010073E612 /* UIImage+ImageEffects.m in Sources */,
 				E26048DF19027DBC006ACBC7 /* THPinViewController.m in Sources */,
 				E26048DD19027DBC006ACBC7 /* THPinNumButton.m in Sources */,
 				E2742FCB19058BCA003EF85C /* THPinView.m in Sources */,

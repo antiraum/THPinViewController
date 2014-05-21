@@ -80,7 +80,7 @@ Installation
 
 ###As a Git Submodule
 
-```
+```bash
 git submodule add git://github.com/antiraum/THPinViewController.git <local path>
 git submodule update
 ```

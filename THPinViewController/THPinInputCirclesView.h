@@ -14,7 +14,7 @@ typedef void (^THPinInputCirclesViewShakeCompletionBlock)(void);
 
 @property (nonatomic, assign) NSUInteger pinLength;
 
-- (instancetype)initWithPinLength:(NSUInteger)pinLength;
+- (instancetype)initWithPinLength:(NSUInteger)pinLength NS_DESIGNATED_INITIALIZER;
 
 - (void)fillCircleAtPosition:(NSUInteger)position;
 - (void)unfillCircleAtPosition:(NSUInteger)position;

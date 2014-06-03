@@ -28,6 +28,6 @@
 @property (nonatomic, strong) UIColor *promptColor;
 @property (nonatomic, assign) BOOL hideLetters;
 
-- (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate;
+- (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 @import UIKit;
+#import "THPinViewControllerMacros.h"
 
 @class THPinViewController;
 

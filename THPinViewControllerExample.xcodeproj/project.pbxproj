@@ -44,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		E222D1FC1902F00900DD1762 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E24B76CC195D674F00705E35 /* THPinViewControllerMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewControllerMacros.h; sourceTree = "<group>"; };
 		E25C5FBE192C993F0073E612 /* confidential@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confidential@2x.png"; sourceTree = "<group>"; };
 		E25C5FC3192CBF010073E612 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		E25C5FC4192CBF010073E612 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 				E26048DB19027DBC006ACBC7 /* THPinViewController.h */,
 				E26048DC19027DBC006ACBC7 /* THPinViewController.m */,
 				E26BEDD31908EB6B000B40A0 /* THPinViewController.strings */,
+				E24B76CC195D674F00705E35 /* THPinViewControllerMacros.h */,
 				E25C5FC3192CBF010073E612 /* UIImage+ImageEffects.h */,
 				E25C5FC4192CBF010073E612 /* UIImage+ImageEffects.m */,
 			);

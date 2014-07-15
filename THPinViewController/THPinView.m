@@ -178,13 +178,11 @@
 
 - (void)setDisableCancel:(BOOL)disableCancel
 {
+    if (self.disableCancel == disableCancel) {
+        return;
+    }
     _disableCancel = disableCancel;
-    if(_disableCancel &&  [self.input length] == 0){
-        [self.bottomButton setHidden:YES];
-    }
-    else{
-        [self.bottomButton setHidden:NO];
-    }
+    [self updateBottomButton];
 }
 
 #pragma mark - Public
@@ -192,24 +190,17 @@
 - (void)updateBottomButton
 {
     if ([self.input length] == 0) {
-        if(!self.disableCancel){
-            [self.bottomButton setTitle:NSLocalizedStringFromTable(@"cancel_button_title", @"THPinViewController", nil)
-                               forState:UIControlStateNormal];
-            [self.bottomButton removeTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
-            [self.bottomButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-        }
-        else{
-            [self.bottomButton removeTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
-            [self.bottomButton setHidden:YES];
-        }
+        self.bottomButton.hidden = self.disableCancel;
+        [self.bottomButton setTitle:NSLocalizedStringFromTable(@"cancel_button_title", @"THPinViewController", nil)
+                           forState:UIControlStateNormal];
+        [self.bottomButton removeTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bottomButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
     } else {
+        self.bottomButton.hidden = NO;
         [self.bottomButton setTitle:NSLocalizedStringFromTable(@"delete_button_title", @"THPinViewController", nil)
                            forState:UIControlStateNormal];
         [self.bottomButton removeTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
         [self.bottomButton addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
-        if(self.disableCancel){
-            [self.bottomButton setHidden:NO];
-        }
     }
 }
 
@@ -264,7 +255,6 @@
             [self.delegate incorrectPinWasEnteredInPinView:self];
         }];
     }
-    
 }
 
 #pragma mark - Util

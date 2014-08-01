@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) THPinView *pinView;
 @property (nonatomic, strong) UIView *blurView;
-@property (nonatomic, assign) NSArray *blurViewContraints;
+@property (nonatomic, strong) NSArray *blurViewContraints;
 
 @end
 

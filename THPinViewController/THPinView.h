@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, THPinViewControllerType) {
 
 @property (nonatomic, weak) id<THPinViewDelegate> delegate;
 @property (nonatomic, copy) NSString *promptTitle;
-@property (nonatomic, strong) NSString *promptChooseTitle;
+@property (nonatomic, copy) NSString *promptChooseTitle;
 @property (nonatomic, copy) NSString *promptVerifyTitle;
 @property (nonatomic, strong) UIColor *promptColor;
 @property (nonatomic, assign) BOOL hideLetters;

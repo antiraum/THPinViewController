@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIImageView *secretContentView;
 @property (nonatomic, strong) UIButton *loginLogoutButton;
+@property (nonatomic, strong) UIButton *changePinButton;
 @property (nonatomic, copy) NSString *correctPin;
 @property (nonatomic, assign) NSUInteger remainingPinEntries;
 @property (nonatomic, assign) BOOL locked;
@@ -42,6 +43,13 @@ static const NSUInteger THNumberOfPinEntries = 6;
     self.loginLogoutButton.tintColor = [UIColor whiteColor];
     [self.view addSubview:self.loginLogoutButton];
     
+    self.changePinButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.changePinButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.changePinButton setTitle:@"Change PIN" forState:UIControlStateNormal];
+    self.changePinButton.tintColor = [UIColor whiteColor];
+    [self.view addSubview:self.changePinButton];
+    self.changePinButton.hidden = NO;
+
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.loginLogoutButton attribute:NSLayoutAttributeCenterX
                                                           relatedBy:NSLayoutRelationEqual
                                                              toItem:self.view attribute:NSLayoutAttributeCenterX
@@ -50,6 +58,17 @@ static const NSUInteger THNumberOfPinEntries = 6;
                                                           relatedBy:NSLayoutRelationEqual
                                                              toItem:self.view attribute:NSLayoutAttributeTop
                                                          multiplier:1.0f constant:60.0f]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.changePinButton attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0f constant:0.0f]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.changePinButton attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view attribute:NSLayoutAttributeTop
+                                                         multiplier:1.0f constant:90.0f]];
+
+    
     NSDictionary *views = @{ @"secretContentView" : self.secretContentView };
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(20)-[secretContentView]-(20)-|"
                                                                       options:0 metrics:nil views:views]];
@@ -64,7 +83,7 @@ static const NSUInteger THNumberOfPinEntries = 6;
 - (void)applicationDidEnterBackground:(NSNotification *)notification
 {
     if (! self.locked) {
-        [self showPinViewAnimated:NO];
+        [self showPinViewAnimated:NO shouldChangePin:NO];
     }
 }
 
@@ -85,16 +104,19 @@ static const NSUInteger THNumberOfPinEntries = 6;
         [self.loginLogoutButton removeTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
         [self.loginLogoutButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
         self.secretContentView.hidden = YES;
+        self.changePinButton.hidden = YES;
     } else {
         [self.loginLogoutButton removeTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
         [self.loginLogoutButton addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
         self.secretContentView.hidden = NO;
+        self.changePinButton.hidden = NO;
     }
+    [self.changePinButton addTarget:self action:@selector(changePin:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - UI
 
-- (void)showPinViewAnimated:(BOOL)animated
+- (void)showPinViewAnimated:(BOOL)animated shouldChangePin:(BOOL)change
 {
     THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
     pinViewController.promptTitle = @"Enter PIN";
@@ -110,6 +132,10 @@ static const NSUInteger THNumberOfPinEntries = 6;
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     pinViewController.translucentBackground = YES;
     
+    // To allow changing of pin
+    if (change) {
+        pinViewController.viewControllerType = THPinViewControllerTypeCreatePin;
+    }
     [self presentViewController:pinViewController animated:animated completion:nil];
 }
 
@@ -117,7 +143,12 @@ static const NSUInteger THNumberOfPinEntries = 6;
 
 - (void)login:(id)sender
 {
-    [self showPinViewAnimated:YES];
+    [self showPinViewAnimated:YES shouldChangePin:NO];
+}
+
+- (void)changePin:(id)sender
+{
+    [self showPinViewAnimated:YES shouldChangePin:YES];
 }
 
 - (void)logout:(id)sender
@@ -141,6 +172,11 @@ static const NSUInteger THNumberOfPinEntries = 6;
         self.remainingPinEntries--;
         return NO;
     }
+}
+
+- (void)pinViewController:(THPinViewController *)pinViewController createdPin:(NSString *)pin
+{
+    self.correctPin = pin;
 }
 
 - (BOOL)userCanRetryInPinViewController:(THPinViewController *)pinViewController

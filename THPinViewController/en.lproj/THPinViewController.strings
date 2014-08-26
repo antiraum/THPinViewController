@@ -7,5 +7,7 @@
 */
 
 "prompt_title" = "Enter PIN";
+"prompt_choose_title" = "Choose PIN";
+"prompt_verify_title" = "Verify PIN";
 "cancel_button_title" = "Cancel";
 "delete_button_title" = "Delete";

@@ -8,6 +8,7 @@
 
 @import UIKit;
 #import "THPinViewControllerMacros.h"
+#import "THPinView.h"
 
 @class THPinViewController;
 
@@ -22,6 +23,7 @@ static const NSInteger THPinViewControllerContentViewTag = 14742;
 - (BOOL)userCanRetryInPinViewController:(THPinViewController *)pinViewController;
 
 @optional
+- (void)pinViewController:(THPinViewController *)pinViewController createdPin:(NSString *)pin;
 - (void)incorrectPinEnteredInPinViewController:(THPinViewController *)pinViewController;
 - (void)pinViewControllerWillDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController;
 - (void)pinViewControllerDidDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController;
@@ -38,9 +40,12 @@ static const NSInteger THPinViewControllerContentViewTag = 14742;
 @property (nonatomic, strong) UIColor *backgroundColor; // is only used if translucentBackground == NO
 @property (nonatomic, assign) BOOL translucentBackground;
 @property (nonatomic, copy) NSString *promptTitle;
+@property (nonatomic, copy) NSString *promptChooseTitle;
+@property (nonatomic, copy) NSString *promptVerifyTitle;
 @property (nonatomic, strong) UIColor *promptColor;
 @property (nonatomic, assign) BOOL hideLetters; // hides the letters on the number buttons
 @property (nonatomic, assign) BOOL disableCancel; // hides the cancel button
+@property (nonatomic, assign) THPinViewControllerType viewControllerType; // create or validate pin?
 
 - (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 

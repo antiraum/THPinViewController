@@ -21,5 +21,6 @@ typedef void (^THPinInputCirclesViewShakeCompletionBlock)(void);
 - (void)unfillCircleAtPosition:(NSUInteger)position;
 - (void)unfillAllCircles;
 - (void)shakeWithCompletion:(THPinInputCirclesViewShakeCompletionBlock)completion;
+- (void)animateWithAnimation:(CAAnimation *)animation andCompletion:(THPinInputCirclesViewShakeCompletionBlock)completion;
 
 @end

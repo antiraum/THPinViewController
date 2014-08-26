@@ -101,6 +101,20 @@ static const CGFloat THInitialShakeAmplitude = 40.0f;
     [self performShake];
 }
 
+- (void)animateWithAnimation:(CAAnimation *)animation andCompletion:(THPinInputCirclesViewShakeCompletionBlock)completion
+{
+    [self.layer addAnimation:animation forKey:@"slideAnimation"];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(animation.duration/2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self unfillAllCircles];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(animation.duration/2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion();
+            }
+        });
+    });
+}
+
 - (void)performShake
 {
     [UIView animateWithDuration:0.03f animations:^ {

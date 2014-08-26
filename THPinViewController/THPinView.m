@@ -11,6 +11,8 @@
 #import "THPinNumPadView.h"
 #import "THPinNumButton.h"
 
+typedef void (^THPinAnimationCompletionBlock)(void);
+
 @interface THPinView () <THPinNumPadViewDelegate>
 
 @property (nonatomic, strong) UILabel *promptLabel;
@@ -23,6 +25,8 @@
 @property (nonatomic, assign) CGFloat paddingBetweenNumPadAndBottomButton;
 
 @property (nonatomic, strong) NSMutableString *input;
+
+@property (nonatomic, strong) NSString *creatingPin;
 
 @end
 
@@ -146,14 +150,34 @@
     self.numPadView.backgroundColor = self.backgroundColor;
 }
 
-- (NSString *)promptTitle
-{
-    return self.promptLabel.text;
-}
-
 - (void)setPromptTitle:(NSString *)promptTitle
 {
-    self.promptLabel.text = promptTitle;
+    if ([self.promptTitle isEqualToString:promptTitle]) {
+        return;
+    }
+    _promptTitle = [promptTitle copy];
+    if (self.viewControllerType == THPinViewControllerTypeStandard) {
+        self.promptLabel.text = self.promptTitle;
+    }
+}
+
+- (void)setPromptChooseTitle:(NSString *)promptChooseTitle
+{
+    if ([self.promptChooseTitle isEqualToString:promptChooseTitle]) {
+        return;
+    }
+    _promptChooseTitle = [promptChooseTitle copy];
+    if (self.viewControllerType == THPinViewControllerTypeCreatePin) {
+        self.promptLabel.text = self.promptChooseTitle;
+    }
+}
+
+- (void)setPromptVerifyTitle:(NSString *)promptVerifyTitle
+{
+    if ([self.promptVerifyTitle isEqualToString:promptVerifyTitle]) {
+        return;
+    }
+    _promptVerifyTitle = [promptVerifyTitle copy];
 }
 
 - (UIColor *)promptColor
@@ -183,6 +207,17 @@
     }
     _disableCancel = disableCancel;
     [self updateBottomButton];
+}
+
+- (void)setViewControllerType:(THPinViewControllerType)viewControllerType {
+    if (self.viewControllerType == viewControllerType) {
+        return;
+    }
+    _viewControllerType = viewControllerType;
+    if (self.viewControllerType == THPinViewControllerTypeCreatePin) {
+        NSAssert(self.promptChooseTitle && self.promptVerifyTitle, @"THPinView needs promptChooseTitle and promptVerifyTitle for THPinViewControllerTypeCreatePin");
+        self.promptLabel.text = self.promptChooseTitle;
+    }
 }
 
 #pragma mark - Public
@@ -240,6 +275,32 @@
         return;
     }
     
+    if (self.viewControllerType == THPinViewControllerTypeCreatePin) {
+        if ( self.creatingPin == nil) {
+            self.creatingPin = self.input;
+            [self slideCirclesAndLabelWithCompletion:^{
+                [self resetInput];
+            }];
+            return;
+        }
+        
+        if ([self.creatingPin isEqualToString:self.input]) {
+            double delayInSeconds = 0.3f;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self.delegate pin:self.creatingPin wasCreatedInPinView:self];
+            });
+            return;
+        }else {
+            [self.inputCirclesView shakeWithCompletion:^{
+                [self resetInput];
+                self.promptLabel.text = self.promptChooseTitle;
+                self.creatingPin = nil;
+            }];
+        }
+        return;
+    }
+    
     if ([self.delegate pinView:self isPinValid:self.input])
     {
         double delayInSeconds = 0.3f;
@@ -258,6 +319,60 @@
 }
 
 #pragma mark - Util
+
+- (void)slideCirclesAndLabelWithCompletion:(THPinAnimationCompletionBlock)completion {
+    CABasicAnimation* slideOutAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    slideOutAnimation.autoreverses = NO;
+    slideOutAnimation.duration = 0.3f;
+    slideOutAnimation.beginTime = 0.0f;
+    slideOutAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeTranslation(-200, 0, 0) ];
+    slideOutAnimation.removedOnCompletion = NO;
+    slideOutAnimation.fillMode = kCAFillModeForwards;
+    slideOutAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    
+    CABasicAnimation* slideInAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    slideInAnimation.autoreverses = NO;
+    slideInAnimation.duration = 0.3f;
+    slideInAnimation.beginTime = 0.3f;
+    slideInAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeTranslation(200, 0, 0) ];
+    slideInAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeTranslation(0, 0, 0) ];
+    slideInAnimation.removedOnCompletion = NO;
+    slideInAnimation.fillMode = kCAFillModeForwards;
+    slideInAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    
+    CABasicAnimation* opacityOutAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacityOutAnimation.autoreverses = NO;
+    opacityOutAnimation.toValue = [NSNumber numberWithFloat:0.0];
+    opacityOutAnimation.duration = 0.3f;
+    opacityOutAnimation.beginTime = 0.0f;
+    opacityOutAnimation.removedOnCompletion = NO;
+    opacityOutAnimation.fillMode = kCAFillModeForwards;
+    opacityOutAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    
+    CABasicAnimation* opacityInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacityInAnimation.autoreverses = NO;
+    opacityInAnimation.toValue = [NSNumber numberWithFloat:1.0];
+    opacityInAnimation.duration = 0.3f;
+    opacityInAnimation.beginTime = 0.3f;
+    opacityInAnimation.removedOnCompletion = NO;
+    opacityInAnimation.fillMode = kCAFillModeForwards;
+    opacityInAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    
+    CAAnimationGroup* slideGroup = [[CAAnimationGroup alloc] init];
+    slideGroup.duration = 0.6f;
+    slideGroup.animations = @[slideOutAnimation, opacityOutAnimation, opacityInAnimation, slideInAnimation];
+    
+    [self.promptLabel.layer addAnimation:slideGroup forKey:@"slideAnimation"];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(slideGroup.duration/2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.promptLabel.text = self.promptVerifyTitle;
+    });
+    [self.inputCirclesView animateWithAnimation:slideGroup andCompletion:^{
+        if (completion) {
+            completion();
+        }
+    }];
+}
 
 - (void)resetInput
 {

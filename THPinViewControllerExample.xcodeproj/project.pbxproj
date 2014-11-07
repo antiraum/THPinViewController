@@ -26,10 +26,10 @@
 		E26048DD19027DBC006ACBC7 /* THPinNumButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048D819027DBC006ACBC7 /* THPinNumButton.m */; };
 		E26048DE19027DBC006ACBC7 /* THPinInputCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048DA19027DBC006ACBC7 /* THPinInputCircleView.m */; };
 		E26048DF19027DBC006ACBC7 /* THPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048DC19027DBC006ACBC7 /* THPinViewController.m */; };
-		E26BEDD91908EB6B000B40A0 /* THPinViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = E26BEDD31908EB6B000B40A0 /* THPinViewController.strings */; };
 		E2742FC419043598003EF85C /* THPinNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2742FC319043598003EF85C /* THPinNumPadView.m */; };
 		E2742FC719043A27003EF85C /* THPinInputCirclesView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2742FC619043A27003EF85C /* THPinInputCirclesView.m */; };
 		E2742FCB19058BCA003EF85C /* THPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2742FCA19058BCA003EF85C /* THPinView.m */; };
+		E2DCAD801A0D27DA00F0710C /* THPinViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2DCAD7D1A0D27D900F0710C /* THPinViewController.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,17 +72,18 @@
 		E26048DA19027DBC006ACBC7 /* THPinInputCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCircleView.m; sourceTree = "<group>"; };
 		E26048DB19027DBC006ACBC7 /* THPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewController.h; sourceTree = "<group>"; };
 		E26048DC19027DBC006ACBC7 /* THPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinViewController.m; sourceTree = "<group>"; };
-		E26BEDD41908EB6B000B40A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/THPinViewController.strings; sourceTree = "<group>"; };
-		E26BEDD51908EB6B000B40A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/THPinViewController.strings; sourceTree = "<group>"; };
-		E26BEDD61908EB6B000B40A0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/THPinViewController.strings; sourceTree = "<group>"; };
-		E26BEDD71908EB6B000B40A0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/THPinViewController.strings; sourceTree = "<group>"; };
-		E26BEDD81908EB6B000B40A0 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/THPinViewController.strings; sourceTree = "<group>"; };
 		E2742FC219043598003EF85C /* THPinNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinNumPadView.h; sourceTree = "<group>"; };
 		E2742FC319043598003EF85C /* THPinNumPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinNumPadView.m; sourceTree = "<group>"; };
 		E2742FC519043A27003EF85C /* THPinInputCirclesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCirclesView.h; sourceTree = "<group>"; };
 		E2742FC619043A27003EF85C /* THPinInputCirclesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCirclesView.m; sourceTree = "<group>"; };
 		E2742FC919058BCA003EF85C /* THPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinView.h; sourceTree = "<group>"; };
 		E2742FCA19058BCA003EF85C /* THPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinView.m; sourceTree = "<group>"; };
+		E2DCAD7E1A0D27D900F0710C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Resources/de.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		E2DCAD7F1A0D27D900F0710C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		E2DCAD811A0D27E300F0710C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		E2DCAD821A0D27E300F0710C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Resources/fr.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		E2DCAD831A0D27EC00F0710C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = Resources/it.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		E2DCAD841A0D27EC00F0710C /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "Resources/zh-Hans-CN.lproj/THPinViewController.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,7 +200,7 @@
 				E2742FCA19058BCA003EF85C /* THPinView.m */,
 				E26048DB19027DBC006ACBC7 /* THPinViewController.h */,
 				E26048DC19027DBC006ACBC7 /* THPinViewController.m */,
-				E26BEDD31908EB6B000B40A0 /* THPinViewController.strings */,
+				E2DCAD7D1A0D27D900F0710C /* THPinViewController.strings */,
 				E24B76CC195D674F00705E35 /* THPinViewControllerMacros.h */,
 				E25C5FC3192CBF010073E612 /* UIImage+ImageEffects.h */,
 				E25C5FC4192CBF010073E612 /* UIImage+ImageEffects.m */,
@@ -270,6 +271,7 @@
 				fr,
 				es,
 				it,
+				"zh-Hans-CN",
 			);
 			mainGroup = E260489519027D01006ACBC7;
 			productRefGroup = E260489F19027D01006ACBC7 /* Products */;
@@ -288,8 +290,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E222D1FD1902F00900DD1762 /* Main.storyboard in Resources */,
-				E26BEDD91908EB6B000B40A0 /* THPinViewController.strings in Resources */,
 				E25C5FBF192C993F0073E612 /* confidential@2x.png in Resources */,
+				E2DCAD801A0D27DA00F0710C /* THPinViewController.strings in Resources */,
 				E26048BA19027D01006ACBC7 /* Images.xcassets in Resources */,
 				E26048AC19027D01006ACBC7 /* InfoPlist.strings in Resources */,
 			);
@@ -366,14 +368,15 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		E26BEDD31908EB6B000B40A0 /* THPinViewController.strings */ = {
+		E2DCAD7D1A0D27D900F0710C /* THPinViewController.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E26BEDD41908EB6B000B40A0 /* de */,
-				E26BEDD51908EB6B000B40A0 /* en */,
-				E26BEDD61908EB6B000B40A0 /* es */,
-				E26BEDD71908EB6B000B40A0 /* fr */,
-				E26BEDD81908EB6B000B40A0 /* it */,
+				E2DCAD7E1A0D27D900F0710C /* de */,
+				E2DCAD7F1A0D27D900F0710C /* en */,
+				E2DCAD811A0D27E300F0710C /* es */,
+				E2DCAD821A0D27E300F0710C /* fr */,
+				E2DCAD831A0D27EC00F0710C /* it */,
+				E2DCAD841A0D27EC00F0710C /* zh-Hans-CN */,
 			);
 			name = THPinViewController.strings;
 			sourceTree = "<group>";

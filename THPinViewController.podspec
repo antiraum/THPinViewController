@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.source       = { :git => "https://github.com/antiraum/THPinViewController.git", :tag => "1.2.2" }
   s.source_files = 'THPinViewController'
+  s.resource_bundle = { 'Resources' => ['THPinViewController/Resources/*.lproj'] }
   s.requires_arc = true
   s.screenshots = [ "https://raw.githubusercontent.com/antiraum/THPinViewController/master/THPinViewController_iphone_4inch.png",
                     "https://raw.githubusercontent.com/antiraum/THPinViewController/master/THPinViewController_iphone_3-5inch.png",

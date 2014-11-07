@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "THPinViewController"
-  s.version      = "1.2.2"
+  s.version      = "1.2.3"
   s.summary      = "iOS 7 Style PIN Screen for iPhone and iPad"
   s.description  = <<-DESC
 				   * Has iPhone portrait and iPad portrait and landscape layouts
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.license      = 'MIT'
   s.author       = { "Thomas Heß" => "mail@thomashess.name" }
   s.platform     = :ios, '7.0'
-  s.source       = { :git => "https://github.com/antiraum/THPinViewController.git", :tag => "1.2.2" }
+  s.source       = { :git => "https://github.com/antiraum/THPinViewController.git", :tag => "1.2.3" }
   s.source_files = 'THPinViewController'
   s.resource_bundle = { 'Resources' => ['THPinViewController/Resources/*.lproj'] }
   s.requires_arc = true

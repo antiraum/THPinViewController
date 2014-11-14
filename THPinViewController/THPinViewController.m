@@ -27,7 +27,9 @@
         _delegate = delegate;
         _backgroundColor = [UIColor whiteColor];
         _translucentBackground = NO;
-        _promptTitle = NSLocalizedStringFromTable(@"prompt_title", @"THPinViewController", nil);
+        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"THPinViewController"
+                                                                                    ofType:@"bundle"]];
+        _promptTitle = NSLocalizedStringFromTableInBundle(@"prompt_title", @"THPinViewController", bundle, nil);
     }
     return self;
 }

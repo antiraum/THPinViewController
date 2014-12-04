@@ -16,6 +16,9 @@
 @property (nonatomic, strong) UIView *blurView;
 @property (nonatomic, strong) NSArray *blurViewContraints;
 
+/// Returns the backgroundColor if its alpha < 1.0; otherwise returns the backgroundColor with an alpha value of 0.25.
+@property (nonatomic, strong, readonly) UIColor *blurTintColor;
+
 @end
 
 @implementation THPinViewController
@@ -142,6 +145,22 @@
     self.pinView.disableCancel = self.disableCancel;
 }
 
+- (UIColor *)blurTintColor
+{
+    UIColor *blurTintColor = self.backgroundColor;
+    if (!blurTintColor) {
+        return [UIColor colorWithWhite:1.0 alpha:0.25];
+    }
+    
+    CGFloat white;
+    CGFloat alpha;
+    [blurTintColor getWhite:&white alpha:&alpha];
+    if (alpha > 0.999) {
+        blurTintColor = [blurTintColor colorWithAlphaComponent:0.25];
+    }
+    return blurTintColor;
+}
+
 #pragma mark - Blur
 
 - (void)addBlurView
@@ -177,8 +196,10 @@
     [contentView drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:NO];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return [image applyBlurWithRadius:20.0f tintColor:[UIColor colorWithWhite:1.0f alpha:0.25f]
-                saturationDeltaFactor:1.8f maskImage:nil];
+    return [image applyBlurWithRadius:20.0f
+                            tintColor:self.blurTintColor
+                saturationDeltaFactor:1.8f
+                            maskImage:nil];
 }
 
 #pragma mark - THPinViewDelegate

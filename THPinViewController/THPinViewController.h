@@ -23,12 +23,30 @@ static const NSInteger THPinViewControllerContentViewTag = 14742;
 
 @optional
 - (void)incorrectPinEnteredInPinViewController:(THPinViewController *)pinViewController;
+
 - (void)pinViewControllerWillDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController;
+
+/**
+ The pinViewController is automatically dismissed unless the delegate implements this method returning \c NO.
+ One reason to prevent dismissing would be to use this view controller to let the user set up the PIN by entering the number, then confirming it.
+   1. After the user has entered the first number, return \c NO to keep the controller visible,
+   2. change the prompt in /c -pinViewControllerWillReset:,
+   3. finally return \c YES after the user has successfully entered the new PIN a second time.
+ */
+- (BOOL)pinViewControllerShouldDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController;
 - (void)pinViewControllerDidDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController;
+
 - (void)pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController;
 - (void)pinViewControllerDidDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController;
+
 - (void)pinViewControllerWillDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController;
 - (void)pinViewControllerDidDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController;
+
+/**
+ Called when the delegate returned \c NO for \c pinViewControllerShouldDismissAfterPinEntryWasSuccessful:
+ This gives the delegate a chance to update the promptTitle and/or any colors while the pin view is refreshed.
+ */
+- (void)pinViewControllerWillReset:(THPinViewController *)pinViewController;
 
 @end
 

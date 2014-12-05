@@ -209,14 +209,33 @@
 
 - (void)correctPinWasEnteredInPinView:(THPinView *)pinView
 {
-    if ([self.delegate respondsToSelector:@selector(pinViewControllerWillDismissAfterPinEntryWasSuccessful:)]) {
-        [self.delegate pinViewControllerWillDismissAfterPinEntryWasSuccessful:self];
+    BOOL shouldDismiss = YES;
+    if ([self.delegate respondsToSelector:@selector(pinViewControllerShouldDismissAfterPinEntryWasSuccessful:)]) {
+        shouldDismiss = [self.delegate pinViewControllerShouldDismissAfterPinEntryWasSuccessful:self];
     }
-    [self dismissViewControllerAnimated:YES completion:^{
-        if ([self.delegate respondsToSelector:@selector(pinViewControllerDidDismissAfterPinEntryWasSuccessful:)]) {
-            [self.delegate pinViewControllerDidDismissAfterPinEntryWasSuccessful:self];
+    
+    if (shouldDismiss) {
+        if ([self.delegate respondsToSelector:@selector(pinViewControllerWillDismissAfterPinEntryWasSuccessful:)]) {
+            [self.delegate pinViewControllerWillDismissAfterPinEntryWasSuccessful:self];
         }
-    }];
+        [self dismissViewControllerAnimated:YES completion:^{
+            if ([self.delegate respondsToSelector:@selector(pinViewControllerDidDismissAfterPinEntryWasSuccessful:)]) {
+                [self.delegate pinViewControllerDidDismissAfterPinEntryWasSuccessful:self];
+            }
+        }];
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.pinView.alpha = 0.2;
+        } completion:^(BOOL finished) {
+            if ([self.delegate respondsToSelector:@selector(pinViewControllerWillReset:)]) {
+                [self.delegate pinViewControllerWillReset:self];
+            }
+            [self.pinView resetInput];
+            [UIView animateWithDuration:0.15 animations:^{
+                self.pinView.alpha = 1.0;
+            }];
+        }];
+    }
 }
 
 - (void)incorrectPinWasEnteredInPinView:(THPinView *)pinView

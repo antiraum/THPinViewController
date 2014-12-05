@@ -244,6 +244,8 @@
         return;
     }
     
+    self.userInteractionEnabled = NO;
+    
     if ([self.delegate pinView:self isPinValid:self.input])
     {
         double delayInSeconds = 0.3f;
@@ -268,6 +270,7 @@
     self.input = [NSMutableString string];
     [self.inputCirclesView unfillAllCircles];
     [self updateBottomButton];
+    self.userInteractionEnabled = YES;
 }
 
 @end

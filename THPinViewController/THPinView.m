@@ -63,7 +63,7 @@
                                                             toItem:self attribute:NSLayoutAttributeCenterX
                                                         multiplier:1.0f constant:0.0f]];
         
-        _bottomButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _bottomButton.translatesAutoresizingMaskIntoConstraints = NO;
         _bottomButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
         _bottomButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;

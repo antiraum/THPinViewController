@@ -36,7 +36,7 @@ static const NSUInteger THNumberOfPinEntries = 6;
     self.secretContentView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.secretContentView];
 
-    self.loginLogoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.loginLogoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.loginLogoutButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.loginLogoutButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
     self.loginLogoutButton.tintColor = [UIColor whiteColor];

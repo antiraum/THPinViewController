@@ -96,13 +96,15 @@ static const NSUInteger THNumberOfPinEntries = 6;
 
 - (void)showPinViewAnimated:(BOOL)animated
 {
-    THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
-    pinViewController.promptTitle = @"Enter PIN";
     UIColor *darkBlueColor = [UIColor colorWithRed:0.012f green:0.071f blue:0.365f alpha:1.0f];
+    THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
+    pinViewController.view.tintColor = darkBlueColor;
+    pinViewController.promptTitle = @"Enter PIN";
     pinViewController.promptColor = darkBlueColor;
     pinViewController.promptFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
     pinViewController.bottomButtonFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:14.0];
     pinViewController.view.tintColor = darkBlueColor;
+    pinViewController.bottomButtonColor = darkBlueColor;
     
     // for a solid background color, use this:
     pinViewController.backgroundColor = [UIColor whiteColor];

@@ -185,6 +185,16 @@
     [[self.bottomButton titleLabel] setFont:bottomButtonFont];
 }
 
+- (UIColor *)bottomButtonColor
+{
+    return [self.bottomButton tintColor];
+}
+
+- (void)setBottomButtonColor:(UIColor *)bottomButtonColor
+{
+    [self.bottomButton setTitleColor:bottomButtonColor forState:UIControlStateNormal];
+}
+
 - (BOOL)hideLetters
 {
     return self.numPadView.hideLetters;

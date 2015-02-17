@@ -51,6 +51,7 @@
     self.pinView.promptColor = self.promptColor;
     self.pinView.promptFont = self.promptFont;
     self.pinView.bottomButtonFont = self.bottomButtonFont;
+    self.pinView.bottomButtonColor = self.bottomButtonColor;
     self.pinView.hideLetters = self.hideLetters;
     self.pinView.disableCancel = self.disableCancel;
     self.pinView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -142,6 +143,15 @@
     }
     _bottomButtonFont = bottomButtonFont;
     self.pinView.bottomButtonFont = self.bottomButtonFont;
+}
+
+- (void)setBottomButtonColor:(UIColor *)bottomButtonColor
+{
+    if ([self.bottomButtonColor isEqual:bottomButtonColor]) {
+        return;
+    }
+    _bottomButtonColor = bottomButtonColor;
+    self.pinView.bottomButtonColor = self.bottomButtonColor;
 }
 
 - (void)setHideLetters:(BOOL)hideLetters

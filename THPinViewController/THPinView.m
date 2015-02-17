@@ -166,6 +166,16 @@
     self.promptLabel.textColor = promptColor;
 }
 
+- (UIFont *)promptFont
+{
+    return self.promptLabel.font;
+}
+
+- (void)setPromptFont:(UIFont *)promptFont
+{
+    self.promptLabel.font = promptFont;
+}
+
 - (BOOL)hideLetters
 {
     return self.numPadView.hideLetters;

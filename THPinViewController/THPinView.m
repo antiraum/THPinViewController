@@ -176,6 +176,15 @@
     self.promptLabel.font = promptFont;
 }
 
+- (UIFont *)bottomButtonFont
+{
+    return [[self.bottomButton titleLabel] font];
+}
+
+- (void)setBottomButtonFont:(UIFont *)bottomButtonFont {
+    [[self.bottomButton titleLabel] setFont:bottomButtonFont];
+}
+
 - (BOOL)hideLetters
 {
     return self.numPadView.hideLetters;

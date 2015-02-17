@@ -28,6 +28,7 @@
 @property (nonatomic, copy) NSString *promptTitle;
 @property (nonatomic, strong) UIColor *promptColor;
 @property (nonatomic, strong) UIFont *promptFont;
+@property (nonatomic, strong) UIFont *bottomButtonFont;
 @property (nonatomic, assign) BOOL hideLetters;
 @property (nonatomic, assign) BOOL disableCancel;
 

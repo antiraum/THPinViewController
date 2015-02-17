@@ -100,6 +100,7 @@ static const NSUInteger THNumberOfPinEntries = 6;
     pinViewController.promptTitle = @"Enter PIN";
     UIColor *darkBlueColor = [UIColor colorWithRed:0.012f green:0.071f blue:0.365f alpha:1.0f];
     pinViewController.promptColor = darkBlueColor;
+    pinViewController.promptFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
     pinViewController.view.tintColor = darkBlueColor;
     
     // for a solid background color, use this:

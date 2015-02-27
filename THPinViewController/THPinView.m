@@ -176,6 +176,16 @@
     self.numPadView.hideLetters = hideLetters;
 }
 
+- (BOOL)squareButtons
+{
+    return self.numPadView.squareButtons;
+}
+
+- (void)setSquareButtons:(BOOL)squareButtons
+{
+    self.numPadView.squareButtons = squareButtons;
+}
+
 - (void)setDisableCancel:(BOOL)disableCancel
 {
     if (self.disableCancel == disableCancel) {

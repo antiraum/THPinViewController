@@ -23,7 +23,7 @@
 
 @implementation THPinNumButton
 
-- (instancetype)initWithNumber:(NSUInteger)number letters:(NSString *)letters
+- (instancetype)initWithNumber:(NSUInteger)number letters:(NSString *)letters squareButton:(BOOL)squareButton
 {
     self = [super init];
     if (self)
@@ -31,7 +31,9 @@
         _number = number;
         _letters = letters;
         
-        self.layer.cornerRadius = [[self class] diameter] / 2.0f;
+        if (!squareButton) {
+            self.layer.cornerRadius = [[self class] diameter] / 2.0f;
+        }
         self.layer.borderWidth = 1.0f;
         
         UIView *contentView = [[UIView alloc] init];

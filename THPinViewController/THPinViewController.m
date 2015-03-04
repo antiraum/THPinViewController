@@ -200,7 +200,7 @@
     if ([self.delegate respondsToSelector:@selector(pinViewControllerWillDismissAfterPinEntryWasCancelled:)]) {
         [self.delegate pinViewControllerWillDismissAfterPinEntryWasCancelled:self];
     }
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:!_disableDismissAniamtion completion:^{
         if ([self.delegate respondsToSelector:@selector(pinViewControllerDidDismissAfterPinEntryWasCancelled:)]) {
             [self.delegate pinViewControllerDidDismissAfterPinEntryWasCancelled:self];
         }
@@ -212,7 +212,7 @@
     if ([self.delegate respondsToSelector:@selector(pinViewControllerWillDismissAfterPinEntryWasSuccessful:)]) {
         [self.delegate pinViewControllerWillDismissAfterPinEntryWasSuccessful:self];
     }
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:!_disableDismissAniamtion completion:^{
         if ([self.delegate respondsToSelector:@selector(pinViewControllerDidDismissAfterPinEntryWasSuccessful:)]) {
             [self.delegate pinViewControllerDidDismissAfterPinEntryWasSuccessful:self];
         }
@@ -229,7 +229,7 @@
         if ([self.delegate respondsToSelector:@selector(pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:)]) {
             [self.delegate pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:self];
         }
-        [self dismissViewControllerAnimated:YES completion:^{
+        [self dismissViewControllerAnimated:!_disableDismissAniamtion completion:^{
             if ([self.delegate respondsToSelector:@selector(pinViewControllerDidDismissAfterPinEntryWasUnsuccessful:)]) {
                 [self.delegate pinViewControllerDidDismissAfterPinEntryWasUnsuccessful:self];
             }

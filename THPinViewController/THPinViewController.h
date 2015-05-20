@@ -47,4 +47,6 @@ static const NSInteger THPinViewControllerContentViewTag = 14742;
 
 - (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
+- (void)resetPinView;
+
 @end

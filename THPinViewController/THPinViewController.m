@@ -78,6 +78,13 @@
                                                          multiplier:1.0f constant:pinViewYOffset]];
 }
 
+#pragma mark - Public methods
+
+- (void)resetPinView
+{
+    [self.pinView resetInput];
+}
+
 #pragma mark - Properties
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor

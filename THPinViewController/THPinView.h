@@ -35,4 +35,6 @@
 
 - (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
+- (void)resetInput;
+
 @end

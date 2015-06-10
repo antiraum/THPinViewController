@@ -45,7 +45,6 @@
 /* Begin PBXFileReference section */
 		E2075FDF1A160CCB0018078F /* THPinViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = THPinViewController.bundle; sourceTree = "<group>"; };
 		E222D1FC1902F00900DD1762 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E24B76CC195D674F00705E35 /* THPinViewControllerMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewControllerMacros.h; sourceTree = "<group>"; };
 		E25C5FBE192C993F0073E612 /* confidential@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confidential@2x.png"; sourceTree = "<group>"; };
 		E25C5FC3192CBF010073E612 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		E25C5FC4192CBF010073E612 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
@@ -196,7 +195,6 @@
 				E26048DB19027DBC006ACBC7 /* THPinViewController.h */,
 				E26048DC19027DBC006ACBC7 /* THPinViewController.m */,
 				E2075FDF1A160CCB0018078F /* THPinViewController.bundle */,
-				E24B76CC195D674F00705E35 /* THPinViewControllerMacros.h */,
 				E25C5FC3192CBF010073E612 /* UIImage+ImageEffects.h */,
 				E25C5FC4192CBF010073E612 /* UIImage+ImageEffects.m */,
 			);
@@ -248,7 +246,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TH;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Thomas Heß";
 				TargetAttributes = {
 					E26048BE19027D01006ACBC7 = {
@@ -389,6 +387,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -410,7 +409,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -465,7 +464,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -487,6 +486,7 @@
 				GCC_PREFIX_HEADER = "THPinViewControllerExample/THPinViewControllerExample-Prefix.pch";
 				INFOPLIST_FILE = "THPinViewControllerExample/THPinViewControllerExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "name.thomashess.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -501,6 +501,7 @@
 				GCC_PREFIX_HEADER = "THPinViewControllerExample/THPinViewControllerExample-Prefix.pch";
 				INFOPLIST_FILE = "THPinViewControllerExample/THPinViewControllerExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "name.thomashess.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -522,6 +523,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "THPinViewControllerExampleTests/THPinViewControllerExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "name.thomashess.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -540,6 +542,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "THPinViewControllerExample/THPinViewControllerExample-Prefix.pch";
 				INFOPLIST_FILE = "THPinViewControllerExampleTests/THPinViewControllerExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "name.thomashess.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

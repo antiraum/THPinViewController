@@ -7,7 +7,6 @@
 //
 
 @import UIKit;
-#import "THPinViewControllerMacros.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

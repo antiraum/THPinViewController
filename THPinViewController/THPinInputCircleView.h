@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface THPinInputCircleView : UIView
 
 @property (nonatomic, assign) BOOL filled;
@@ -15,3 +17,5 @@
 + (CGFloat)diameter;
 
 @end
+
+NS_ASSUME_NONNULL_END

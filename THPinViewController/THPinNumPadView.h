@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class THPinNumPadView;
 
 @protocol THPinNumPadViewDelegate <NSObject>
@@ -19,9 +21,11 @@
 
 @interface THPinNumPadView : UIView
 
-@property (nonatomic, weak) id<THPinNumPadViewDelegate> delegate;
+@property (nonatomic, weak, nullable) id<THPinNumPadViewDelegate> delegate;
 @property (nonatomic, assign) BOOL hideLetters;
 
-- (instancetype)initWithDelegate:(id<THPinNumPadViewDelegate>)delegate;
+- (instancetype)initWithDelegate:(nullable id<THPinNumPadViewDelegate>)delegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

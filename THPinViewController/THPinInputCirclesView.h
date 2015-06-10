@@ -7,7 +7,8 @@
 //
 
 @import UIKit;
-#import "THPinViewControllerMacros.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^THPinInputCirclesViewShakeCompletionBlock)(void);
 
@@ -15,9 +16,9 @@ typedef void (^THPinInputCirclesViewShakeCompletionBlock)(void);
 
 @property (nonatomic, assign) NSUInteger pinLength;
 
-- (nonnull instancetype)initWithPinLength:(NSUInteger)pinLength NS_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("Use -initWithPinLength: instead")));
-- (nonnull instancetype)initWithCoder:(nonnull NSCoder *)aDecoder __attribute__((unavailable("Use -initWithPinLength: instead")));
+- (instancetype)initWithPinLength:(NSUInteger)pinLength NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("Use -initWithPinLength: instead")));
+- (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("Use -initWithPinLength: instead")));
 
 - (void)fillCircleAtPosition:(NSUInteger)position;
 - (void)unfillCircleAtPosition:(NSUInteger)position;
@@ -25,3 +26,5 @@ typedef void (^THPinInputCirclesViewShakeCompletionBlock)(void);
 - (void)shakeWithCompletion:(__nullable THPinInputCirclesViewShakeCompletionBlock)completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

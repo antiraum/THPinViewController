@@ -9,6 +9,8 @@
 @import UIKit;
 #import "THPinViewControllerMacros.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class THPinView;
 
 @protocol THPinViewDelegate <NSObject>
@@ -24,12 +26,14 @@
 
 @interface THPinView : UIView
 
-@property (nonatomic, weak) id<THPinViewDelegate> delegate;
-@property (nonatomic, copy) NSString *promptTitle;
-@property (nonatomic, strong) UIColor *promptColor;
+@property (nonatomic, weak, nullable) id<THPinViewDelegate> delegate;
+@property (nonatomic, copy, nullable) NSString *promptTitle;
+@property (nonatomic, strong, nullable) UIColor *promptColor;
 @property (nonatomic, assign) BOOL hideLetters;
 @property (nonatomic, assign) BOOL disableCancel;
 
-- (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDelegate:(nullable id<THPinViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 @end
+
+NS_ASSUME_NONNULL_END

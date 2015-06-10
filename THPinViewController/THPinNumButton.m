@@ -25,7 +25,7 @@
 
 - (instancetype)initWithNumber:(NSUInteger)number letters:(NSString *)letters
 {
-    self = [super init];
+    self = [super initWithFrame:CGRectZero];
     if (self)
     {
         _number = number;
@@ -52,11 +52,11 @@
         CGSize numberSize = [_numberLabel.text sizeWithAttributes:@{ NSFontAttributeName : _numberLabel.font }];
         CGFloat contentViewHeight = ceil(numberSize.height);
         
-        if (letters)
+        if (_letters)
         {
             _lettersLabel = [[UILabel alloc] init];
             _lettersLabel.translatesAutoresizingMaskIntoConstraints = NO;
-            _lettersLabel.text = letters;
+            _lettersLabel.text = _letters;
             _lettersLabel.textAlignment = NSTextAlignmentCenter;
             _lettersLabel.font = [UIFont systemFontOfSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 11.0f : 9.0f];
             [contentView addSubview:_lettersLabel];
@@ -106,6 +106,16 @@
         [self tintColorDidChange];
     }
     return self;
+}
+
+- (nonnull instancetype)initWithFrame:(CGRect)frame
+{
+    return [self initWithNumber:0 letters:nil];
+}
+
+- (nonnull instancetype)initWithCoder:(nonnull NSCoder *)aDecoder
+{
+    return [self initWithNumber:0 letters:nil];
 }
 
 - (void)tintColorDidChange

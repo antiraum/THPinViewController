@@ -15,11 +15,13 @@ typedef void (^THPinInputCirclesViewShakeCompletionBlock)(void);
 
 @property (nonatomic, assign) NSUInteger pinLength;
 
-- (instancetype)initWithPinLength:(NSUInteger)pinLength NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithPinLength:(NSUInteger)pinLength NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("Use -initWithPinLength: instead")));
+- (nonnull instancetype)initWithCoder:(nonnull NSCoder *)aDecoder __attribute__((unavailable("Use -initWithPinLength: instead")));
 
 - (void)fillCircleAtPosition:(NSUInteger)position;
 - (void)unfillCircleAtPosition:(NSUInteger)position;
 - (void)unfillAllCircles;
-- (void)shakeWithCompletion:(THPinInputCirclesViewShakeCompletionBlock)completion;
+- (void)shakeWithCompletion:(__nullable THPinInputCirclesViewShakeCompletionBlock)completion;
 
 @end

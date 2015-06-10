@@ -30,7 +30,7 @@
 
 - (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate
 {
-    self = [super init];
+    self = [super initWithFrame:CGRectZero];
     if (self)
     {
         _delegate = delegate;
@@ -125,6 +125,16 @@
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vFormat options:0 metrics:metrics views:views]];
     }
     return self;
+}
+
+- (nonnull instancetype)initWithFrame:(CGRect)frame
+{
+    return [self initWithDelegate:nil];
+}
+
+- (nonnull instancetype)initWithCoder:(nonnull NSCoder *)aDecoder
+{
+    return [self initWithDelegate:nil];
 }
 
 - (CGSize)intrinsicContentSize

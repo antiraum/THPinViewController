@@ -22,7 +22,7 @@
 
 - (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate
 {
-    self = [super init];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _delegate = delegate;
         _backgroundColor = [UIColor whiteColor];
@@ -32,6 +32,16 @@
         _promptTitle = NSLocalizedStringFromTableInBundle(@"prompt_title", @"THPinViewController", bundle, nil);
     }
     return self;
+}
+
+- (nonnull instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil
+{
+    return [self initWithDelegate:nil];
+}
+
+- (nonnull instancetype)initWithCoder:(nonnull NSCoder *)aDecoder
+{
+    return [self initWithDelegate:nil];
 }
 
 - (void)viewDidLoad

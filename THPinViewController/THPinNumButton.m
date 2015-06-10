@@ -120,7 +120,7 @@
 
 - (void)tintColorDidChange
 {
-    self.layer.borderColor = [self.tintColor CGColor];
+    self.layer.borderColor = self.tintColor.CGColor;
     self.numberLabel.textColor = self.tintColor;
     self.lettersLabel.textColor = self.tintColor;
 }
@@ -174,7 +174,7 @@
     static UIColor *averageContentColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        UIView *contentView = [[[UIApplication sharedApplication] keyWindow] viewWithTag:THPinViewControllerContentViewTag];
+        UIView *contentView = [[UIApplication sharedApplication].keyWindow viewWithTag:THPinViewControllerContentViewTag];
         if (! contentView) {
             return;
         }

@@ -102,7 +102,7 @@
             _paddingBetweenInputCirclesAndNumPad = 52.0f;
         } else {
             [vFormat appendString:@"-(paddingBetweenNumPadAndBottomButton)-[bottomButton]"];
-            BOOL isFourInchScreen = (fabs(CGRectGetHeight([[UIScreen mainScreen] bounds]) - 568.0f) < DBL_EPSILON);
+            BOOL isFourInchScreen = (fabs(CGRectGetHeight([UIScreen mainScreen].bounds) - 568.0f) < DBL_EPSILON);
             if (isFourInchScreen) {
                 _paddingBetweenPromptLabelAndInputCircles = 22.5f;
                 _paddingBetweenInputCirclesAndNumPad = 41.5f;
@@ -152,7 +152,7 @@
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
-    [super setBackgroundColor:backgroundColor];
+    super.backgroundColor = backgroundColor;
     self.numPadView.backgroundColor = self.backgroundColor;
 }
 
@@ -201,7 +201,7 @@
 {
     NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"THPinViewController"
                                                                                 ofType:@"bundle"]];
-    if ([self.input length] == 0) {
+    if (self.input.length == 0) {
         self.bottomButton.hidden = self.disableCancel;
         [self.bottomButton setTitle:NSLocalizedStringFromTableInBundle(@"cancel_button_title", @"THPinViewController",
                                                                        bundle, nil)
@@ -227,11 +227,11 @@
 
 - (void)delete:(id)sender
 {
-    if ([self.input length] < 2) {
+    if (self.input.length < 2) {
         [self resetInput];
     } else {
-        [self.input deleteCharactersInRange:NSMakeRange([self.input length] - 1, 1)];
-        [self.inputCirclesView unfillCircleAtPosition:[self.input length]];
+        [self.input deleteCharactersInRange:NSMakeRange(self.input.length - 1, 1)];
+        [self.inputCirclesView unfillCircleAtPosition:self.input.length];
     }
 }
 
@@ -241,16 +241,16 @@
 {
     NSUInteger pinLength = [self.delegate pinLengthForPinView:self];
     
-    if ([self.input length] >= pinLength) {
+    if (self.input.length >= pinLength) {
         return;
     }
     
     [self.input appendString:[NSString stringWithFormat:@"%lu", (unsigned long)number]];
-    [self.inputCirclesView fillCircleAtPosition:[self.input length] - 1];
+    [self.inputCirclesView fillCircleAtPosition:self.input.length - 1];
     
     [self updateBottomButton];
     
-    if ([self.input length] < pinLength) {
+    if (self.input.length < pinLength) {
         return;
     }
     

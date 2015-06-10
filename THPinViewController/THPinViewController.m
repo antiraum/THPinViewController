@@ -72,7 +72,7 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         pinViewYOffset = -9.0f;
     } else {
-        BOOL isFourInchScreen = (fabs(CGRectGetHeight([[UIScreen mainScreen] bounds]) - 568.0f) < DBL_EPSILON);
+        BOOL isFourInchScreen = (fabs(CGRectGetHeight([UIScreen mainScreen].bounds) - 568.0f) < DBL_EPSILON);
         if (isFourInchScreen) {
             pinViewYOffset = 25.5f;
         } else {
@@ -179,7 +179,7 @@
 
 - (UIImage*)blurredContentImage
 {
-    UIView *contentView = [[[UIApplication sharedApplication] keyWindow] viewWithTag:THPinViewControllerContentViewTag];
+    UIView *contentView = [[UIApplication sharedApplication].keyWindow viewWithTag:THPinViewControllerContentViewTag];
     if (! contentView) {
         return nil;
     }

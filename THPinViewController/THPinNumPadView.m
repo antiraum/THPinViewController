@@ -89,7 +89,7 @@
                                                                             options:0 metrics:nil views:@{ buttonName : button }]];
             
             if (row < 3) {
-                if ([buttonViews count] > 0) {
+                if (buttonViews.count > 0) {
                     [hFormat appendString:@"-(hPadding)-"];
                 }
                 [hFormat appendFormat:@"[%@]", buttonName];
@@ -166,7 +166,7 @@
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
-    [super setBackgroundColor:backgroundColor];
+    super.backgroundColor = backgroundColor;
     for (UIView *rowView in self.subviews) {
         for (UIView *button in rowView.subviews) {
             button.backgroundColor = self.backgroundColor;
@@ -185,7 +185,7 @@
 
 - (void)numberButtonTapped:(id)sender
 {
-    [self.delegate pinNumPadView:self numberTapped:[(THPinNumButton *)sender number]];
+    [self.delegate pinNumPadView:self numberTapped:((THPinNumButton *)sender).number];
 }
 
 @end

@@ -25,7 +25,7 @@
 
 - (void)tintColorDidChange
 {
-    self.layer.borderColor = [self.tintColor CGColor];
+    self.layer.borderColor = self.tintColor.CGColor;
 }
 
 - (void)setFilled:(BOOL)filled

@@ -28,7 +28,7 @@
 
 @implementation THPinView
 
-- (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate
+- (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate squareButtons:(BOOL)squareButtons
 {
     self = [super init];
     if (self)
@@ -55,6 +55,7 @@
                                                         multiplier:1.0f constant:0.0f]];
         
         _numPadView = [[THPinNumPadView alloc] initWithDelegate:self];
+        _numPadView.squareButtons = squareButtons;
         _numPadView.translatesAutoresizingMaskIntoConstraints = NO;
         _numPadView.backgroundColor = self.backgroundColor;
         [self addSubview:_numPadView];
@@ -104,12 +105,15 @@
             [vFormat appendString:@"-(paddingBetweenNumPadAndBottomButton)-[bottomButton]"];
             BOOL isFourInchScreen = (fabs(CGRectGetHeight([[UIScreen mainScreen] bounds]) - 568.0f) < DBL_EPSILON);
             if (isFourInchScreen) {
-                _paddingBetweenPromptLabelAndInputCircles = 22.5f;
                 _paddingBetweenInputCirclesAndNumPad = 41.5f;
+                _paddingBetweenPromptLabelAndInputCircles = 22.5f;
                 _paddingBetweenNumPadAndBottomButton = 19.0f;
             } else {
-                _paddingBetweenPromptLabelAndInputCircles = 15.5f;
                 _paddingBetweenInputCirclesAndNumPad = 14.0f;
+                if (squareButtons) {
+                    _paddingBetweenInputCirclesAndNumPad = 14.0f + 10.5f;
+                }
+                _paddingBetweenPromptLabelAndInputCircles = 15.5f;
                 _paddingBetweenNumPadAndBottomButton = -7.5f;
             }
         }

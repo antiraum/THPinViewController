@@ -30,6 +30,6 @@
 @property (nonatomic, assign) BOOL hideLetters;
 @property (nonatomic, assign) BOOL disableCancel;
 
-- (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate squareButtons:(BOOL)squareButtons NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -1,0 +1,43 @@
+# Xcode
+build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+!default.xcworkspace
+project.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+DerivedData
+.idea/
+.DS_Store
+
+# xcode noise
+build/*
+*.pbxuser
+*.mode1v3
+*.swp
+*~.nib
+*.perspective
+*.perspectivev3
+*.xcbkptlist
+*.xcuserstate
+
+# old skool
+.svn
+
+# osx noise
+.DS_Store
+profile
+
+# Localization Manager
+*.locuser
+com.thegrizzlylabs.GeniusScanPro 2012-11-08 20.41.58.005.xcappdata/*
+
+.ruby-gemset
+.ruby-version

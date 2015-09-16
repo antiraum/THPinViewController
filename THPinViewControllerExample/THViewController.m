@@ -96,7 +96,7 @@ static const NSUInteger THNumberOfPinEntries = 6;
 
 - (void)showPinViewAnimated:(BOOL)animated
 {
-    THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
+    THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self squareButtons:NO];
     pinViewController.promptTitle = @"Enter PIN";
     UIColor *darkBlueColor = [UIColor colorWithRed:0.012f green:0.071f blue:0.365f alpha:1.0f];
     pinViewController.promptColor = darkBlueColor;

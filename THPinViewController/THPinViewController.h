@@ -42,6 +42,6 @@ static const NSInteger THPinViewControllerContentViewTag = 14742;
 @property (nonatomic, assign) BOOL hideLetters; // hides the letters on the number buttons
 @property (nonatomic, assign) BOOL disableCancel; // hides the cancel button
 
-- (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate squareButtons:(BOOL)squareButtons NS_DESIGNATED_INITIALIZER;
 
 @end

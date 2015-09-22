@@ -15,7 +15,6 @@
 @property (nonatomic, strong) THPinView *pinView;
 @property (nonatomic, strong) UIView *blurView;
 @property (nonatomic, strong) NSArray *blurViewContraints;
-@property (nonatomic, assign) BOOL squareButtons; // makes the number buttons square if YES
 
 @end
 
@@ -143,6 +142,15 @@
     _disableCancel = disableCancel;
     self.pinView.disableCancel = self.disableCancel;
 }
+
+- (void)setSquareButtons:(BOOL)squareButtons
+{
+    if (self.squareButtons == squareButtons) {
+        return;
+    }
+    _squareButtons = squareButtons;
+}
+
 
 #pragma mark - Blur
 

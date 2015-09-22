@@ -20,13 +20,14 @@
 
 @implementation THPinViewController
 
-- (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate
+- (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate squareButtons:(BOOL)squareButtons
 {
     self = [super init];
     if (self) {
         _delegate = delegate;
         _backgroundColor = [UIColor whiteColor];
         _translucentBackground = NO;
+        _squareButtons = squareButtons;
         NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"THPinViewController"
                                                                                     ofType:@"bundle"]];
         _promptTitle = NSLocalizedStringFromTableInBundle(@"prompt_title", @"THPinViewController", bundle, nil);
@@ -45,7 +46,7 @@
         self.view.backgroundColor = self.backgroundColor;
     }
     
-    self.pinView = [[THPinView alloc] initWithDelegate:self];
+    self.pinView = [[THPinView alloc] initWithDelegate:self squareButtons:_squareButtons];
     self.pinView.backgroundColor = self.view.backgroundColor;
     self.pinView.promptTitle = self.promptTitle;
     self.pinView.promptColor = self.promptColor;
@@ -141,6 +142,15 @@
     _disableCancel = disableCancel;
     self.pinView.disableCancel = self.disableCancel;
 }
+
+- (void)setSquareButtons:(BOOL)squareButtons
+{
+    if (self.squareButtons == squareButtons) {
+        return;
+    }
+    _squareButtons = squareButtons;
+}
+
 
 #pragma mark - Blur
 

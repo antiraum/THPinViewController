@@ -23,6 +23,7 @@
     self = [self init];
     if (self)
     {
+        _squareButtons = NO;
         _delegate = delegate;
     }
     return self;
@@ -78,7 +79,8 @@
             
             NSUInteger number = (row < 3) ? row * 3 + col + 1 : 0;
             THPinNumButton *button = [[THPinNumButton alloc] initWithNumber:number
-                                                                    letters:[self lettersForRow:row column:col]];
+                                                                    letters:[self lettersForRow:row column:col]
+                                                              squareButtons:self.squareButtons];
             button.translatesAutoresizingMaskIntoConstraints = NO;
             button.backgroundColor = self.backgroundColor;
             [button addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -180,6 +182,16 @@
         return;
     }
     _hideLetters = hideLetters;
+    [self setupViews];
+}
+
+- (void)setSquareButtons:(BOOL)squareButtons
+{
+    if (self.squareButtons == squareButtons) {
+        return;
+    }
+    
+    _squareButtons = squareButtons;
     [self setupViews];
 }
 

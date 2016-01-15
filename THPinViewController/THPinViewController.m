@@ -20,9 +20,16 @@
 
 @implementation THPinViewController
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    return [self initWithDelegate:nil];
+}
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    return [self initWithNibName:nil bundle:nil];
+}
+
 - (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate
 {
-    self = [super init];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _delegate = delegate;
         _backgroundColor = [UIColor whiteColor];

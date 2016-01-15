@@ -23,9 +23,17 @@
 
 @implementation THPinInputCirclesView
 
+-(instancetype)initWithFrame:(CGRect)frame{
+    return [self initWithPinLength:0];
+}
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    return [self initWithPinLength:0];
+}
+
 - (instancetype)initWithPinLength:(NSUInteger)pinLength
 {
-    self = [super init];
+    self = [super initWithFrame:CGRectZero];
     if (self)
     {
         _pinLength = pinLength;

@@ -22,10 +22,18 @@
 @end
 
 @implementation THPinNumButton
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    return [self initWithNumber:0 letters:nil];
+}
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    return [self initWithNumber:0 letters:nil];
+}
+
 
 - (instancetype)initWithNumber:(NSUInteger)number letters:(NSString *)letters
 {
-    self = [super init];
+    self = [super initWithFrame:CGRectZero];
     if (self)
     {
         _number = number;

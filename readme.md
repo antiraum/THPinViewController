@@ -85,7 +85,7 @@ git submodule add git://github.com/antiraum/THPinViewController.git <local path>
 git submodule update
 ```
 
-###Via Cocoapods
+###Via CocoaPods
 
 Add this line to your Podfile:
 

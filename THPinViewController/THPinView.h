@@ -27,9 +27,14 @@
 @property (nonatomic, weak) id<THPinViewDelegate> delegate;
 @property (nonatomic, copy) NSString *promptTitle;
 @property (nonatomic, strong) UIColor *promptColor;
+@property (nonatomic, strong) UIFont *promptFont;
+@property (nonatomic, strong) UIFont *bottomButtonFont;
+@property (nonatomic, strong) UIColor *bottomButtonColor;
 @property (nonatomic, assign) BOOL hideLetters;
 @property (nonatomic, assign) BOOL disableCancel;
 
 - (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+
+- (void)resetInput;
 
 @end

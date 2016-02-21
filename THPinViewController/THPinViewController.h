@@ -35,7 +35,13 @@ static const NSInteger THPinViewControllerContentViewTag = 14742;
 @interface THPinViewController : UIViewController
 
 @property (nonatomic, weak) id<THPinViewControllerDelegate> delegate;
-@property (nonatomic, strong) UIColor *backgroundColor; // is only used if translucentBackground == NO
+
+/**
+ The background color is also used as the blur tint if translucentBackground == YES.
+ If the alpha value is ~1.0, the blur tint will be applied with a
+ default alpha value; otherwise the alpha of the background color will be used as-is.
+ */
+@property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, assign) BOOL translucentBackground;
 @property (nonatomic, copy) NSString *promptTitle;
 @property (nonatomic, strong) UIColor *promptColor;

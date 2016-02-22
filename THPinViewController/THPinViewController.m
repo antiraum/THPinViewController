@@ -50,6 +50,7 @@
     self.pinView.promptTitle = self.promptTitle;
     self.pinView.promptColor = self.promptColor;
     self.pinView.hideLetters = self.hideLetters;
+    self.pinView.squareButtons = self.squareButtons;
     self.pinView.disableCancel = self.disableCancel;
     self.pinView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.pinView];

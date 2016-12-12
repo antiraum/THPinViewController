@@ -79,6 +79,7 @@
             NSUInteger number = (row < 3) ? row * 3 + col + 1 : 0;
             THPinNumButton *button = [[THPinNumButton alloc] initWithNumber:number
                                                                     letters:[self lettersForRow:row column:col]];
+            button.shouldHighlight = self.shouldShowHighlight;
             button.translatesAutoresizingMaskIntoConstraints = NO;
             button.backgroundColor = self.backgroundColor;
             [button addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -181,6 +182,13 @@
     }
     _hideLetters = hideLetters;
     [self setupViews];
+}
+
+-(void)setShouldShowHighlight:(BOOL)shouldShowHighlight{
+    _shouldShowHighlight = shouldShowHighlight;
+    for(THPinNumButton* button in self.subviews){
+        button.shouldHighlight = self.shouldShowHighlight;
+    }
 }
 
 - (void)numberButtonTapped:(id)sender

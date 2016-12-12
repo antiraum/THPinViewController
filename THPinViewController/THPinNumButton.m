@@ -126,6 +126,9 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
+    if(!_shouldHighlight){
+        return;
+    }
     self.backgroundColorBackup = self.backgroundColor;
     self.backgroundColor = self.tintColor;
     UIColor *textColor = ([self.backgroundColorBackup isEqual:[UIColor clearColor]] ?

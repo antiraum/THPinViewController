@@ -21,6 +21,7 @@
 
 @property (nonatomic, weak) id<THPinNumPadViewDelegate> delegate;
 @property (nonatomic, assign) BOOL hideLetters;
+@property (nonatomic, assign) BOOL shouldShowHighlight;
 
 - (instancetype)initWithDelegate:(id<THPinNumPadViewDelegate>)delegate;
 

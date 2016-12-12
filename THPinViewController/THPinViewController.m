@@ -20,13 +20,21 @@
 
 @implementation THPinViewController
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    return [self initWithDelegate:nil];
+}
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    return [self initWithNibName:nil bundle:nil];
+}
+
 - (instancetype)initWithDelegate:(id<THPinViewControllerDelegate>)delegate
 {
-    self = [super init];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _delegate = delegate;
         _backgroundColor = [UIColor whiteColor];
         _translucentBackground = NO;
+        _shouldShowHighlight = YES;
         NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"THPinViewController"
                                                                                     ofType:@"bundle"]];
         _promptTitle = NSLocalizedStringFromTableInBundle(@"prompt_title", @"THPinViewController", bundle, nil);
@@ -51,6 +59,7 @@
     self.pinView.promptColor = self.promptColor;
     self.pinView.hideLetters = self.hideLetters;
     self.pinView.disableCancel = self.disableCancel;
+    self.pinView.shouldShowHighLight = self.shouldShowHighlight;
     self.pinView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.pinView];
     // center pin view
@@ -142,6 +151,10 @@
     self.pinView.disableCancel = self.disableCancel;
 }
 
+-(void)setShouldShowHighlight:(BOOL)shouldShowHighlight{
+    _shouldShowHighlight = shouldShowHighlight;
+    self.pinView.shouldShowHighLight = shouldShowHighlight;
+}
 #pragma mark - Blur
 
 - (void)addBlurView

@@ -28,9 +28,17 @@
 
 @implementation THPinView
 
+-(instancetype)initWithFrame:(CGRect)frame{
+    return [self initWithDelegate:nil];
+}
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+       return [self initWithDelegate:nil];
+}
+
 - (instancetype)initWithDelegate:(id<THPinViewDelegate>)delegate
 {
-    self = [super init];
+    self = [super initWithFrame:CGRectZero];
     if (self)
     {
         _delegate = delegate;
@@ -57,6 +65,7 @@
         _numPadView = [[THPinNumPadView alloc] initWithDelegate:self];
         _numPadView.translatesAutoresizingMaskIntoConstraints = NO;
         _numPadView.backgroundColor = self.backgroundColor;
+        _numPadView.shouldShowHighlight = self.shouldShowHighLight;
         [self addSubview:_numPadView];
         [self addConstraint:[NSLayoutConstraint constraintWithItem:_numPadView attribute:NSLayoutAttributeCenterX
                                                          relatedBy:NSLayoutRelationEqual
@@ -183,6 +192,11 @@
     }
     _disableCancel = disableCancel;
     [self updateBottomButton];
+}
+
+-(void)setShouldShowHighLight:(BOOL)shouldShowHighLight{
+    _shouldShowHighLight = shouldShowHighLight;
+    _numPadView.shouldShowHighlight = shouldShowHighLight;
 }
 
 #pragma mark - Public

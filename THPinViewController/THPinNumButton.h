@@ -13,6 +13,7 @@
 
 @property (nonatomic, readonly, assign) NSUInteger number;
 @property (nonatomic, readonly, copy) NSString *letters;
+@property (nonatomic) BOOL shouldHighlight;
 
 - (instancetype)initWithNumber:(NSUInteger)number letters:(NSString *)letters NS_DESIGNATED_INITIALIZER;
 

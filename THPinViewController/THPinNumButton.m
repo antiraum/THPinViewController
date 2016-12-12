@@ -22,10 +22,18 @@
 @end
 
 @implementation THPinNumButton
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    return [self initWithNumber:0 letters:nil];
+}
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    return [self initWithNumber:0 letters:nil];
+}
+
 
 - (instancetype)initWithNumber:(NSUInteger)number letters:(NSString *)letters
 {
-    self = [super init];
+    self = [super initWithFrame:CGRectZero];
     if (self)
     {
         _number = number;
@@ -118,6 +126,9 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
+    if(!_shouldHighlight){
+        return;
+    }
     self.backgroundColorBackup = self.backgroundColor;
     self.backgroundColor = self.tintColor;
     UIColor *textColor = ([self.backgroundColorBackup isEqual:[UIColor clearColor]] ?

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>92C7A3DE-6019-4B5E-8E56-F7AD05EBC499</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>76232B0966DBEC517E76E79A72A4BC2B7B4F5777</key>
+		<string>github.com:antiraum/THPinViewController.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>THPinViewControllerExample.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>76232B0966DBEC517E76E79A72A4BC2B7B4F5777</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:antiraum/THPinViewController.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>76232B0966DBEC517E76E79A72A4BC2B7B4F5777</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>76232B0966DBEC517E76E79A72A4BC2B7B4F5777</string>
+			<key>IDESourceControlWCCName</key>
+			<string>THPinViewController</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -39,7 +39,7 @@
     return [self initWithDelegate:nil];
 }
 
-- (nonnull instancetype)initWithCoder:(nonnull NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     return [self initWithDelegate:nil];
 }

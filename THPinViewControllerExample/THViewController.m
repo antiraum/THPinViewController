@@ -38,7 +38,7 @@ static const NSUInteger THNumberOfPinEntries = 6;
 
     self.loginLogoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.loginLogoutButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.loginLogoutButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
+    [self.loginLogoutButton setTitle:NSLocalizedString(@"Enter PIN", @"") forState:UIControlStateNormal];
     self.loginLogoutButton.tintColor = [UIColor whiteColor];
     [self.view addSubview:self.loginLogoutButton];
     
@@ -123,7 +123,7 @@ static const NSUInteger THNumberOfPinEntries = 6;
 - (void)logout:(id)sender
 {
     self.locked = YES;
-    [self.loginLogoutButton setTitle:@"Enter PIN" forState:UIControlStateNormal];
+    [self.loginLogoutButton setTitle:NSLocalizedString(@"Enter PIN", @"") forState:UIControlStateNormal];
 }
 
 #pragma mark - THPinViewControllerDelegate
@@ -155,7 +155,7 @@ static const NSUInteger THNumberOfPinEntries = 6;
     }
     
     UIAlertView *alert =
-    [[UIAlertView alloc] initWithTitle:@"Incorrect PIN"
+    [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Incorrect PIN", @"")
                                message:(self.remainingPinEntries == 1 ?
                                         @"You can try again once." :
                                         [NSString stringWithFormat:@"You can try again %lu times.",
@@ -168,13 +168,13 @@ static const NSUInteger THNumberOfPinEntries = 6;
 - (void)pinViewControllerWillDismissAfterPinEntryWasSuccessful:(THPinViewController *)pinViewController
 {
     self.locked = NO;
-    [self.loginLogoutButton setTitle:@"Logout" forState:UIControlStateNormal];
+    [self.loginLogoutButton setTitle:NSLocalizedString(@"Logout", @"") forState:UIControlStateNormal];
 }
 
 - (void)pinViewControllerWillDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController
 {
     self.locked = YES;
-    [self.loginLogoutButton setTitle:@"Access Denied / Enter PIN" forState:UIControlStateNormal];
+    [self.loginLogoutButton setTitle:NSLocalizedString(@"Access Denied / Enter PIN", @"") forState:UIControlStateNormal];
 }
 
 - (void)pinViewControllerWillDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController

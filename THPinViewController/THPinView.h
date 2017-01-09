@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithDelegate:(nullable id<THPinViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
+- (void)resetInput;
+
 @end
 
 NS_ASSUME_NONNULL_END

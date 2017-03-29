@@ -200,7 +200,7 @@
 
 - (void)updateBottomButton
 {
-    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"THPinViewController"
+    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"THPinViewController"
                                                                                 ofType:@"bundle"]];
     if (self.input.length == 0) {
         self.bottomButton.hidden = self.disableCancel;

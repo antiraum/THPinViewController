@@ -187,7 +187,7 @@
     [contentView drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:NO];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return [image applyBlurWithRadius:20.0f tintColor:[UIColor colorWithWhite:1.0f alpha:0.25f]
+    return [image applyBlurWithRadius:20.0f tintColor:[UIColor colorWithWhite:1.0f alpha:0.75f]
                 saturationDeltaFactor:1.8f maskImage:nil];
 }
 

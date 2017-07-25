@@ -61,6 +61,7 @@
     self.pinView.promptColor = self.promptColor;
     self.pinView.hideLetters = self.hideLetters;
     self.pinView.disableCancel = self.disableCancel;
+    self.pinView.disableShake = self.disableShake;
     self.pinView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.pinView];
     // center pin view
@@ -150,6 +151,15 @@
     }
     _disableCancel = disableCancel;
     self.pinView.disableCancel = self.disableCancel;
+}
+
+- (void)setDisableShake:(BOOL)disableShake
+{
+    if (self.disableShake == disableShake) {
+        return;
+    }
+    _disableShake = disableShake;
+    self.pinView.disableShake = self.disableShake;
 }
 
 #pragma mark - Blur

@@ -255,20 +255,25 @@
         return;
     }
     
+    double delayInSeconds = 0.3f;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     if ([self.delegate pinView:self isPinValid:self.input])
     {
-        double delayInSeconds = 0.3f;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self.delegate correctPinWasEnteredInPinView:self];
         });
         
     } else {
         
-        [self.inputCirclesView shakeWithCompletion:^{
-            [self resetInput];
-            [self.delegate incorrectPinWasEnteredInPinView:self];
-        }];
+        if (self.disableShake) {
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self incorrectPinWasEnteredInPinView];
+            });
+        } else {
+            [self.inputCirclesView shakeWithCompletion:^{
+                [self incorrectPinWasEnteredInPinView];
+            }];
+        }
     }
 }
 
@@ -279,6 +284,12 @@
     self.input = [NSMutableString string];
     [self.inputCirclesView unfillAllCircles];
     [self updateBottomButton];
+}
+
+- (void)incorrectPinWasEnteredInPinView
+{
+    [self resetInput];
+    [self.delegate incorrectPinWasEnteredInPinView:self];
 }
 
 @end

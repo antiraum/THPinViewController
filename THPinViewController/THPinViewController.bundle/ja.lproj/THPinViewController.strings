@@ -1,0 +1,11 @@
+/* 
+  THPinViewController.strings
+  THPinViewController
+
+  Created by Thomas Heß on 19.4.14.
+  Copyright (c) 2014 Thomas Heß. All rights reserved.
+*/
+
+"prompt_title" = "PINコードを入力";
+"cancel_button_title" = "キャンセル";
+"delete_button_title" = "削除";

@@ -78,14 +78,14 @@ See the example project for more details.
 Installation
 -------
 
-###As a Git Submodule
+### As a Git Submodule
 
 ```
 git submodule add git://github.com/antiraum/THPinViewController.git <local path>
 git submodule update
 ```
 
-###Via CocoaPods
+### Via CocoaPods
 
 Add this line to your Podfile:
 

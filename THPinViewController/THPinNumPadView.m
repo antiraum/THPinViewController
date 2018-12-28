@@ -79,6 +79,7 @@
             NSUInteger number = (row < 3) ? row * 3 + col + 1 : 0;
             THPinNumButton *button = [[THPinNumButton alloc] initWithNumber:number
                                                                     letters:[self lettersForRow:row column:col]];
+            button.accessibilityLabel = [NSString stringWithFormat:@"%ld", number];
             button.translatesAutoresizingMaskIntoConstraints = NO;
             button.backgroundColor = self.backgroundColor;
             [button addTarget:self action:@selector(numberButtonTapped:) forControlEvents:UIControlEventTouchUpInside];

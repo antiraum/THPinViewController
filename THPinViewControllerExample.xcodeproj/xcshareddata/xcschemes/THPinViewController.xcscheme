@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "15D40DEA2289EDFB00E5DB0F"
-               BuildableName = "THPinViewControllerFramework.framework"
-               BlueprintName = "THPinViewControllerFramework"
+               BuildableName = "THPinViewController.framework"
+               BlueprintName = "THPinViewController"
                ReferencedContainer = "container:THPinViewControllerExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "15D40DEA2289EDFB00E5DB0F"
-            BuildableName = "THPinViewControllerFramework.framework"
-            BlueprintName = "THPinViewControllerFramework"
+            BuildableName = "THPinViewController.framework"
+            BlueprintName = "THPinViewController"
             ReferencedContainer = "container:THPinViewControllerExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "15D40DEA2289EDFB00E5DB0F"
-            BuildableName = "THPinViewControllerFramework.framework"
-            BlueprintName = "THPinViewControllerFramework"
+            BuildableName = "THPinViewController.framework"
+            BlueprintName = "THPinViewController"
             ReferencedContainer = "container:THPinViewControllerExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

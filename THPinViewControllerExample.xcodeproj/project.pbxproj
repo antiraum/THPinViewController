@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		15D40DEF2289EDFB00E5DB0F /* THPinViewControllerFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 15D40DED2289EDFB00E5DB0F /* THPinViewControllerFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		15D40DF22289EDFB00E5DB0F /* THPinViewControllerFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D40DEB2289EDFB00E5DB0F /* THPinViewControllerFramework.framework */; };
-		15D40DF32289EDFB00E5DB0F /* THPinViewControllerFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15D40DEB2289EDFB00E5DB0F /* THPinViewControllerFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		15D40DF22289EDFB00E5DB0F /* THPinViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D40DEB2289EDFB00E5DB0F /* THPinViewController.framework */; };
+		15D40DF32289EDFB00E5DB0F /* THPinViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15D40DEB2289EDFB00E5DB0F /* THPinViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15D40DF82289EE1700E5DB0F /* THPinInputCirclesView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2742FC619043A27003EF85C /* THPinInputCirclesView.m */; };
 		15D40DF92289EE1700E5DB0F /* THPinInputCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048DA19027DBC006ACBC7 /* THPinInputCircleView.m */; };
 		15D40DFA2289EE1700E5DB0F /* THPinNumButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E26048D819027DBC006ACBC7 /* THPinNumButton.m */; };
@@ -66,7 +66,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				15D40DF32289EDFB00E5DB0F /* THPinViewControllerFramework.framework in Embed Frameworks */,
+				15D40DF32289EDFB00E5DB0F /* THPinViewController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,7 +74,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		15D40DEB2289EDFB00E5DB0F /* THPinViewControllerFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = THPinViewControllerFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15D40DEB2289EDFB00E5DB0F /* THPinViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = THPinViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15D40DED2289EDFB00E5DB0F /* THPinViewControllerFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THPinViewControllerFramework.h; sourceTree = "<group>"; };
 		15D40DEE2289EDFB00E5DB0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2075FDF1A160CCB0018078F /* THPinViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = THPinViewController.bundle; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			files = (
 				E26048A419027D01006ACBC7 /* CoreGraphics.framework in Frameworks */,
 				E26048A619027D01006ACBC7 /* UIKit.framework in Frameworks */,
-				15D40DF22289EDFB00E5DB0F /* THPinViewControllerFramework.framework in Frameworks */,
+				15D40DF22289EDFB00E5DB0F /* THPinViewController.framework in Frameworks */,
 				E26048A219027D01006ACBC7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,7 +172,7 @@
 			children = (
 				E260489E19027D01006ACBC7 /* THPinViewControllerExample.app */,
 				E26048BF19027D01006ACBC7 /* THPinViewControllerExampleTests.xctest */,
-				15D40DEB2289EDFB00E5DB0F /* THPinViewControllerFramework.framework */,
+				15D40DEB2289EDFB00E5DB0F /* THPinViewController.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -275,9 +275,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		15D40DEA2289EDFB00E5DB0F /* THPinViewControllerFramework */ = {
+		15D40DEA2289EDFB00E5DB0F /* THPinViewController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15D40DF62289EDFB00E5DB0F /* Build configuration list for PBXNativeTarget "THPinViewControllerFramework" */;
+			buildConfigurationList = 15D40DF62289EDFB00E5DB0F /* Build configuration list for PBXNativeTarget "THPinViewController" */;
 			buildPhases = (
 				15D40DE62289EDFB00E5DB0F /* Headers */,
 				15D40DE72289EDFB00E5DB0F /* Sources */,
@@ -288,9 +288,9 @@
 			);
 			dependencies = (
 			);
-			name = THPinViewControllerFramework;
+			name = THPinViewController;
 			productName = THPinViewControllerFramework;
-			productReference = 15D40DEB2289EDFB00E5DB0F /* THPinViewControllerFramework.framework */;
+			productReference = 15D40DEB2289EDFB00E5DB0F /* THPinViewController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		E260489D19027D01006ACBC7 /* THPinViewControllerExample */ = {
@@ -369,7 +369,7 @@
 			targets = (
 				E260489D19027D01006ACBC7 /* THPinViewControllerExample */,
 				E26048BE19027D01006ACBC7 /* THPinViewControllerExampleTests */,
-				15D40DEA2289EDFB00E5DB0F /* THPinViewControllerFramework */,
+				15D40DEA2289EDFB00E5DB0F /* THPinViewController */,
 			);
 		};
 /* End PBXProject section */
@@ -442,7 +442,7 @@
 /* Begin PBXTargetDependency section */
 		15D40DF12289EDFB00E5DB0F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 15D40DEA2289EDFB00E5DB0F /* THPinViewControllerFramework */;
+			target = 15D40DEA2289EDFB00E5DB0F /* THPinViewController */;
 			targetProxy = 15D40DF02289EDFB00E5DB0F /* PBXContainerItemProxy */;
 		};
 		E26048C519027D01006ACBC7 /* PBXTargetDependency */ = {
@@ -765,7 +765,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		15D40DF62289EDFB00E5DB0F /* Build configuration list for PBXNativeTarget "THPinViewControllerFramework" */ = {
+		15D40DF62289EDFB00E5DB0F /* Build configuration list for PBXNativeTarget "THPinViewController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15D40DF42289EDFB00E5DB0F /* Debug */,

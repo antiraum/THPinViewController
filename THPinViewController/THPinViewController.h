@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Thomas Heß. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

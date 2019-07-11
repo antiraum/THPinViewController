@@ -45,6 +45,7 @@ static const NSInteger THPinViewControllerContentViewTag = 14742;
 @property (nonatomic, assign) BOOL disableDismissAniamtion;
 
 - (instancetype)initWithDelegate:(nullable id<THPinViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+- (void) clear;
 
 @end
 

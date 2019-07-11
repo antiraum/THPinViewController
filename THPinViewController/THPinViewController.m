@@ -191,6 +191,12 @@
                 saturationDeltaFactor:1.8f maskImage:nil];
 }
 
+#pragma mark - THPinView actions
+- (void) clear
+{
+    [self.pinView resetInput];
+}
+
 #pragma mark - THPinViewDelegate
 
 - (NSUInteger)pinLengthForPinView:(THPinView *)pinView

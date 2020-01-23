@@ -253,4 +253,9 @@
     }
 }
 
+- (void)pinViewDidStartEntering:(THPinView *)pinView
+{
+    [self.delegate pinViewControllerDidStartEntering:self];
+}
+
 @end

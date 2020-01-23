@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)cancelButtonTappedInPinView:(THPinView *)pinView;
 - (void)correctPinWasEnteredInPinView:(THPinView *)pinView;
 - (void)incorrectPinWasEnteredInPinView:(THPinView *)pinView;
+- (void)pinViewDidStartEntering:(THPinView *)pinView;
 
 @end
 

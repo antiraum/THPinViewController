@@ -242,6 +242,10 @@
 {
     NSUInteger pinLength = [self.delegate pinLengthForPinView:self];
     
+    if (pinLength == 0) {
+        [self.delegate pinViewDidStartEntering:self];
+    }
+    
     if (self.input.length >= pinLength) {
         return;
     }

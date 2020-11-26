@@ -30,6 +30,7 @@ static const NSInteger THPinViewControllerContentViewTag = 14742;
 - (void)pinViewControllerDidDismissAfterPinEntryWasUnsuccessful:(THPinViewController *)pinViewController;
 - (void)pinViewControllerWillDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController;
 - (void)pinViewControllerDidDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController;
+- (void)pinViewControllerDidStartEntering:(THPinViewController *)pinViewController;
 
 @end
 
@@ -45,6 +46,7 @@ static const NSInteger THPinViewControllerContentViewTag = 14742;
 @property (nonatomic, assign) BOOL disableDismissAniamtion;
 
 - (instancetype)initWithDelegate:(nullable id<THPinViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+- (void) clear;
 
 @end
 

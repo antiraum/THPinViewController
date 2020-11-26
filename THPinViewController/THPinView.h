@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)cancelButtonTappedInPinView:(THPinView *)pinView;
 - (void)correctPinWasEnteredInPinView:(THPinView *)pinView;
 - (void)incorrectPinWasEnteredInPinView:(THPinView *)pinView;
+- (void)pinViewDidStartEntering:(THPinView *)pinView;
 
 @end
 
@@ -32,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL disableCancel;
 
 - (instancetype)initWithDelegate:(nullable id<THPinViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+- (void) resetInput;
 
 @end
 
